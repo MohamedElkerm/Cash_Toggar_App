@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  /// Fonts
   static const String cairoFontFamilyCairoBold = 'assets/fonts/cairo_font_family/Cairo-Bold.ttf';
   static const String cairoFontFamilyCairoExtraBold = 'assets/fonts/cairo_font_family/Cairo-ExtraBold.ttf';
   static const String cairoFontFamilyCairoExtraLight = 'assets/fonts/cairo_font_family/Cairo-ExtraLight.ttf';
@@ -9,6 +10,7 @@ class Assets {
   static const String cairoFontFamilyCairoMedium = 'assets/fonts/cairo_font_family/Cairo-Medium.ttf';
   static const String cairoFontFamilyCairoRegular = 'assets/fonts/cairo_font_family/Cairo-Regular.ttf';
   static const String cairoFontFamilyCairoSemiBold = 'assets/fonts/cairo_font_family/Cairo-SemiBold.ttf';
+  /// App Icons
   static const String iconsArrowBackIconSvg = 'assets/icons/arrow_back_icon_svg.svg';
   static const String iconsCopyIconSvg = 'assets/icons/copy_icon_svg.svg';
   static const String iconsPasswordIconSvg = 'assets/icons/password_icon_svg.svg';
@@ -21,8 +23,16 @@ class Assets {
   static const String iconsUserIconSvg = 'assets/icons/user_icon_svg.svg';
   static const String imagesHorizontalLogoSvg = 'assets/images/horizontal_logo_svg.svg';
   static const String imagesVerticalLogoSvg = 'assets/images/vertical_logo_svg.svg';
+  /// OnBoarding
   static const String onBoardingImagesOnboardingScreenOne = 'assets/images/on_boarding_images/onboarding_screen_one.svg';
   static const String onBoardingImagesOnboardingScreenThreeSvg = 'assets/images/on_boarding_images/onboarding_screen_three_svg.svg';
   static const String onBoardingImagesOnboardingScreenTwoSvg = 'assets/images/on_boarding_images/onboarding_screen_two_svg.svg';
+  ///BottomNabBarIcons
+  static const String iconsHomeBoldIconSvg = 'assets/icons/home_bold_icon_svg.svg';
+  static const String iconsHomeLinearIconSvg = 'assets/icons/home_linear_icon_svg.svg';
+  static const String iconsProfileBoldIconSvg = 'assets/icons/profile_bold_icon_svg.svg';
+  static const String iconsProfileLinearIconSvg = 'assets/icons/profile_linear_icon_svg.svg';
+  static const String iconsTransactionsBoldIconSvg = 'assets/icons/transactions_bold_icon_svg.svg';
+  static const String iconsTransactionsLinearIconSvg = 'assets/icons/transactions_linear_icon_svg.svg';
 
 }
