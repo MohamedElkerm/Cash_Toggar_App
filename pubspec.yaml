@@ -161,5 +161,6 @@ flutter:
         - asset: assets/fonts/cairo_font_family/Cairo-Medium.ttf
         - asset: assets/fonts/cairo_font_family/Cairo-Regular.ttf
         - asset: assets/fonts/cairo_font_family/Cairo-SemiBold.ttf
-
+flutter_intl:
+  enabled: true
 

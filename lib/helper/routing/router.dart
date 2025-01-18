@@ -1,10 +1,10 @@
 import 'package:cash_toggar_app/helper/routing/router_observer.dart';
 import 'package:cash_toggar_app/modules/authentication/signin/view/signin_screen.dart';
+import 'package:cash_toggar_app/modules/authentication/signup/view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import 'app_routes.dart';
-
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
@@ -16,11 +16,19 @@ final GoRouter router = GoRouter(
   ],
   routes: [
     GoRoute(
-        name: AppRoutesNamed.signInScreen,
-        path: AppRoutes.signInScreen,
-        builder: (context, state) {
-          return const SigninScreen();
-        }),
+      name: AppRoutesNamed.signInScreen,
+      path: AppRoutes.signInScreen,
+      builder: (context, state) {
+        return const SigninScreen();
+      },
+    ),
+    GoRoute(
+      name: AppRoutesNamed.signUpScreen,
+      path: AppRoutes.signUpScreen,
+      builder: (context, state) {
+        return const SignUpScreen();
+      },
+    ),
     // StatefulShellRoute.indexedStack(
     //   builder: (context, state, navigationShell) => BottomNavBarScreen(
     //     navigationShell: navigationShell,

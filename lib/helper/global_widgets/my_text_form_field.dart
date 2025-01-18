@@ -1,5 +1,6 @@
-
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cash_toggar_app/generated/assets.dart';
+import 'package:cash_toggar_app/resources/fonts_style.dart';
 import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,9 +13,6 @@ import 'MyResponsiveText.dart';
 
 /// TODO : handle the focus node and validator
 
-
-
-
 class MyTextFormField extends StatelessWidget {
   MyTextFormField({
     super.key,
@@ -26,9 +24,8 @@ class MyTextFormField extends StatelessWidget {
     required this.textInputType,
     this.changeVisibility,
     required this.isArabic,
+    required this.prefixIcon,
   });
-
-
 
   TextEditingController textEditingController;
   String label;
@@ -38,102 +35,109 @@ class MyTextFormField extends StatelessWidget {
   TextInputType textInputType;
   Function? changeVisibility;
   final bool isArabic;
+  String? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQueryValues(context).height * 0.067,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          // color: Colors.red,
-
-          ),
-      child: Directionality(
-        textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-        child: TextFormField(
-          controller: textEditingController,
-          cursorColor: AppColors.b_w_50,
-          keyboardType: textInputType,
-          textAlign: isArabic ? TextAlign.right : TextAlign.left,
-          obscureText: isHidden ? true : false,
-          decoration: InputDecoration(
-            // suffix: const Icon(Icons.person),
-
-            suffix: isPassword
-                ? isHidden
-                    ? Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQueryValues(context).height * 0.033,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              changeVisibility!();
-                            },
-                            child: SvgPicture.asset(
-                              AppIcons.notHidePasswordIcon,
-                              color: AppColors.b_w_750,
-                            ),
-                          ),
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          SizedBox(
-                            height: MediaQueryValues(context).height * 0.033,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              changeVisibility!();
-                            },
-                            child: SvgPicture.asset(
-                              AppIcons.hidePasswordIcon,
-                              color: AppColors.b_w_750,
-                            ),
-                          ),
-                        ],
-                      )
-                : SizedBox(
-                    height: MediaQueryValues(context).height * 0.025,
-                  ),
-
-
-            // border: GradientOutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(9),
-            //   gradient: const LinearGradient(
-            //     colors: [
-            //       Colors.grey,
-            //       Colors.grey,
-            //     ],
-            //   ),
-            //   width: 2,
-            // ),
-            // focusedBorder: GradientOutlineInputBorder(
-            //   borderRadius: BorderRadius.circular(9),
-            //   gradient: const LinearGradient(
-            //     colors: [
-            //       AppColors.gradientBegin,
-            //       // AppColors.gradientBegin,
-            //       AppColors.gradientMiddle,
-            //       AppColors.gradientEnd,
-            //     ],
-            //   ),
-            //   width: 2,
-            // ),
-            label: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: MyResponsiveText(
-                text: label.toString(),
-                style: const TextStyle(
-                  color: AppColors.b_w_200,
-                ),
-                minFontSize: 4,
-              ),
-            ),
-            hintText: hintText.toString(),
+    return Column(
+      crossAxisAlignment:
+          isArabic ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+      children: [
+        MyResponsiveText(
+          text: label,
+          style: getBold(
+            fontColor: AppColors.secondaryColor,
+            fontSize: 12,
           ),
         ),
-      ),
+        SizedBox(
+          height: MediaQueryValues(context).height * 0.01,
+        ),
+        Container(
+          height: MediaQueryValues(context).height * 0.067,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              // color: Colors.red,
+
+              ),
+          child: Directionality(
+            textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
+            child: TextFormField(
+              controller: textEditingController,
+              cursorColor: AppColors.secondaryColor,
+              keyboardType: textInputType,
+              textAlign: isArabic ? TextAlign.right : TextAlign.left,
+              obscureText: isHidden ? true : false,
+              decoration: InputDecoration(
+                // suffix: const Icon(Icons.person),
+
+                prefixIcon: prefixIcon == null
+                    ? null
+                    : Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        // Adjust padding as needed
+                        child: SvgPicture.asset(
+                          prefixIcon.toString(),
+                          color: AppColors.secondaryColor,
+                        ),
+                      ),
+
+                suffixIcon: isPassword
+                    ? isHidden
+                        ? Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQueryValues(context).height * 0.02,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  changeVisibility!();
+                                },
+                                child: SvgPicture.asset(
+                                  AppIcons.notHidePasswordIcon,
+                                  color: AppColors.secondaryColor,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQueryValues(context).height * 0.02,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  changeVisibility!();
+                                },
+                                child: SvgPicture.asset(
+                                  AppIcons.hidePasswordIcon,
+                                  color: AppColors.secondaryColor,
+                                ),
+                              ),
+                            ],
+                          )
+                    : SizedBox(
+                        height: MediaQueryValues(context).height * 0.025,
+                      ),
+
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(9),
+                  borderSide: const BorderSide(
+                    color: AppColors.secondaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(9),
+                  borderSide: const BorderSide(
+                      color: AppColors.secondaryColor, width: 1.5),
+                ),
+
+                hintText: hintText.toString(),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -162,7 +166,7 @@ class MyTextFormFieldViewOnly extends StatelessWidget {
           child: TextFormField(
             maxLines: 10,
             minLines: 1,
-            cursorColor: AppColors.b_w_50,
+            cursorColor: AppColors.secondaryColor,
             readOnly: true,
             autofocus: true,
             textAlign: isArabic ? TextAlign.right : TextAlign.left,
@@ -175,11 +179,9 @@ class MyTextFormFieldViewOnly extends StatelessWidget {
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9),
-
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9),
-
               ),
               label: FittedBox(
                   fit: BoxFit.scaleDown,
