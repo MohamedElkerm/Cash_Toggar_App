@@ -7,6 +7,9 @@ class AppColors {
   static const primaryColor = Color(0xff5D1393);
   static const secondaryColor = Color(0xffFE7E59);
 
+  static const gradientStartColor = Color(0xff923CD1);
+  static const gradientEndColor = Color(0xff5D1393);
+
 
 
 

@@ -26,6 +26,13 @@ class SigninCubit extends Cubit<SigninState> {
     emit(SigninNavigateToSignupState());
   }
 
+  void navigateToHomeScreen() {
+    router.pushReplacementNamed(
+      AppRoutesNamed.homeScreen,
+    );
+    emit(SigninNavigateToHomeState());
+  }
+
   void navigateToForgetPassword() {
     emit(SigninNavigateToForgetPasswordState());
   }

@@ -7,6 +7,8 @@ class AppRoutes {
   static const String resetPasswordScreen = "/resetPassword";
   static const String otpScreen = "/otp";
 
+  static const String homeScreen = "/home";
+
 
 }
 
@@ -19,5 +21,6 @@ class AppRoutesNamed {
   static const String signUpScreen = "signUp";
   static const String resetPasswordScreen = "resetPassword";
   static const String otpScreen = "otp";
+  static const String homeScreen = "home";
 
 }

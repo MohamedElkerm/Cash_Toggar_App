@@ -9,4 +9,6 @@ final class SigninVisibilityChangeState extends SigninState {}
 
 final class SigninNavigateToSignupState extends SigninState {}
 
+final class SigninNavigateToHomeState extends SigninState {}
+
 final class SigninNavigateToForgetPasswordState extends SigninState {}

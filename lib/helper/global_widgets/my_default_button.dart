@@ -13,6 +13,7 @@ class MyDefaultButton extends StatelessWidget {
     required this.textSize,
     this.backGroundColor = AppColors.primaryColor,
     required this.function,
+    this.isLarge = false,
   });
 
   final String text;
@@ -20,12 +21,13 @@ class MyDefaultButton extends StatelessWidget {
   final Color backGroundColor;
   final double textSize;
   final Function function;
+  final bool isLarge;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQueryValues(context).width,
-      height: MediaQueryValues(context).height * 0.06,
+      height:isLarge?MediaQueryValues(context).height * 0.1 : MediaQueryValues(context).height * 0.06,
       child: ElevatedButton(
         onPressed: () {
           function();

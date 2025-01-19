@@ -1,6 +1,7 @@
 import 'package:cash_toggar_app/helper/routing/router_observer.dart';
 import 'package:cash_toggar_app/modules/authentication/signin/view/signin_screen.dart';
 import 'package:cash_toggar_app/modules/authentication/signup/view/sign_up_screen.dart';
+import 'package:cash_toggar_app/modules/bottom_nav_modules/home/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -27,6 +28,13 @@ final GoRouter router = GoRouter(
       path: AppRoutes.signUpScreen,
       builder: (context, state) {
         return const SignUpScreen();
+      },
+    ),
+    GoRoute(
+      name: AppRoutesNamed.homeScreen,
+      path: AppRoutes.homeScreen,
+      builder: (context, state) {
+        return const HomeScreen();
       },
     ),
     // StatefulShellRoute.indexedStack(
