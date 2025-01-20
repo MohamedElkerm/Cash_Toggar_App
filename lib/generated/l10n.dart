@@ -689,6 +689,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Cash back`
+  String get cashBack {
+    return Intl.message(
+      'Cash back',
+      name: 'cashBack',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

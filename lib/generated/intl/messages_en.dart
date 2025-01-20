@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "backToHome": MessageLookupByLibrary.simpleMessage("Back to Home Page"),
         "brandName": MessageLookupByLibrary.simpleMessage("Cash Toggar"),
         "callUs": MessageLookupByLibrary.simpleMessage("Call Center"),
+        "cashBack": MessageLookupByLibrary.simpleMessage("Cash back"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Language Setting"),
         "changePassword":

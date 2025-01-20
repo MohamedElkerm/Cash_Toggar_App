@@ -81,3 +81,75 @@ class MyCustomSliverAppBarForHomeScreen extends StatelessWidget {
     );
   }
 }
+
+class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
+  const MyDefaultCustomSliverAppBarScreen({
+    super.key,
+    required this.headerTitle,
+    required this.refreshFunction,
+    required this.backFunction,
+  });
+
+  final String headerTitle;
+  final Function refreshFunction;
+  final Function backFunction;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      floating: true,
+
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(
+            24,
+          ),
+          bottomRight: Radius.circular(
+            24,
+          ),
+        ),
+      ),
+      flexibleSpace: FlexibleSpaceBar(
+        centerTitle: true,
+        title: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              InkWell(
+                onTap: () {
+                  refreshFunction();
+                },
+                child: SvgPicture.asset(
+                  Assets.iconsRefreshIconSvg,
+                  color: AppColors.secondaryColor,
+                ),
+              ),
+              Spacer(),
+              MyResponsiveText(
+                text: headerTitle,
+                style: getSemiBold(
+                  fontColor: AppColors.myWhite,
+                  fontSize: 24,
+                ),
+              ),
+              Spacer(),
+              InkWell(
+                onTap: () {
+                  backFunction();
+                },
+                child: SvgPicture.asset(
+                  Assets.iconsArrowBackIconSvg,
+                  color: AppColors.myWhite,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      backgroundColor: AppColors.primaryColor,
+      toolbarHeight: MediaQueryValues(context).height * 0.15,
+      // toolbarHeight: ,
+    );
+  }
+}

@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../generated/l10n.dart';
+import '../../../../helper/global_widgets/transaction_card/transaction_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -88,8 +89,26 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 8,
                   ),
-
-
+                  ListView.builder(
+                    itemCount: 8,
+                    shrinkWrap: true,
+                    physics: BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: TransactionCard(
+                          userName: "محمد أحمد محمود",
+                          transactionDate: "09/01/2025 - ",
+                          transactionTime: "07:54:45",
+                          transactionAmount: "5,000",
+                          transactionGateway: "Vodafone Cash",
+                          paymentStatusEnum: AppConstants.pendingTransaction,
+                          isSendingMoneyMakeItGreen: true,
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

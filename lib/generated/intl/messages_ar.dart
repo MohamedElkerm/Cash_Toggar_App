@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("الرجوع إلي الصفحة الرئيسية"),
         "brandName": MessageLookupByLibrary.simpleMessage("كاش تجار"),
         "callUs": MessageLookupByLibrary.simpleMessage("خدمة العملاء"),
+        "cashBack": MessageLookupByLibrary.simpleMessage("كاش باك"),
         "changeLanguage": MessageLookupByLibrary.simpleMessage("تغيير اللغة"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("تغيير كلمة المرور"),
