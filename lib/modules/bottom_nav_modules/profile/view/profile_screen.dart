@@ -25,29 +25,73 @@ class ProfileScreen extends StatelessWidget {
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-
-                  MyDefaultButton(text: S.of(context).userInformation, textSize: 16, function: (){},),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).changePassword, textSize: 16, function: (){},textColor: AppColors.primaryColor, backGroundColor: AppColors.myWhite,),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).changePassword, textSize: 16, function: (){},textColor: AppColors.primaryColor, backGroundColor: AppColors.myWhite,),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).rateUs, textSize: 16, function: (){},textColor: AppColors.primaryColor, backGroundColor: AppColors.myWhite,),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).changeLanguage, textSize: 16, function: (){},textColor: AppColors.primaryColor, backGroundColor: AppColors.myWhite,),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).callUs, textSize: 16, function: (){},textColor: AppColors.primaryColor, backGroundColor: AppColors.myWhite,),
-                  SizedBox(height:12 ,),
-
-                  MyDefaultButton(text: S.of(context).logOut, textSize: 16, function: (){},backGroundColor: AppColors.secondaryColor,),
-                  SizedBox(height:MediaQueryValues(context).height * 0.1 ,),
-
-
+                  MyDefaultButton(
+                    text: S.of(context).userInformation,
+                    textSize: 16,
+                    function: () {},
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).changePassword,
+                    textSize: 16,
+                    function: () {},
+                    textColor: AppColors.primaryColor,
+                    backGroundColor: AppColors.myWhite,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).changePassword,
+                    textSize: 16,
+                    function: () {},
+                    textColor: AppColors.primaryColor,
+                    backGroundColor: AppColors.myWhite,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).rateUs,
+                    textSize: 16,
+                    function: () {},
+                    textColor: AppColors.primaryColor,
+                    backGroundColor: AppColors.myWhite,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).changeLanguage,
+                    textSize: 16,
+                    function: () {},
+                    textColor: AppColors.primaryColor,
+                    backGroundColor: AppColors.myWhite,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).callUs,
+                    textSize: 16,
+                    function: () {},
+                    textColor: AppColors.primaryColor,
+                    backGroundColor: AppColors.myWhite,
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                  MyDefaultButton(
+                    text: S.of(context).logOut,
+                    textSize: 16,
+                    function: () {},
+                    backGroundColor: AppColors.secondaryColor,
+                  ),
+                  SizedBox(
+                    height: MediaQueryValues(context).height * 0.1,
+                  ),
                 ],
               ),
             ),
