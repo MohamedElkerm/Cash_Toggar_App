@@ -35,7 +35,6 @@ class TransactionCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        height: MediaQueryValues(context).height * 0.08,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
