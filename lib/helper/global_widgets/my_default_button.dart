@@ -27,7 +27,7 @@ class MyDefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQueryValues(context).width,
-      height:isLarge?MediaQueryValues(context).height * 0.1 : MediaQueryValues(context).height * 0.06,
+      height:isLarge?MediaQueryValues(context).height * 0.1 : MediaQueryValues(context).height * 0.08,
       child: ElevatedButton(
         onPressed: () {
           function();
