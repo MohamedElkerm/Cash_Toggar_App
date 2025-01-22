@@ -69,5 +69,6 @@
   "withdrawalSuccessful" : "Withdrawal successful",
   "depositRejected" : "Deposit rejected",
   "withdrawalRejected" : "Withdrawal rejected",
-  "transactionPending" : "Transaction pending"
+  "transactionPending" : "Transaction pending",
+  "completeTransaction" : "Complete Transaction"
 }

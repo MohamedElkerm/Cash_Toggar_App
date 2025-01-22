@@ -69,5 +69,6 @@
   "withdrawalSuccessful" : "تم السحب بنجاح",
   "depositRejected" : "تم رفض الايداع",
   "withdrawalRejected" : "تم رفض السحب",
-  "" : "العمليه قيد الانتظار"
+  "transactionPending" : "العمليه قيد الانتظار",
+  "completeTransaction" : "اتمام العمليه"
 }

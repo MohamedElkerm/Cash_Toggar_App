@@ -6,17 +6,19 @@ import 'package:cash_toggar_app/modules/bottom_nav_modules/profile/view/profile_
 import 'package:cash_toggar_app/modules/bottom_nav_modules/transactions/view/transaction_screen.dart';
 import 'package:cash_toggar_app/modules/choose_payment_method/view/choose_payment_method_screen.dart';
 import 'package:cash_toggar_app/modules/onboarding/view/on_boarding_screen.dart';
+import 'package:cash_toggar_app/modules/payment_process_compelete/view/payment_process_compelete.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../modules/bottom_nav_bar/view/bottom_nav_bar.dart';
+import '../../modules/confirmation_request/view/confirmation_request_screen.dart';
 import 'app_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  // initialLocation: AppRoutes.servicesScreen,
+  initialLocation: AppRoutes.homeScreen,
   observers: [
     MyRouterObserver(),
   ],
@@ -54,31 +56,51 @@ final GoRouter router = GoRouter(
         navigationShell: navigationShell,
       ),
       branches: [
+        ///HOME
         StatefulShellBranch(
           routes: [
             GoRoute(
               name: AppRoutesNamed.homeScreen,
               path: AppRoutes.homeScreen,
               builder: (context, state) => const HomeScreen(),
+              routes: [
+                GoRoute(
+                  name: AppRoutesNamed.choosePaymentMethodScreen,
+                  path: AppRoutes.choosePaymentMethodScreen,
+                  builder: (context, state) =>
+                  const ChoosePaymentMethodScreen(),
+
+                ),
+                GoRoute(
+                  name: AppRoutesNamed.paymentProcessCompleteScreen,
+                  path: AppRoutes.paymentProcessCompleteScreen,
+                  builder: (context, state) =>
+                  const PaymentProcessCompleteScreen(),
+                ),
+                GoRoute(
+                  name: AppRoutesNamed.confirmationRequestScreen,
+                  path: AppRoutes.confirmationRequestScreen,
+                  builder: (context, state) =>
+                  const ConfirmationRequestScreen(),
+                ),
+              ],
+
             ),
           ],
         ),
+
+        ///Transaction Page
         StatefulShellBranch(
           routes: [
             GoRoute(
-                name: AppRoutesNamed.transactionScreen,
-                path: AppRoutes.transactionScreen,
-                builder: (context, state) => const TransactionScreen(),
-                routes: [
-                  GoRoute(
-                    name: AppRoutesNamed.choosePaymentMethodScreen,
-                    path: AppRoutes.choosePaymentMethodScreen,
-                    builder: (context, state) =>
-                        const ChoosePaymentMethodScreen(),
-                  ),
-                ]),
+              name: AppRoutesNamed.transactionScreen,
+              path: AppRoutes.transactionScreen,
+              builder: (context, state) => const TransactionScreen(),
+            ),
           ],
         ),
+
+        ///Profile Page
         StatefulShellBranch(
           routes: [
             GoRoute(

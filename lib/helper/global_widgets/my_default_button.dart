@@ -1,7 +1,9 @@
+import 'package:cash_toggar_app/generated/assets.dart';
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
 import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../resources/colors_manager.dart';
 
@@ -27,7 +29,9 @@ class MyDefaultButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQueryValues(context).width,
-      height:isLarge?MediaQueryValues(context).height * 0.1 : MediaQueryValues(context).height * 0.08,
+      height: isLarge
+          ? MediaQueryValues(context).height * 0.1
+          : MediaQueryValues(context).height * 0.08,
       child: ElevatedButton(
         onPressed: () {
           function();
@@ -111,6 +115,8 @@ class MyDefaultButtonFit extends StatelessWidget {
     this.backGroundColor = AppColors.primaryColor,
     required this.function,
     this.isLargeCard = false,
+    this.haveIcon = true,
+    this.borderRadius = 8.0,
   });
 
   final String text;
@@ -119,6 +125,8 @@ class MyDefaultButtonFit extends StatelessWidget {
   final double textSize;
   final Function function;
   final bool isLargeCard;
+  final double borderRadius;
+  final bool haveIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -133,19 +141,29 @@ class MyDefaultButtonFit extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
           backgroundColor: WidgetStatePropertyAll(
             backGroundColor,
           ),
         ),
-        child: MyResponsiveText(
-          text: text,
-          style: getBold(
-            fontColor: textColor,
-            fontSize: textSize,
-          ),
+        child: Row(
+          children: [
+            MyResponsiveText(
+              text: text,
+              style: getBold(
+                fontColor: textColor,
+                fontSize: textSize,
+              ),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            SvgPicture.asset(
+              Assets.iconsCopyIconSvg,
+            ),
+          ],
         ),
       ),
     );

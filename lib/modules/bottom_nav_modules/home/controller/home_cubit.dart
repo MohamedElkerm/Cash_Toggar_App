@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
 part 'home_state.dart';
@@ -27,5 +28,16 @@ class HomeCubit extends Cubit<HomeState> {
       newValue: value,
     );
     emit(NavigateToChoosePaymentMethodState());
+  }
+
+  void copyToClipboard(BuildContext context, String text) {
+    Clipboard.setData(ClipboardData(text: text));
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('User ID copied to clipboard!'),
+        duration: Duration(seconds: 2),
+      ),
+    );
+    emit(CopyTheUserNumberIdState());
   }
 }

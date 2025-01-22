@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourBestGatewayForeSendingMoney":
             MessageLookupByLibrary.simpleMessage(
                 "حدد نظام الدفع الذي ترغب في إستخدامه لشحن حسابك"),
+        "completeTransaction":
+            MessageLookupByLibrary.simpleMessage("اتمام العمليه"),
         "confirm": MessageLookupByLibrary.simpleMessage("التاكيد"),
         "craeteAccount": MessageLookupByLibrary.simpleMessage("إنشاء الحساب"),
         "createAccount":
@@ -122,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "transActionHistory":
             MessageLookupByLibrary.simpleMessage("سجل المعاملات"),
+        "transactionPending":
+            MessageLookupByLibrary.simpleMessage("العمليه قيد الانتظار"),
         "transactions": MessageLookupByLibrary.simpleMessage("المعاملات"),
         "uploadTheImage":
             MessageLookupByLibrary.simpleMessage("رفع إسكرين شوت هنا"),

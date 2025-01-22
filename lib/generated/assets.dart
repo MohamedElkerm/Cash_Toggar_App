@@ -21,15 +21,18 @@ class Assets {
   static const String iconsProfileLinearIconSvg = 'assets/icons/profile_linear_icon_svg.svg';
   static const String iconsRefreshIconSvg = 'assets/icons/refresh_icon_svg.svg';
   static const String iconsRejectedRequestIconSvg = 'assets/icons/rejected_request_icon_svg.svg';
+  static const String iconsScreenShotSvgIcon = 'assets/icons/screen_shot_svg_icon.svg';
   static const String iconsSuccessRequestIconSvg = 'assets/icons/success_request_icon_svg.svg';
   static const String iconsTransactionIconSvg = 'assets/icons/transaction_icon_svg.svg';
   static const String iconsTransactionsBoldIconSvg = 'assets/icons/transactions_bold_icon_svg.svg';
   static const String iconsTransactionsLinearIconSvg = 'assets/icons/transactions_linear_icon_svg.svg';
   static const String iconsUserIconSvg = 'assets/icons/user_icon_svg.svg';
+  static const String imagesESample = 'assets/images/e_sample.png';
   static const String imagesHorizontalLogoSvg = 'assets/images/horizontal_logo_svg.svg';
   static const String imagesVerticalLogoSvg = 'assets/images/vertical_logo_svg.svg';
   static const String onBoardingImagesOnboardingScreenOne = 'assets/images/on_boarding_images/onboarding_screen_one.svg';
   static const String onBoardingImagesOnboardingScreenThreeSvg = 'assets/images/on_boarding_images/onboarding_screen_three_svg.svg';
   static const String onBoardingImagesOnboardingScreenTwoSvg = 'assets/images/on_boarding_images/onboarding_screen_two_svg.svg';
+  static const String onBoardingImagesOnnoardingHeaderLogo = 'assets/images/on_boarding_images/onnoarding_header_logo.svg';
 
 }

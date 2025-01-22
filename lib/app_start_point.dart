@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'generated/l10n.dart';
 import 'helper/localization/cubit/localization_cubit.dart';
 import 'helper/routing/router.dart';
+import 'modules/payment_process_compelete/controller/payment_process_compelete_cubit.dart';
 
 class CashToggar extends StatelessWidget {
   const CashToggar({super.key});
@@ -21,6 +22,9 @@ class CashToggar extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HomeCubit(),
+        ),
+        BlocProvider(
+          create: (context) => PaymentProcessCompeleteCubit(),
         ),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationState>(

@@ -49,6 +49,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseYourBestGatewayForeSendingMoney":
             MessageLookupByLibrary.simpleMessage(
                 "Select the payment method you wish to use to top up your account"),
+        "completeTransaction":
+            MessageLookupByLibrary.simpleMessage("Complete Transaction"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "craeteAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
