@@ -49,6 +49,7 @@
   "amount": "Money:",
   "moneyRange": "The minimum is 15 LE - the maximum is 30,000 LE",
   "phoneNumberThatSendingMoney": "phone number transferred made from",
+  "phoneNumberThatReceivingMoney": "phone number will receive to",
   "screenshotOfTransaction": "Screenshot of a successful transfer",
   "uploadTheImage": "Upload screenshot here",
   "confirm": "Confirm",

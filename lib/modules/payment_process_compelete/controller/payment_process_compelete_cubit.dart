@@ -14,9 +14,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
 
 
   late String currentPaymentWayName;
-
   late String currentPaymentWayImage;
-
   getCurrentPaymentWayDetails({
     required String currentPaymentWayNameNewValue,
     required String currentPaymentWayImageNewValue,

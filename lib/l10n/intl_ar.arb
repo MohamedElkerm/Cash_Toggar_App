@@ -49,6 +49,7 @@
   "amount": "المبلغ",
   "moneyRange": "الحد الأدني 15LE - الحد الأقصي 30,000LE",
   "phoneNumberThatSendingMoney": "رقم الهاتف الذي تم التحويل منه",
+  "phoneNumberThatReceivingMoney": "رقم الهاتف الذي تريد التحويل اليه",
   "screenshotOfTransaction": "إسكرين شوت لعملية تحويل ناجحة",
   "uploadTheImage": "رفع إسكرين شوت هنا",
   "confirm": "التاكيد",

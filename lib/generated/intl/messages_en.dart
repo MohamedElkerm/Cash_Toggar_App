@@ -103,6 +103,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Secure Money Transfer"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
+        "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
+            "phone number will receive to"),
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "phone number transferred made from"),
         "previous": MessageLookupByLibrary.simpleMessage("back"),

@@ -18,7 +18,7 @@ final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: AppRoutes.homeScreen,
+  // initialLocation: AppRoutes.homeScreen,
   observers: [
     MyRouterObserver(),
   ],

@@ -550,6 +550,16 @@ class S {
     );
   }
 
+  /// `phone number will receive to`
+  String get phoneNumberThatReceivingMoney {
+    return Intl.message(
+      'phone number will receive to',
+      name: 'phoneNumberThatReceivingMoney',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Screenshot of a successful transfer`
   String get screenshotOfTransaction {
     return Intl.message(

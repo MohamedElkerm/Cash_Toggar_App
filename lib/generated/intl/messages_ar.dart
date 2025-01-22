@@ -102,6 +102,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("تحويل آمن للأموال"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+        "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
+            "رقم الهاتف الذي تريد التحويل اليه"),
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الذي تم التحويل منه"),
         "previous": MessageLookupByLibrary.simpleMessage("للخلف"),
