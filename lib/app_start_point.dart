@@ -1,3 +1,4 @@
+import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_cubit.dart';
 import 'package:cash_toggar_app/resources/themes/light_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,8 +14,15 @@ class CashToggar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => LocalizationCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => LocalizationCubit(),
+        ),
+        BlocProvider(
+          create: (context) => HomeCubit(),
+        ),
+      ],
       child: BlocConsumer<LocalizationCubit, LocalizationState>(
         listener: (context, state) {
           // TODO: implement listener

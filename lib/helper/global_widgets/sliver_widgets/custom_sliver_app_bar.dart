@@ -92,7 +92,7 @@ class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
     required this.backFunction,
   });
 
-  final String headerTitle;
+  final String? headerTitle;
   final Function refreshFunction;
   final Function backFunction;
 
@@ -124,36 +124,36 @@ class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              InkWell(
-                onTap: () {
-                  refreshFunction();
-                },
-                child: SvgPicture.asset(
-                  Assets.iconsRefreshIconSvg,
-                  color: AppColors.secondaryColor,
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     refreshFunction();
+              //   },
+              //   child: SvgPicture.asset(
+              //     Assets.iconsRefreshIconSvg,
+              //     color: AppColors.secondaryColor,
+              //   ),
+              // ),
               Spacer(),
               MyResponsiveText(
-                text: headerTitle,
+                text: headerTitle.toString(),
                 style: getSemiBold(
                   fontColor: AppColors.myWhite,
                   fontSize: 24,
                 ),
               ),
               Spacer(),
-              InkWell(
-                onTap: () {
-                  backFunction();
-                },
-                child: RotatedBox(
-                  quarterTurns:localCubit.isArabic()? 2:0,
-                  child: SvgPicture.asset(
-                    Assets.iconsArrowBackIconSvg,
-                    color: AppColors.myWhite,
-                  ),
-                ),
-              ),
+              // InkWell(
+              //   onTap: () {
+              //     backFunction();
+              //   },
+              //   child: RotatedBox(
+              //     quarterTurns:localCubit.isArabic()? 2:0,
+              //     child: SvgPicture.asset(
+              //       Assets.iconsArrowBackIconSvg,
+              //       color: AppColors.myWhite,
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

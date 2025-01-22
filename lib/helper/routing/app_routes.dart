@@ -11,6 +11,8 @@ class AppRoutes {
   static const String transactionScreen = "/transaction";
   static const String profileScreen = "/profile";
 
+  static const String choosePaymentMethodScreen = "/choosePaymentMethodScreen";
+
 
 }
 
@@ -26,5 +28,7 @@ class AppRoutesNamed {
   static const String homeScreen = "home";
   static const String transactionScreen = "transaction";
   static const String profileScreen = "profile";
+  static const String choosePaymentMethodScreen = "choosePaymentMethodScreen";
+
 
 }

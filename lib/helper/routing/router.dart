@@ -4,6 +4,7 @@ import 'package:cash_toggar_app/modules/authentication/signup/view/sign_up_scree
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/view/home_screen.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/profile/view/profile_screen.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/transactions/view/transaction_screen.dart';
+import 'package:cash_toggar_app/modules/choose_payment_method/view/choose_payment_method_screen.dart';
 import 'package:cash_toggar_app/modules/onboarding/view/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -65,10 +66,17 @@ final GoRouter router = GoRouter(
         StatefulShellBranch(
           routes: [
             GoRoute(
-              name: AppRoutesNamed.transactionScreen,
-              path: AppRoutes.transactionScreen,
-              builder: (context, state) => const TransactionScreen(),
-            ),
+                name: AppRoutesNamed.transactionScreen,
+                path: AppRoutes.transactionScreen,
+                builder: (context, state) => const TransactionScreen(),
+                routes: [
+                  GoRoute(
+                    name: AppRoutesNamed.choosePaymentMethodScreen,
+                    path: AppRoutes.choosePaymentMethodScreen,
+                    builder: (context, state) =>
+                        const ChoosePaymentMethodScreen(),
+                  ),
+                ]),
           ],
         ),
         StatefulShellBranch(
