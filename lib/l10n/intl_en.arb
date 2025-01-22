@@ -64,5 +64,10 @@
   "rateUs": "Rate us on Google Play",
   "day": "day",
   "cashBack": "Cash back",
-  "walletBalance": "Wallet Balance"
+  "walletBalance": "Wallet Balance",
+  "depositSuccessful" : "Deposit successful",
+  "withdrawalSuccessful" : "Withdrawal successful",
+  "depositRejected" : "Deposit rejected",
+  "withdrawalRejected" : "Withdrawal rejected",
+  "transactionPending" : "Transaction pending"
 }

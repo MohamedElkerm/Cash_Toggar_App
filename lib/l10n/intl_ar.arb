@@ -64,5 +64,10 @@
   "rateUs": "التقييم علي جوجل بلاي",
   "day": "اليوم",
   "cashBack": "كاش باك",
-  "walletBalance": "رصيد المحفظة"
+  "walletBalance": "رصيد المحفظة",
+  "depositSuccessful" : "تم الايداع بنجاح",
+  "withdrawalSuccessful" : "تم السحب بنجاح",
+  "depositRejected" : "تم رفض الايداع",
+  "withdrawalRejected" : "تم رفض السحب",
+  "" : "العمليه قيد الانتظار"
 }

@@ -1,9 +1,11 @@
 import 'package:cash_toggar_app/generated/assets.dart';
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
+import 'package:cash_toggar_app/helper/localization/cubit/localization_cubit.dart';
 import 'package:cash_toggar_app/resources/constants.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
 import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../generated/l10n.dart';
@@ -96,6 +98,12 @@ class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<LocalizationCubit, LocalizationState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    var localCubit = BlocProvider.of<LocalizationCubit>(context);
     return SliverAppBar(
       floating: true,
 
@@ -138,9 +146,12 @@ class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
                 onTap: () {
                   backFunction();
                 },
-                child: SvgPicture.asset(
-                  Assets.iconsArrowBackIconSvg,
-                  color: AppColors.myWhite,
+                child: RotatedBox(
+                  quarterTurns:localCubit.isArabic()? 2:0,
+                  child: SvgPicture.asset(
+                    Assets.iconsArrowBackIconSvg,
+                    color: AppColors.myWhite,
+                  ),
                 ),
               ),
             ],
@@ -151,5 +162,7 @@ class MyDefaultCustomSliverAppBarScreen extends StatelessWidget {
       toolbarHeight: MediaQueryValues(context).height * 0.15,
       // toolbarHeight: ,
     );
+  },
+);
   }
 }

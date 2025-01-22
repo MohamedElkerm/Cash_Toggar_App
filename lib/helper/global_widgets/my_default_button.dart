@@ -54,6 +54,54 @@ class MyDefaultButton extends StatelessWidget {
   }
 }
 
+class MyDefaultButtonWithoutTapping extends StatelessWidget {
+  const MyDefaultButtonWithoutTapping({
+    super.key,
+    required this.text,
+    this.textColor = AppColors.myWhite,
+    required this.textSize,
+    this.backGroundColor = AppColors.primaryColor,
+    this.isLarge = false,
+  });
+
+  final String text;
+  final Color textColor;
+  final Color backGroundColor;
+  final double textSize;
+  final bool isLarge;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: MediaQueryValues(context).width,
+      height: isLarge
+          ? MediaQueryValues(context).height * 0.1
+          : MediaQueryValues(context).height * 0.08,
+      child: Container(
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: backGroundColor,
+          borderRadius: BorderRadius.circular(8),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2), // Shadow color
+              blurRadius: 6, // Spread of the shadow
+              offset: Offset(0, 3), // Shadow position (x, y)
+            ),
+          ],
+        ),
+        child: MyResponsiveText(
+          text: text,
+          style: getBold(
+            fontColor: textColor,
+            fontSize: textSize,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class MyDefaultButtonFit extends StatelessWidget {
   const MyDefaultButtonFit({
     super.key,

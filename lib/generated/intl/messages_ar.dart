@@ -56,6 +56,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "currentGateway":
             MessageLookupByLibrary.simpleMessage("الطرق الموصي بيها"),
         "day": MessageLookupByLibrary.simpleMessage("اليوم"),
+        "depositRejected":
+            MessageLookupByLibrary.simpleMessage("تم رفض الايداع"),
+        "depositSuccessful":
+            MessageLookupByLibrary.simpleMessage("تم الايداع بنجاح"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("ليس لديك حساب؟"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
@@ -122,6 +126,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "uploadTheImage":
             MessageLookupByLibrary.simpleMessage("رفع إسكرين شوت هنا"),
         "userInformation":
-            MessageLookupByLibrary.simpleMessage("المعلومات الشخصية")
+            MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+        "walletBalance": MessageLookupByLibrary.simpleMessage("رصيد المحفظة"),
+        "withdrawalRejected":
+            MessageLookupByLibrary.simpleMessage("تم رفض السحب"),
+        "withdrawalSuccessful":
+            MessageLookupByLibrary.simpleMessage("تم السحب بنجاح")
       };
 }

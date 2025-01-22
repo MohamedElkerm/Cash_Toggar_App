@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cash_toggar_app/generated/assets.dart';
+import 'package:cash_toggar_app/helper/localization/cubit/localization_cubit.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
 import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -23,7 +25,6 @@ class MyTextFormField extends StatelessWidget {
     required this.isHidden,
     required this.textInputType,
     this.changeVisibility,
-    required this.isArabic,
     required this.prefixIcon,
   });
 
@@ -34,110 +35,119 @@ class MyTextFormField extends StatelessWidget {
   bool isHidden;
   TextInputType textInputType;
   Function? changeVisibility;
-  final bool isArabic;
   String? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment:
-          isArabic ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-      children: [
-        MyResponsiveText(
-          text: label,
-          style: getBold(
-            fontColor: AppColors.secondaryColor,
-            fontSize: 12,
-          ),
-        ),
-        SizedBox(
-          height: MediaQueryValues(context).height * 0.01,
-        ),
-        Container(
-          height: MediaQueryValues(context).height * 0.067,
-          width: double.infinity,
-          decoration: const BoxDecoration(
-              // color: Colors.red,
-
-              ),
-          child: Directionality(
-            textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-            child: TextFormField(
-              controller: textEditingController,
-              cursorColor: AppColors.secondaryColor,
-              keyboardType: textInputType,
-              textAlign: isArabic ? TextAlign.right : TextAlign.left,
-              obscureText: isHidden ? true : false,
-              decoration: InputDecoration(
-                // suffix: const Icon(Icons.person),
-
-                prefixIcon: prefixIcon == null
-                    ? null
-                    : Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        // Adjust padding as needed
-                        child: SvgPicture.asset(
-                          prefixIcon.toString(),
-                          color: AppColors.secondaryColor,
-                        ),
-                      ),
-
-                suffixIcon: isPassword
-                    ? isHidden
-                        ? Column(
-                            children: [
-                              SizedBox(
-                                height: MediaQueryValues(context).height * 0.02,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  changeVisibility!();
-                                },
-                                child: SvgPicture.asset(
-                                  AppIcons.notHidePasswordIcon,
-                                  color: AppColors.secondaryColor,
-                                ),
-                              ),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              SizedBox(
-                                height: MediaQueryValues(context).height * 0.02,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  changeVisibility!();
-                                },
-                                child: SvgPicture.asset(
-                                  AppIcons.hidePasswordIcon,
-                                  color: AppColors.secondaryColor,
-                                ),
-                              ),
-                            ],
-                          )
-                    : SizedBox(
-                        height: MediaQueryValues(context).height * 0.025,
-                      ),
-
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(9),
-                  borderSide: const BorderSide(
-                    color: AppColors.secondaryColor,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(9),
-                  borderSide: const BorderSide(
-                      color: AppColors.secondaryColor, width: 1.5),
-                ),
-
-                hintText: hintText.toString(),
+    return BlocConsumer<LocalizationCubit, LocalizationState>(
+      listener: (context, state) {
+        // TODO: implement listener
+      },
+      builder: (context, state) {
+        var localCubit = BlocProvider.of<LocalizationCubit>(context);
+        return Column(
+          crossAxisAlignment:
+          localCubit.isArabic() ? CrossAxisAlignment.start : CrossAxisAlignment.end,
+          children: [
+            MyResponsiveText(
+              text: label,
+              style: getBold(
+                fontColor: AppColors.secondaryColor,
+                fontSize: 12,
               ),
             ),
-          ),
-        ),
-      ],
+            SizedBox(
+              height: MediaQueryValues(context).height * 0.01,
+            ),
+            Container(
+              height: MediaQueryValues(context).height * 0.067,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                  // color: Colors.red,
+
+                  ),
+              child: Directionality(
+                textDirection: localCubit.isArabic() ? TextDirection.rtl : TextDirection.ltr,
+                child: TextFormField(
+                  controller: textEditingController,
+                  cursorColor: AppColors.secondaryColor,
+                  keyboardType: textInputType,
+                  textAlign: localCubit.isArabic() ? TextAlign.right : TextAlign.left,
+                  obscureText: isHidden ? true : false,
+                  decoration: InputDecoration(
+                    // suffix: const Icon(Icons.person),
+
+                    prefixIcon: prefixIcon == null
+                        ? null
+                        : Padding(
+                            padding: const EdgeInsets.all(12.0),
+                            // Adjust padding as needed
+                            child: SvgPicture.asset(
+                              prefixIcon.toString(),
+                              color: AppColors.secondaryColor,
+                            ),
+                          ),
+
+                    suffixIcon: isPassword
+                        ? isHidden
+                            ? Column(
+                                children: [
+                                  SizedBox(
+                                    height:
+                                        MediaQueryValues(context).height * 0.02,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      changeVisibility!();
+                                    },
+                                    child: SvgPicture.asset(
+                                      AppIcons.notHidePasswordIcon,
+                                      color: AppColors.secondaryColor,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Column(
+                                children: [
+                                  SizedBox(
+                                    height:
+                                        MediaQueryValues(context).height * 0.02,
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      changeVisibility!();
+                                    },
+                                    child: SvgPicture.asset(
+                                      AppIcons.hidePasswordIcon,
+                                      color: AppColors.secondaryColor,
+                                    ),
+                                  ),
+                                ],
+                              )
+                        : SizedBox(
+                            height: MediaQueryValues(context).height * 0.025,
+                          ),
+
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(9),
+                      borderSide: const BorderSide(
+                        color: AppColors.secondaryColor,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(9),
+                      borderSide: const BorderSide(
+                          color: AppColors.secondaryColor, width: 1.5),
+                    ),
+
+                    hintText: hintText.toString(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

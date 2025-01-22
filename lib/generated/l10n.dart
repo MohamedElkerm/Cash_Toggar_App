@@ -699,6 +699,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Wallet Balance`
+  String get walletBalance {
+    return Intl.message(
+      'Wallet Balance',
+      name: 'walletBalance',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit successful`
+  String get depositSuccessful {
+    return Intl.message(
+      'Deposit successful',
+      name: 'depositSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdrawal successful`
+  String get withdrawalSuccessful {
+    return Intl.message(
+      'Withdrawal successful',
+      name: 'withdrawalSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deposit rejected`
+  String get depositRejected {
+    return Intl.message(
+      'Deposit rejected',
+      name: 'depositRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Withdrawal rejected`
+  String get withdrawalRejected {
+    return Intl.message(
+      'Withdrawal rejected',
+      name: 'withdrawalRejected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Transaction pending`
+  String get transactionPending {
+    return Intl.message(
+      'Transaction pending',
+      name: 'transactionPending',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

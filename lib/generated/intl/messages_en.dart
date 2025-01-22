@@ -57,6 +57,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "currentGateway":
             MessageLookupByLibrary.simpleMessage("Recommended Methods"),
         "day": MessageLookupByLibrary.simpleMessage("day"),
+        "depositRejected":
+            MessageLookupByLibrary.simpleMessage("Deposit rejected"),
+        "depositSuccessful":
+            MessageLookupByLibrary.simpleMessage("Deposit successful"),
         "dontHaveAccount":
             MessageLookupByLibrary.simpleMessage("Don’t have an account?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
@@ -120,10 +124,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "skip": MessageLookupByLibrary.simpleMessage("skip"),
         "transActionHistory":
             MessageLookupByLibrary.simpleMessage("Transaction history"),
+        "transactionPending":
+            MessageLookupByLibrary.simpleMessage("Transaction pending"),
         "transactions": MessageLookupByLibrary.simpleMessage("Transactions"),
         "uploadTheImage":
             MessageLookupByLibrary.simpleMessage("Upload screenshot here"),
         "userInformation":
-            MessageLookupByLibrary.simpleMessage("Personal Informations")
+            MessageLookupByLibrary.simpleMessage("Personal Informations"),
+        "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
+        "withdrawalRejected":
+            MessageLookupByLibrary.simpleMessage("Withdrawal rejected"),
+        "withdrawalSuccessful":
+            MessageLookupByLibrary.simpleMessage("Withdrawal successful")
       };
 }

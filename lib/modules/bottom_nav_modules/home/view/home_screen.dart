@@ -103,12 +103,13 @@ class HomeScreen extends StatelessWidget {
                           transactionTime: "07:54:45",
                           transactionAmount: "5,000",
                           transactionGateway: "Vodafone Cash",
-                          paymentStatusEnum: AppConstants.pendingTransaction,
+                          paymentStatusEnum: AppConstants.successTransaction,
                           isSendingMoneyMakeItGreen: true,
                         ),
                       );
                     },
                   ),
+
                 ],
               ),
             ),

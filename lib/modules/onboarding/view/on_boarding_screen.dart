@@ -38,7 +38,7 @@ class OnBoardingScreen extends StatelessWidget {
                       child: MyIndicator(
                         controller: myOnBoardingCubit.controller,
                         count: myOnBoardingCubit.pages.length,
-                        activeDotColor: AppColors.primaryColor,
+                        activeDotColor: AppColors.secondaryColor,
                         dotColor: AppColors.myGrey,
                       ),
                     ),
@@ -148,12 +148,11 @@ class OnBoardingScreen extends StatelessWidget {
                     // TODO : add logic to skip button
 
                     SvgPicture.asset(
-                      Assets.imagesVerticalLogoSvg,
-                      color: AppColors.primaryColor,
+                      "assets/images/on_boarding_images/onnoarding_header_logo.svg",
                     ),
 
                     SizedBox(
-                      height: 12,
+                      height: 32,
                     ),
 
                     Padding(

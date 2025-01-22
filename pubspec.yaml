@@ -62,7 +62,8 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_svg: ^2.0.7
 
-  intl:
+  intl: ^0.19.0
+  intl_utils: ^2.8.8
   url_launcher: ^6.1.14
 
     # for images select and compress

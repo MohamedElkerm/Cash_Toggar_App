@@ -1,4 +1,6 @@
 import 'package:bloc/bloc.dart';
+import 'package:cash_toggar_app/helper/routing/app_routes.dart';
+import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
 
@@ -23,6 +25,16 @@ class SignupCubit extends Cubit<SignupState> {
   void changeVisibility() {
     isVisibile = !isVisibile;
     emit(SigninVisibilityChangeState());
+  }
+
+  void navigateToSignInScreen({required BuildContext context}){
+    router.pushReplacementNamed(AppRoutesNamed.signInScreen,);
+    emit(NavigateToSigninScreenState());
+  }
+
+  void navigateToHomeScreen({required BuildContext context}){
+    router.pushReplacementNamed(AppRoutesNamed.homeScreen,);
+    emit(NavigateToSigninScreenState());
   }
 
 }
