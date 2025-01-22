@@ -156,7 +156,12 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                   MyDefaultButtonFit(
                                                     text: "01011224455",
                                                     textSize: 16,
-                                                    function: () {},
+                                                    function: () {
+                                                      homeCubit.copyToClipboard(
+                                                        context,
+                                                        "01011224455",
+                                                      );
+                                                    },
                                                     borderRadius: 4.0,
                                                     backGroundColor: Color(
                                                       0xffEFEFEF,

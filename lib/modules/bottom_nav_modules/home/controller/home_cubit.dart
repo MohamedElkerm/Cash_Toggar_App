@@ -32,12 +32,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   void copyToClipboard(BuildContext context, String text) {
     Clipboard.setData(ClipboardData(text: text));
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('User ID copied to clipboard!'),
-        duration: Duration(seconds: 2),
-      ),
-    );
+
     emit(CopyTheUserNumberIdState());
   }
 }

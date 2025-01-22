@@ -73,7 +73,12 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                   MyDefaultButtonFit(
                                     text: "4587947",
                                     textSize: 16,
-                                    function: () {},
+                                    function: () {
+                                      homeCubit.copyToClipboard(
+                                        context,
+                                        "4587947",
+                                      );
+                                    },
                                     borderRadius: 34.0,
                                     backGroundColor: AppColors.myWhite,
                                     textColor: AppColors.secondaryColor,
@@ -127,14 +132,15 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                       paymentProcessCubit
                                           .navigateToPaymentProcessCompleteScreen(
                                         context: context,
-                                        currentPaymentWayNameNewValue: "Etisalat Cash",
-                                        currentPaymentWayImageNewValue: "assets/images/e_sample.png",
+                                        currentPaymentWayNameNewValue:
+                                            "Etisalat Cash",
+                                        currentPaymentWayImageNewValue:
+                                            "assets/images/e_sample.png",
                                       );
                                     },
                                     child: PaymentCardWidget(
                                       paymentName: "Etisalat Cash",
-                                      paymentLogo:
-                                          "assets/images/e_sample.png",
+                                      paymentLogo: "assets/images/e_sample.png",
                                     ),
                                   );
                                 },

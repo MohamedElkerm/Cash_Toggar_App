@@ -37,8 +37,8 @@ class TransactionScreen extends StatelessWidget {
                           transactionTime: "07:54:45",
                           transactionAmount: "5,000",
                           transactionGateway: "Vodafone Cash",
-                          paymentStatusEnum: AppConstants.successTransaction,
-                          isSendingMoneyMakeItGreen: true,
+                          paymentStatusEnum: AppConstants.failedTransaction,
+                          isSendingMoneyMakeItGreen: false,
                         ),
                       );
                     },
