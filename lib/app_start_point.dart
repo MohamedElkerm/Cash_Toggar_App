@@ -1,5 +1,6 @@
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_cubit.dart';
 import 'package:cash_toggar_app/resources/themes/light_theme.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -34,9 +35,12 @@ class CashToggar extends StatelessWidget {
         builder: (context, state) {
           var localizationCubit = BlocProvider.of<LocalizationCubit>(context);
           return MaterialApp.router(
+            useInheritedMediaQuery: true,
+            locale: DevicePreview.locale(context),
+            builder: DevicePreview.appBuilder,
+
             routerConfig: router,
-            locale:
-            localizationCubit.locale,
+            // locale: localizationCubit.locale,
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -44,7 +48,7 @@ class CashToggar extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            builder: FToastBuilder(),
+            // builder: FToastBuilder(),
             debugShowCheckedModeBanner: false,
             theme: lightTheme(),
           );

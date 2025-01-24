@@ -65,48 +65,65 @@ class TransactionCard extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              MyResponsiveText(
-                                text: isSendingMoneyMakeItGreen
-                                    ? "+${transactionAmount}"
-                                    : "-${transactionAmount}",
-                                style: getSemiBold(
-                                  fontColor: isSendingMoneyMakeItGreen
-                                      ? AppColors.inf_suc_dan_warn_sucess
-                                      : AppColors.inf_suc_dan_warn_danger,
-                                  fontSize: 16,
+                              Expanded(
+                                flex: 3,
+                                child: MyResponsiveText(                                    textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+
+                                  text: isSendingMoneyMakeItGreen
+                                      ? "+${transactionAmount}"
+                                      : "-${transactionAmount}",
+                                  style: getSemiBold(
+                                    fontColor: isSendingMoneyMakeItGreen
+                                        ? AppColors.inf_suc_dan_warn_sucess
+                                        : AppColors.inf_suc_dan_warn_danger,
+                                    fontSize: 16,
+                                  ),
                                 ),
                               ),
-                              Spacer(),
-                              MyResponsiveText(
-                                text:
-                                    putTheTitleForTheTransactionBasedOnTheStatusAndOnTheSendingOrNotMoney(
-                                  isSendingMoney: isSendingMoneyMakeItGreen,
-                                  status: paymentStatusEnum,
-                                  context: context,
-                                ),
-                                style: getSemiBold(
-                                  fontColor: AppColors.myBlack,
-                                  fontSize: 12,
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Expanded(
+                                flex: 6,
+                                child: MyResponsiveText(
+                                  textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+                                  text:
+                                      putTheTitleForTheTransactionBasedOnTheStatusAndOnTheSendingOrNotMoney(
+                                    isSendingMoney: isSendingMoneyMakeItGreen,
+                                    status: paymentStatusEnum,
+                                    context: context,
+                                  ),
+                                  style: getSemiBold(
+                                    fontColor: AppColors.myBlack,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                           Row(
                             children: [
-                              MyResponsiveText(
-                                text: transactionGateway,
-                                style: getSemiBold(
-                                  fontColor: AppColors.inf_suc_dan_warn_sucess,
-                                  fontSize: 12,
+                              Expanded(
+                                flex: 2,
+                                child: MyResponsiveText(
+                                  text: transactionGateway,
+                                  style: getSemiBold(
+                                    fontColor: AppColors.inf_suc_dan_warn_sucess,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                               Spacer(),
-                              MyResponsiveText(
-                                text:
-                                    "${S.current.day} $transactionDate - $transactionTime",
-                                style: getSemiBold(
-                                  fontColor: AppColors.myBlack,
-                                  fontSize: 12,
+                              Expanded(
+                                flex: 4,
+                                child: MyResponsiveText(                                    textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+
+                                  text:
+                                      "${S.current.day} $transactionDate - $transactionTime",
+                                  style: getSemiBold(
+                                    fontColor: AppColors.myBlack,
+                                    fontSize: 12,
+                                  ),
                                 ),
                               ),
                             ],

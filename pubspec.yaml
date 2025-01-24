@@ -73,6 +73,8 @@ dependencies:
   fast_cached_network_image: ^1.2.9
   cached_network_image: ^3.3.0
 
+  device_preview: ^1.2.0
+
 
 
   fluttertoast: ^8.2.2

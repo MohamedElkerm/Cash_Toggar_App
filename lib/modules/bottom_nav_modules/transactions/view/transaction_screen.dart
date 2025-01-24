@@ -32,7 +32,7 @@ class TransactionScreen extends StatelessWidget {
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 2),
                         child: TransactionCard(
-                          userName: "محمد أحمد محمود",
+                          userName: " محمد أحمد محمودمحمد أحمد محمودمحمد أحمد محمودمحمد أحمد محمودمحمد أحمد محمود",
                           transactionDate: "09/01/2025 - ",
                           transactionTime: "07:54:45",
                           transactionAmount: "5,000",
