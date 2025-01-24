@@ -61,6 +61,7 @@ class ConfirmationRequestScreen extends StatelessWidget {
                                     child: Column(
                                       children: [
                                         MyResponsiveText(
+
                                           text: S
                                               .of(context)
                                               .alertHeaderSendRequestDone,
@@ -68,11 +69,15 @@ class ConfirmationRequestScreen extends StatelessWidget {
                                             fontColor: AppColors.secondaryColor,
                                             fontSize: 18,
                                           ),
+                                          textAlign: TextAlign.center,
+
                                         ),
                                         SizedBox(
                                           height: 16,
                                         ),
                                         MyResponsiveText(
+                                          textAlign:localCubit.isArabic() ? TextAlign.right : TextAlign.left,
+
                                           maxLines: 4,
                                           text: S
                                               .of(context)
@@ -86,6 +91,8 @@ class ConfirmationRequestScreen extends StatelessWidget {
                                           height: 8,
                                         ),
                                         MyResponsiveText(
+                                          textAlign:localCubit.isArabic() ? TextAlign.right : TextAlign.left,
+
                                           maxLines: 4,
                                           text: S
                                               .of(context)

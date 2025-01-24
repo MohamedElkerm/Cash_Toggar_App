@@ -118,25 +118,29 @@ class SigninScreen extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  MyResponsiveText(
-                                    text: S.of(context).dontHaveAccount,
-                                    style: getRegular(
-                                      fontColor: AppColors.myGrey,
-                                      fontSize: 16,
+                                  Expanded(
+                                    child: MyResponsiveText(
+                                      text: S.of(context).dontHaveAccount,
+                                      style: getRegular(
+                                        fontColor: AppColors.myGrey,
+                                        fontSize: 16,
+                                      ),
                                     ),
                                   ),
                                   SizedBox(
                                     width: 8,
                                   ),
-                                  MyTextButton(
-                                    text: S.of(context).signUp,
-                                    style: getSemiBold(
-                                      fontColor: AppColors.secondaryColor,
-                                      fontSize: 16,
+                                  Expanded(
+                                    child: MyTextButton(
+                                      text: S.of(context).signUp,
+                                      style: getSemiBold(
+                                        fontColor: AppColors.secondaryColor,
+                                        fontSize: 16,
+                                      ),
+                                      function: () {
+                                        signInCubit.navigateToSignup();
+                                      },
                                     ),
-                                    function: () {
-                                      signInCubit.navigateToSignup();
-                                    },
                                   ),
                                 ],
                               ),

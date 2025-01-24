@@ -139,36 +139,43 @@ class SignUpScreen extends StatelessWidget {
                                     : TextDirection.ltr,
                                 child: Row(
                                   children: [
-                                    Checkbox(
-                                      checkColor: AppColors.myWhite,
-                                      side: BorderSide(
-                                        color: AppColors.secondaryColor,
-                                        width: 2,
-                                      ),
-                                      activeColor: AppColors.secondaryColor,
-                                      // fillColor: MaterialStateProperty.all(Colors.transparent),
-
-                                      value: signUpCubit.agreeTheConditions,
-                                      onChanged: (newValue) {
-                                        signUpCubit.changeAgreeTheConditions(
-                                          newValue: newValue,
-                                        );
-                                      },
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(4),
+                                    Expanded(
+                                      flex: 1,
+                                      child: Checkbox(
+                                        checkColor: AppColors.myWhite,
                                         side: BorderSide(
-                                          color: Colors.red,
+                                          color: AppColors.secondaryColor,
+                                          width: 2,
+                                        ),
+                                        activeColor: AppColors.secondaryColor,
+                                        // fillColor: MaterialStateProperty.all(Colors.transparent),
+
+                                        value: signUpCubit.agreeTheConditions,
+                                        onChanged: (newValue) {
+                                          signUpCubit.changeAgreeTheConditions(
+                                            newValue: newValue,
+                                          );
+                                        },
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(4),
+                                          side: BorderSide(
+                                            color: Colors.red,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                    MyResponsiveText(
-                                      maxLines: 2,
-                                      minFontSize: 11,
-                                      overflow: TextOverflow.ellipsis,
-                                      text: S.of(context).agreeConditions,
-                                      style: getRegular(
-                                        fontColor: AppColors.myGrey,
-                                        fontSize: 11,
+                                    Expanded(
+                                      flex: 8,
+                                      child: MyResponsiveText(
+                                        textDirection:localCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+                                        maxLines: 2,
+                                        minFontSize: 11,
+                                        overflow: TextOverflow.ellipsis,
+                                        text: S.of(context).agreeConditions,
+                                        style: getRegular(
+                                          fontColor: AppColors.myGrey,
+                                          fontSize: 11,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -197,27 +204,31 @@ class SignUpScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    MyResponsiveText(
-                                      text: S.of(context).alreadyHaveAccount,
-                                      style: getRegular(
-                                        fontColor: AppColors.myGrey,
-                                        fontSize: 16,
+                                    Expanded(
+                                      child: MyResponsiveText(
+                                        text: S.of(context).alreadyHaveAccount,
+                                        style: getRegular(
+                                          fontColor: AppColors.myGrey,
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
                                     SizedBox(
                                       width: 8,
                                     ),
-                                    MyTextButton(
-                                      text: S.of(context).signInHere,
-                                      style: getSemiBold(
-                                        fontColor: AppColors.secondaryColor,
-                                        fontSize: 16,
+                                    Expanded(
+                                      child: MyTextButton(
+                                        text: S.of(context).signInHere,
+                                        style: getSemiBold(
+                                          fontColor: AppColors.secondaryColor,
+                                          fontSize: 16,
+                                        ),
+                                        function: () {
+                                          signUpCubit.navigateToSignInScreen(
+                                            context: context,
+                                          );
+                                        },
                                       ),
-                                      function: () {
-                                        signUpCubit.navigateToSignInScreen(
-                                          context: context,
-                                        );
-                                      },
                                     ),
                                   ],
                                 ),

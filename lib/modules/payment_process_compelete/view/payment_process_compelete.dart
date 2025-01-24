@@ -291,23 +291,19 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         ),
 
                                         homeCubit.isSendingProcess
-                                            ? Row(
-                                                children: [
-                                                  MyResponsiveText(
-                                                    text: S
-                                                        .of(context)
-                                                        .screenshotOfTransaction,
-                                                    style: getSemiBold(
-                                                      fontColor:
-                                                          AppColors.myBlack,
-                                                      fontSize: 16,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )
+                                            ? MyResponsiveText(
+                                              text: S
+                                                  .of(context)
+                                                  .screenshotOfTransaction,
+                                              style: getSemiBold(
+                                                fontColor:
+                                                    AppColors.myBlack,
+                                                fontSize: 16,
+                                              ),
+                                            )
                                             : SizedBox(),
 
-                                        
+
                                         SizedBox(
                                           height: 8,
                                         ),
