@@ -17,25 +17,28 @@ class PaymentCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          FittedBox(
-            child: Image.asset(
-              paymentLogo,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FittedBox(
+              child: Image.asset(
+                paymentLogo,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 4,
-          ),
-          MyResponsiveText(
-            text: paymentName,
-            style: getSemiBold(
-              fontColor: AppColors.primaryColor,
-              fontSize: 14,
+            SizedBox(
+              height: 4,
             ),
-          ),
-        ],
+            MyResponsiveText(
+              text: paymentName,
+              style: getSemiBold(
+                fontColor: AppColors.primaryColor,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

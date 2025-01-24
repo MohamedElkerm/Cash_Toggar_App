@@ -779,6 +779,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Vodafone Cash Number`
+  String get vodafoneCashNum {
+    return Intl.message(
+      'Vodafone Cash Number',
+      name: 'vodafoneCashNum',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

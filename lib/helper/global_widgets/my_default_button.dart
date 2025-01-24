@@ -169,3 +169,71 @@ class MyDefaultButtonFit extends StatelessWidget {
     );
   }
 }
+
+class MyDefaultButtonFitWithIcon extends StatelessWidget {
+  const MyDefaultButtonFitWithIcon({
+    super.key,
+    required this.text,
+    this.textColor = AppColors.myWhite,
+    required this.textSize,
+    this.backGroundColor = AppColors.primaryColor,
+    required this.function,
+    this.isLargeCard = false,
+    this.haveIcon = true,
+    this.borderRadius = 8.0,
+  });
+
+  final String text;
+  final Color textColor;
+  final Color backGroundColor;
+  final double textSize;
+  final Function function;
+  final bool isLargeCard;
+  final double borderRadius;
+  final bool haveIcon;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height:  MediaQueryValues(context).height * 0.04,
+      child: ElevatedButton(
+        onPressed: () {
+          function();
+        },
+        style: ButtonStyle(
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius),
+            ),
+          ),
+          backgroundColor: WidgetStatePropertyAll(
+            backGroundColor,
+          ),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              flex: 5,
+              child: MyResponsiveText(
+                text: text,
+                style: getBold(
+                  fontColor: textColor,
+                  fontSize: textSize,
+                ),
+              ),
+            ),
+            SizedBox(
+              width: 8,
+            ),
+            Expanded(
+              flex: 1,
+              child: SvgPicture.asset(
+                Assets.iconsCopyIconSvg,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

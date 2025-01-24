@@ -71,5 +71,6 @@
   "depositRejected" : "Deposit rejected",
   "withdrawalRejected" : "Withdrawal rejected",
   "transactionPending" : "Transaction pending",
-  "completeTransaction" : "Complete Transaction"
+  "completeTransaction" : "Complete Transaction",
+  "vodafoneCashNum" : "Vodafone Cash Number"
 }

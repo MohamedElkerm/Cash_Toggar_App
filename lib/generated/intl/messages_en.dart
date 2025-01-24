@@ -135,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload screenshot here"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("Personal Informations"),
+        "vodafoneCashNum":
+            MessageLookupByLibrary.simpleMessage("Vodafone Cash Number"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
         "withdrawalRejected":
             MessageLookupByLibrary.simpleMessage("Withdrawal rejected"),

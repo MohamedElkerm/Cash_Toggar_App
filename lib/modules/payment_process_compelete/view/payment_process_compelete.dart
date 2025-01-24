@@ -1,4 +1,5 @@
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
+import 'package:cash_toggar_app/modules/choose_payment_method/view/widgets.dart';
 import 'package:cash_toggar_app/modules/payment_process_compelete/view/widgets.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
@@ -83,40 +84,15 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                           height: 16,
                                         ),
                                         SizedBox(
-                                          height:
-                                              MediaQueryValues(context).height *
-                                                  0.12,
+                                          // height:
+                                          //     MediaQueryValues(context).height *
+                                          //         0.12,
                                           width:
                                               MediaQueryValues(context).width *
                                                   0.27,
-                                          child: Card(
-                                            child: Padding(
-                                              padding:
-                                                  const EdgeInsets.all(8.0),
-                                              child: Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Image.asset(
-                                                    paymentProcessCompleteCubit
-                                                        .currentPaymentWayImage,
-                                                  ),
-                                                  MyResponsiveText(
-                                                    textDirection:
-                                                        localCubit.isArabic()
-                                                            ? TextDirection.rtl
-                                                            : TextDirection.ltr,
-                                                    text: paymentProcessCompleteCubit
-                                                        .currentPaymentWayName,
-                                                    style: getSemiBold(
-                                                      fontColor: AppColors
-                                                          .primaryColor,
-                                                      fontSize: 14,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                          child: PaymentCardWidget(
+                                            paymentName: "Fawry",
+                                            paymentLogo: Assets.imagesESample,
                                           ),
                                         ),
                                         SizedBox(
@@ -142,32 +118,36 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         homeCubit.isSendingProcess
                                             ? Row(
                                                 children: [
-                                                  MyResponsiveText(
-                                                    text: " : رقم فودافون كاش",
-                                                    style: getSemiBold(
-                                                      fontColor:
-                                                          AppColors.myBlack,
-                                                      fontSize: 16,
+                                                  Expanded(
+                                                    child: MyResponsiveText(
+                                                      text:  S.of(context).vodafoneCashNum,
+                                                      style: getSemiBold(
+                                                        fontColor:
+                                                            AppColors.myBlack,
+                                                        fontSize: 16,
+                                                      ),
                                                     ),
                                                   ),
                                                   SizedBox(
                                                     width: 10,
                                                   ),
-                                                  MyDefaultButtonFit(
-                                                    text: "01011224455",
-                                                    textSize: 16,
-                                                    function: () {
-                                                      homeCubit.copyToClipboard(
-                                                        context,
-                                                        "01011224455",
-                                                      );
-                                                    },
-                                                    borderRadius: 4.0,
-                                                    backGroundColor: Color(
-                                                      0xffEFEFEF,
+                                                  Expanded(
+                                                    child: MyDefaultButtonFitWithIcon(
+                                                      text: "01058657425",
+                                                      textSize: 16,
+                                                      function: () {
+                                                        homeCubit.copyToClipboard(
+                                                          context,
+                                                          "01011224455",
+                                                        );
+                                                      },
+                                                      borderRadius: 4.0,
+                                                      backGroundColor: Color(
+                                                        0xffEFEFEF,
+                                                      ),
+                                                      textColor: AppColors
+                                                          .secondaryColor,
                                                     ),
-                                                    textColor: AppColors
-                                                        .secondaryColor,
                                                   ),
                                                 ],
                                               )
@@ -178,30 +158,35 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
 
                                         Row(
                                           children: [
-                                            MyResponsiveText(
-                                              text: S.of(context).amount,
-                                              style: getSemiBold(
-                                                fontColor: AppColors.myBlack,
-                                                fontSize: 16,
+                                            Expanded(
+                                              child: MyResponsiveText(
+                                                text: S.of(context).amount,
+                                                style: getSemiBold(
+                                                  fontColor: AppColors.myBlack,
+                                                  fontSize: 16,
+                                                ),
+                                                textDirection:localCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
                                               ),
                                             ),
                                             SizedBox(
                                               width: 10,
                                             ),
-                                            SizedBox(
-                                              height: MediaQueryValues(context)
-                                                      .height *
-                                                  0.06,
-                                              width: MediaQueryValues(context)
-                                                      .width *
-                                                  0.32,
-                                              child: CustomTextField(
-                                                hintText: '15.00',
-                                                textEditingController:
-                                                    paymentProcessCompleteCubit
-                                                        .priceController,
-                                                textInputType:
-                                                    TextInputType.number,
+                                            Expanded(
+                                              child: SizedBox(
+                                                height: MediaQueryValues(context)
+                                                        .height *
+                                                    0.06,
+                                                width: MediaQueryValues(context)
+                                                        .width *
+                                                    0.32,
+                                                child: CustomTextField(
+                                                  hintText: '15.00',
+                                                  textEditingController:
+                                                      paymentProcessCompleteCubit
+                                                          .priceController,
+                                                  textInputType:
+                                                      TextInputType.number,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -223,6 +208,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                               ),
                                               fontSize: 12,
                                             ),
+                                            maxLines: 10,
                                           ),
                                         ),
 
@@ -232,37 +218,43 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
 
                                         Row(
                                           children: [
-                                            MyResponsiveText(
-                                              text: S.of(context).phoneNumber,
-                                              style: getSemiBold(
-                                                fontColor: AppColors.myBlack,
-                                                fontSize: 16,
+                                            Expanded(
+                                              flex: 3,
+                                              child: MyResponsiveText(
+                                                text: S.of(context).phoneNumber,
+                                                style: getSemiBold(
+                                                  fontColor: AppColors.myBlack,
+                                                  fontSize: 16,
+                                                ),
                                               ),
                                             ),
                                             SizedBox(
                                               width: 10,
                                             ),
-                                            SizedBox(
-                                              height: MediaQueryValues(context)
-                                                      .height *
-                                                  0.06,
-                                              width: MediaQueryValues(context)
-                                                      .width *
-                                                  0.52,
-                                              child: CustomTextField(
-                                                hintText: homeCubit
-                                                        .isSendingProcess
-                                                    ? S
-                                                        .of(context)
-                                                        .phoneNumberThatSendingMoney
-                                                    : S
-                                                        .of(context)
-                                                        .phoneNumberThatReceivingMoney,
-                                                textEditingController:
-                                                    paymentProcessCompleteCubit
-                                                        .phoneController,
-                                                textInputType:
-                                                    TextInputType.phone,
+                                            Expanded(
+                                              flex: 5,
+                                              child: SizedBox(
+                                                height: MediaQueryValues(context)
+                                                        .height *
+                                                    0.06,
+                                                width: MediaQueryValues(context)
+                                                        .width *
+                                                    0.52,
+                                                child: CustomTextField(
+                                                  hintText: homeCubit
+                                                          .isSendingProcess
+                                                      ? S
+                                                          .of(context)
+                                                          .phoneNumberThatSendingMoney
+                                                      : S
+                                                          .of(context)
+                                                          .phoneNumberThatReceivingMoney,
+                                                  textEditingController:
+                                                      paymentProcessCompleteCubit
+                                                          .phoneController,
+                                                  textInputType:
+                                                      TextInputType.phone,
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -273,12 +265,17 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         SizedBox(
                                           width: double.infinity,
                                           child: MyResponsiveText(
+                                            maxLines: 2,
                                             textAlign: localCubit.isArabic()
                                                 ? TextAlign.right
                                                 : TextAlign.left,
-                                            text:homeCubit.isSendingProcess? S
-                                                .of(context)
-                                                .phoneNumberThatSendingMoney : S.of(context).phoneNumberThatReceivingMoney,
+                                            text: homeCubit.isSendingProcess
+                                                ? S
+                                                    .of(context)
+                                                    .phoneNumberThatSendingMoney
+                                                : S
+                                                    .of(context)
+                                                    .phoneNumberThatReceivingMoney,
                                             style: getSemiBold(
                                               fontColor:
                                                   AppColors.myBlack.withOpacity(
@@ -293,66 +290,80 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                           height: 16,
                                         ),
 
-                                        homeCubit.isSendingProcess ? Row(
-                                          children: [
-                                            MyResponsiveText(
-                                              text: S
-                                                  .of(context)
-                                                  .screenshotOfTransaction,
-                                              style: getSemiBold(
-                                                fontColor: AppColors.myBlack,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-                                          ],
-                                        ) : SizedBox(),
-
-                                        SizedBox(
-                                          height: 8,
-                                        ),
-                                        homeCubit.isSendingProcess ?Row(
-                                          children: [
-                                            Container(
-                                              width: MediaQueryValues(context)
-                                                      .width *
-                                                  0.6,
-                                              height: MediaQueryValues(context)
-                                                      .height *
-                                                  0.06,
-                                              decoration: BoxDecoration(
-                                                color: Color(
-                                                  0xffEFEFEF,
-                                                ),
-                                                borderRadius:
-                                                    BorderRadius.circular(
-                                                  4,
-                                                ),
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
+                                        homeCubit.isSendingProcess
+                                            ? Row(
                                                 children: [
                                                   MyResponsiveText(
                                                     text: S
                                                         .of(context)
-                                                        .uploadTheImage,
+                                                        .screenshotOfTransaction,
                                                     style: getSemiBold(
                                                       fontColor:
                                                           AppColors.myBlack,
                                                       fontSize: 16,
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 16.0,
-                                                  ),
-                                                  SvgPicture.asset(
-                                                    "assets/icons/screen_shot_svg_icon.svg",
+                                                ],
+                                              )
+                                            : SizedBox(),
+
+                                        SizedBox(
+                                          height: 8,
+                                        ),
+                                        homeCubit.isSendingProcess
+                                            ? Row(
+                                                children: [
+                                                  Container(
+                                                    width: MediaQueryValues(
+                                                                context)
+                                                            .width *
+                                                        0.6,
+                                                    height: MediaQueryValues(
+                                                                context)
+                                                            .height *
+                                                        0.06,
+                                                    decoration: BoxDecoration(
+                                                      color: Color(
+                                                        0xffEFEFEF,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                        4,
+                                                      ),
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .center,
+                                                      children: [
+                                                        Expanded(
+                                                          flex: 5,
+                                                          child: MyResponsiveText(
+                                                            text: S
+                                                                .of(context)
+                                                                .uploadTheImage,
+                                                            style: getSemiBold(
+                                                              fontColor: AppColors
+                                                                  .myBlack,
+                                                              fontSize: 16,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        SizedBox(
+                                                          width: 16.0,
+                                                        ),
+                                                        Expanded(
+                                                          flex: 1,
+                                                          child: SvgPicture.asset(
+                                                            "assets/icons/screen_shot_svg_icon.svg",
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ],
-                                              ),
-                                            ),
-                                          ],
-                                        ) : SizedBox(),
+                                              )
+                                            : SizedBox(),
 
                                         SizedBox(
                                           height: 16,

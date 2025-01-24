@@ -71,5 +71,6 @@
   "depositRejected" : "تم رفض الايداع",
   "withdrawalRejected" : "تم رفض السحب",
   "transactionPending" : "العمليه قيد الانتظار",
-  "completeTransaction" : "اتمام العمليه"
+  "completeTransaction" : "اتمام العمليه",
+  "vodafoneCashNum" : "رقم فودافون كاش"
 }

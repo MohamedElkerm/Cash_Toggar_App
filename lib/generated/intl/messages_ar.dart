@@ -133,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رفع إسكرين شوت هنا"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+        "vodafoneCashNum":
+            MessageLookupByLibrary.simpleMessage("رقم فودافون كاش"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("رصيد المحفظة"),
         "withdrawalRejected":
             MessageLookupByLibrary.simpleMessage("تم رفض السحب"),
