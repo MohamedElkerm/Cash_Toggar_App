@@ -411,6 +411,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         ),
 
                                         MyDefaultButton(
+                                          
                                           text: S.of(context).confirm,
                                           textSize: 18,
                                           function: () {
