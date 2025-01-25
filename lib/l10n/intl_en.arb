@@ -85,5 +85,9 @@
   "signInError": "Error in sign in!",
   "signUpError": "Error in sign up!",
   "withdrawFundsVia": "Withdraw funds via ",
-  "my_points" : "my points"
+  "my_points" : "my points",
+  "validatorAmountEmpty": "Please enter your amount",
+  "validatorAmountNotEnough": "your cash not enough",
+  "validatorPhoneEmpty": "Please enter your phone",
+  "validatorAccountInstapayEmpty": "Please enter your instapay account"
 }

@@ -144,6 +144,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload screenshot here"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("Personal Informations"),
+        "validatorAccountInstapayEmpty": MessageLookupByLibrary.simpleMessage(
+            "Please enter your instapay account"),
+        "validatorAmountEmpty":
+            MessageLookupByLibrary.simpleMessage("Please enter your amount"),
+        "validatorAmountNotEnough":
+            MessageLookupByLibrary.simpleMessage("your cash not enough"),
         "validatorEmail":
             MessageLookupByLibrary.simpleMessage("Please enter your email"),
         "validatorEmailValid":
@@ -154,6 +160,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter your last name"),
         "validatorPassword":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "validatorPhoneEmpty":
+            MessageLookupByLibrary.simpleMessage("Please enter your phone"),
         "validatorPhoneNumber": MessageLookupByLibrary.simpleMessage(
             "Please enter your phone number"),
         "vodafoneCashNum":

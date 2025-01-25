@@ -12,6 +12,7 @@ part 'payment_process_compelete_state.dart';
 class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
   PaymentProcessCompeleteCubit() : super(PaymentProcessCompeleteInitial());
 
+  GlobalKey<FormState> formKeyGlobalKey = GlobalKey<FormState>();
   TextEditingController priceController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
@@ -129,41 +130,44 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     required String email,
     required BuildContext context,
   }) async {
-    try {
-      sendReceivingMoneyLoading = true;
-      emit(SendingMoneyLoadingState());
-      // Reference to the Firestore collection
-      final CollectionReference receivingMoney =
-          FirebaseFirestore.instance.collection('receiving_money');
 
-      // Add a new document to the collection
-      await receivingMoney.add({
-        'amount': priceController.text.trim(),
-        'receive_phone': phoneController.text.trim(),
-        'uId': uId,
-        'userId': userId,
-        'user_name': userName,
-        'time': DateTime.now(), // Firestore will automatically handle DateTime
-        'payment_method': currentPaymentGateWay.title,
-        'payment_method_en': currentPaymentGateWay.titleEn,
-        'status': 'pending',
-        'email': email,
-      });
-      navigateToPaymentConfirmationScreen(
-        context: context,
-      );
-      emit(SendingMoneySuccessState());
-      sendReceivingMoneyLoading = false;
+    if(formKeyGlobalKey.currentState!.validate()){
+      try {
+        sendReceivingMoneyLoading = true;
+        emit(SendingMoneyLoadingState());
+        // Reference to the Firestore collection
+        final CollectionReference receivingMoney =
+        FirebaseFirestore.instance.collection('receiving_money');
 
-      print('Record added successfully!');
-    } catch (e) {
-      // Handle any errors that occur during the process
-      print('Error adding record: $e');
-      sendReceivingMoneyLoading = false;
+        // Add a new document to the collection
+        await receivingMoney.add({
+          'amount': priceController.text.trim(),
+          'receive_phone': phoneController.text.trim(),
+          'uId': uId,
+          'userId': userId,
+          'user_name': userName,
+          'time': DateTime.now(), // Firestore will automatically handle DateTime
+          'payment_method': currentPaymentGateWay.title,
+          'payment_method_en': currentPaymentGateWay.titleEn,
+          'status': 'pending',
+          'email': email,
+        });
+        navigateToPaymentConfirmationScreen(
+          context: context,
+        );
+        emit(SendingMoneySuccessState());
+        sendReceivingMoneyLoading = false;
 
-      emit(SendingMoneyErrorState());
+        print('Record added successfully!');
+      } catch (e) {
+        // Handle any errors that occur during the process
+        print('Error adding record: $e');
+        sendReceivingMoneyLoading = false;
 
-      throw e; // Re-throw the error if you want to handle it elsewhere
+        emit(SendingMoneyErrorState());
+
+        throw e; // Re-throw the error if you want to handle it elsewhere
+      }
     }
   }
 }

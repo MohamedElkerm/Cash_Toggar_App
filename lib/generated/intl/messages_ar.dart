@@ -142,6 +142,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رفع إسكرين شوت هنا"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+        "validatorAccountInstapayEmpty": MessageLookupByLibrary.simpleMessage(
+            "برجاء ادخال حساب انستا باي الخاص بك"),
+        "validatorAmountEmpty":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال مبلغ"),
+        "validatorAmountNotEnough":
+            MessageLookupByLibrary.simpleMessage("حسابك غير كافي"),
         "validatorEmail":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال الايميل"),
         "validatorEmailValid":
@@ -152,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاحير"),
         "validatorPassword":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال كلمه مرور"),
+        "validatorPhoneEmpty":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال رقم هاتف"),
         "validatorPhoneNumber":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال رقم هاتف"),
         "vodafoneCashNum":

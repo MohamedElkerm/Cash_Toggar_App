@@ -6,17 +6,20 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.textEditingController,
     required this.textInputType,
+    required this.validator,
   });
 
   final String hintText;
   final TextEditingController textEditingController;
   final TextInputType textInputType;
+  final  validator;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       textAlign: TextAlign.center, // Centers the text (including the hint text)
 
+      validator: validator,
       controller: textEditingController,
       decoration: InputDecoration(
 

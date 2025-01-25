@@ -909,6 +909,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your amount`
+  String get validatorAmountEmpty {
+    return Intl.message(
+      'Please enter your amount',
+      name: 'validatorAmountEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `your cash not enough`
+  String get validatorAmountNotEnough {
+    return Intl.message(
+      'your cash not enough',
+      name: 'validatorAmountNotEnough',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone`
+  String get validatorPhoneEmpty {
+    return Intl.message(
+      'Please enter your phone',
+      name: 'validatorPhoneEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your instapay account`
+  String get validatorAccountInstapayEmpty {
+    return Intl.message(
+      'Please enter your instapay account',
+      name: 'validatorAccountInstapayEmpty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
