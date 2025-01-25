@@ -71,12 +71,12 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                     width: 16,
                                   ),
                                   MyDefaultButtonFit(
-                                    text: "4587947",
+                                    text: homeCubit.userModel.userId.toString(),
                                     textSize: 16,
                                     function: () {
                                       homeCubit.copyToClipboard(
                                         context,
-                                        "4587947",
+                                        homeCubit.userModel.userId.toString(),
                                       );
                                     },
                                     borderRadius: 34.0,

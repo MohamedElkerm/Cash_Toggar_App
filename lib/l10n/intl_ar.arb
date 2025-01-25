@@ -84,5 +84,6 @@
   "signUpSuccess": "تم انشاء الحساب بنجاح!",
   "signInError": "برجاء ادخال البيانات بشكل صحيح",
   "signUpError": "برجاء ادخال البيانات بشكل صحيح",
-  "withdrawFundsVia": "سحب الاموال بواسطه "
+  "withdrawFundsVia": "سحب الاموال بواسطه ",
+  "my_points" : "نقاطي"
 }

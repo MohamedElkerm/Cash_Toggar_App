@@ -87,6 +87,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moneyRange": MessageLookupByLibrary.simpleMessage(
             "الحد الأدني 15LE - الحد الأقصي 30,000LE"),
         "myCurrentMoney": MessageLookupByLibrary.simpleMessage("رصيد الحساب"),
+        "my_points": MessageLookupByLibrary.simpleMessage("نقاطي"),
         "next": MessageLookupByLibrary.simpleMessage("التالي"),
         "onBoardingBodyOne": MessageLookupByLibrary.simpleMessage(
             "كاش تجار يوفر لك السحب والتحويل\nبسهولة وأمان من محفظتك إلى إنستاباي."),

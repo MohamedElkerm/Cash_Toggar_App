@@ -88,6 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "moneyRange": MessageLookupByLibrary.simpleMessage(
             "The minimum is 15 LE - the maximum is 30,000 LE"),
         "myCurrentMoney": MessageLookupByLibrary.simpleMessage("Balance"),
+        "my_points": MessageLookupByLibrary.simpleMessage("my points"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "onBoardingBodyOne": MessageLookupByLibrary.simpleMessage(
             "Cash merchants provide you with easy and secure withdrawals and transfers from your wallet to Instapay."),

@@ -1,3 +1,5 @@
+import 'package:cash_toggar_app/helper/local/cache_helper.dart';
+import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_cubit.dart';
 import 'package:cash_toggar_app/resources/themes/light_theme.dart';
 import 'package:device_preview/device_preview.dart';
@@ -22,10 +24,16 @@ class CashToggar extends StatelessWidget {
           create: (context) => LocalizationCubit(),
         ),
         BlocProvider(
-          create: (context) => HomeCubit(),
+          create: (context) => HomeCubit()
+            ..getUserData(
+              CacheHelper.getData(
+                key: CacheHelperKeys.uId,
+              ),
+            ),
         ),
         BlocProvider(
-          create: (context) => PaymentProcessCompeleteCubit()..getAllPaymentGateways(),
+          create: (context) =>
+              PaymentProcessCompeleteCubit()..getAllPaymentGateways(),
         ),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationState>(
@@ -57,7 +65,6 @@ class CashToggar extends StatelessWidget {
     );
   }
 }
-
 
 /*
           return MaterialApp.router(
