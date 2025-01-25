@@ -46,15 +46,19 @@ class ProfileScreen extends StatelessWidget {
                             MyDefaultButton(
                               text: S.of(context).userInformation,
                               textSize: 16,
-                              function: () {},
+                              function: () {
+                                profileCubit.navigateToUserInformationScreen();
+                              },
                             ),
                             SizedBox(
                               height: 12,
                             ),
                             MyDefaultButton(
-                              text: S.of(context).changePassword,
+                              text: S.of(context).walletBalance,
                               textSize: 16,
-                              function: () {},
+                              function: () {
+                                profileCubit.navigateToWalletBalanceScreen();
+                              },
                               textColor: AppColors.primaryColor,
                               backGroundColor: AppColors.myWhite,
                             ),

@@ -16,6 +16,8 @@ class AppRoutes {
   static const String paymentProcessCompleteScreen = "/paymentProcessCompleteScreen";
   static const String confirmationRequestScreen = "/confirmationRequestScreen";
 
+  static const String userInformationsScreen = "/userInformationsScreen";
+
 
 }
 
@@ -36,6 +38,7 @@ class AppRoutesNamed {
   static const String confirmationRequestScreen = "confirmationRequestScreen";
 
 
+  static const String userInformationsScreen = "userInformationsScreen";
 
 
 }

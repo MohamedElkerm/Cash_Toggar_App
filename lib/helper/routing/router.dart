@@ -7,6 +7,7 @@ import 'package:cash_toggar_app/modules/bottom_nav_modules/transactions/view/tra
 import 'package:cash_toggar_app/modules/choose_payment_method/view/choose_payment_method_screen.dart';
 import 'package:cash_toggar_app/modules/onboarding/view/on_boarding_screen.dart';
 import 'package:cash_toggar_app/modules/payment_process_compelete/view/payment_process_compelete.dart';
+import 'package:cash_toggar_app/modules/user_informations/view/user_informations_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -107,6 +108,14 @@ final GoRouter router = GoRouter(
               name: AppRoutesNamed.profileScreen,
               path: AppRoutes.profileScreen,
               builder: (context, state) => const ProfileScreen(),
+              routes: [
+                GoRoute(
+                    name: AppRoutesNamed.userInformationsScreen,
+                    path: AppRoutes.userInformationsScreen,
+                    builder: (context, state) => const UserInformationsScreen(),
+
+                ),
+              ]
             ),
           ],
         ),

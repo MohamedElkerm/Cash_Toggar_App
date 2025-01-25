@@ -44,7 +44,9 @@ class TransactionCard extends StatelessWidget {
       builder: (context, state) {
         var localizationCubit = BlocProvider.of<LocalizationCubit>(context);
         return Directionality(
-          textDirection:localizationCubit.isArabic()?TextDirection.ltr: TextDirection.rtl,
+          textDirection: localizationCubit.isArabic()
+              ? TextDirection.ltr
+              : TextDirection.rtl,
           child: Card(
             child: Container(
               width: double.infinity,
@@ -67,11 +69,16 @@ class TransactionCard extends StatelessWidget {
                             children: [
                               Expanded(
                                 flex: 3,
-                                child: MyResponsiveText(                                    textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
-
+                                child: MyResponsiveText(
+                                  textAlign: localizationCubit.isArabic()
+                                      ? TextAlign.left
+                                      : TextAlign.right,
+                                  textDirection: localizationCubit.isArabic()
+                                      ? TextDirection.rtl
+                                      : TextDirection.ltr,
                                   text: isSendingMoneyMakeItGreen
                                       ? "+${transactionAmount}"
-                                      : "-${transactionAmount}",
+                                      : "${transactionAmount}",
                                   style: getSemiBold(
                                     fontColor: isSendingMoneyMakeItGreen
                                         ? AppColors.inf_suc_dan_warn_sucess
@@ -86,7 +93,12 @@ class TransactionCard extends StatelessWidget {
                               Expanded(
                                 flex: 6,
                                 child: MyResponsiveText(
-                                  textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+                                  textAlign: localizationCubit.isArabic()
+                                      ? TextAlign.right
+                                      : TextAlign.left,
+                                  textDirection: localizationCubit.isArabic()
+                                      ? TextDirection.rtl
+                                      : TextDirection.ltr,
                                   text:
                                       putTheTitleForTheTransactionBasedOnTheStatusAndOnTheSendingOrNotMoney(
                                     isSendingMoney: isSendingMoneyMakeItGreen,
@@ -108,7 +120,8 @@ class TransactionCard extends StatelessWidget {
                                 child: MyResponsiveText(
                                   text: transactionGateway,
                                   style: getSemiBold(
-                                    fontColor: AppColors.inf_suc_dan_warn_sucess,
+                                    fontColor:
+                                        AppColors.inf_suc_dan_warn_sucess,
                                     fontSize: 12,
                                   ),
                                 ),
@@ -116,8 +129,10 @@ class TransactionCard extends StatelessWidget {
                               Spacer(),
                               Expanded(
                                 flex: 4,
-                                child: MyResponsiveText(                                    textDirection:localizationCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
-
+                                child: MyResponsiveText(
+                                  textDirection: localizationCubit.isArabic()
+                                      ? TextDirection.rtl
+                                      : TextDirection.ltr,
                                   text:
                                       "${S.current.day} $transactionDate - $transactionTime",
                                   style: getSemiBold(
@@ -136,7 +151,8 @@ class TransactionCard extends StatelessWidget {
                       child: SvgPicture.asset(
                         paymentStatusEnum == AppConstants.successTransaction
                             ? Assets.iconsSuccessRequestIconSvg
-                            : paymentStatusEnum == AppConstants.failedTransaction
+                            : paymentStatusEnum ==
+                                    AppConstants.failedTransaction
                                 ? Assets.iconsRejectedRequestIconSvg
                                 : Assets.iconsPendingRequestIconSvg,
                       ),

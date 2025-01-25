@@ -20,4 +20,19 @@ class ProfileCubit extends Cubit<ProfileState> {
       emit(ProfileSignOut());
     });
   }
+
+  navigateToUserInformationScreen() {
+    router.pushNamed(
+      AppRoutesNamed.userInformationsScreen,
+    );
+    emit(NavigateToUserInfoScreen());
+  }
+
+
+  navigateToWalletBalanceScreen() {
+    router.replace(
+      AppRoutes.homeScreen,
+    );
+    emit(NavigateToHomeScreen());
+  }
 }
