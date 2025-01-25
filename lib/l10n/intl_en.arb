@@ -83,6 +83,7 @@
     "signInSuccess": "Sign in successful!",
     "signUpSuccess": "Sign up successful!",
   "signInError": "Error in sign in!",
-  "signUpError": "Error in sign up!"
+  "signUpError": "Error in sign up!",
+  "withdrawFundsVia": "Withdraw funds via "
 
 }

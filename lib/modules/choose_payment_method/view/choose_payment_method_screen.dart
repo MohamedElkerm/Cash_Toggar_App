@@ -136,17 +136,20 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
+                                            paymentProcessCubit.currentPaymentGateWay = paymentProcessCubit.paymentGatewaysList[index];
                                             paymentProcessCubit
                                                 .navigateToPaymentProcessCompleteScreen(
                                               context: context,
                                               currentPaymentWayNameNewValue:
                                                   localCubit.isArabic()
                                                       ? paymentProcessCubit
-                                                              .paymentGatewaysList[
-                                                          index]["title"]
+                                                          .paymentGatewaysList[
+                                                              index]
+                                                          .title
                                                       : paymentProcessCubit
-                                                              .paymentGatewaysList[
-                                                          index]["titleEn"],
+                                                          .paymentGatewaysList[
+                                                              index]
+                                                          .titleEn,
                                               currentPaymentWayImageNewValue:
                                                   "assets/images/e_sample.png",
                                             );
@@ -154,14 +157,14 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                           child: PaymentCardWidget(
                                             paymentName: localCubit.isArabic()
                                                 ? paymentProcessCubit
-                                                        .paymentGatewaysList[
-                                                    index]["title"]
+                                                    .paymentGatewaysList[index]
+                                                    .title
                                                 : paymentProcessCubit
-                                                        .paymentGatewaysList[
-                                                    index]["titleEn"],
+                                                    .paymentGatewaysList[index]
+                                                    .titleEn,
                                             paymentLogo: paymentProcessCubit
-                                                        .paymentGatewaysList[
-                                                    index]["image"],
+                                                .paymentGatewaysList[index]
+                                                .image,
                                           ),
                                         );
                                       },

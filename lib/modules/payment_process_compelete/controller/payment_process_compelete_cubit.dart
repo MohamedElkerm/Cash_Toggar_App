@@ -5,6 +5,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 
+import '../model/payment_gateway_model.dart';
+
 part 'payment_process_compelete_state.dart';
 
 class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
@@ -64,32 +66,64 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
 
 
 
+  // List<Map<String, dynamic>> paymentGatewaysList = [];
+  // Future<List<Map<String, dynamic>>> getAllPaymentGateways() async {
+  //   try {
+  //     getPaymentLoading = true;
+  //     emit(GetAllPaymentGateWaysLoadingState());
+  //     final CollectionReference paymentGateways =
+  //     FirebaseFirestore.instance.collection('payment_gateways');
+  //
+  //     final QuerySnapshot querySnapshot = await paymentGateways.get();
+  //     paymentGatewaysList = querySnapshot.docs
+  //         .map((doc) => doc.data() as Map<String, dynamic>)
+  //         .toList();
+  //
+  //     print("paymentGatewaysList.length");
+  //     print(paymentGatewaysList.length);
+  //     print(paymentGatewaysList);
+  //     getPaymentLoading = false;
+  //     emit(GetAllPaymentGateWaysSuccessState());
+  //     return paymentGatewaysList;
+  //   } catch (e) {
+  //     getPaymentLoading = false;
+  //     // Handle any errors that occur during the process
+  //     print('Error fetching payment gateways: $e');
+  //     emit(GetAllPaymentGateWaysErrorState());
+  //     throw e; // Re-throw the error if you want to handle it elsewhere
+  //   }
+  // }
+
+  late PaymentGateway currentPaymentGateWay;
+
   bool getPaymentLoading = false;
-  List<Map<String, dynamic>> paymentGatewaysList = [];
-  Future<List<Map<String, dynamic>>> getAllPaymentGateways() async {
+  List<PaymentGateway> paymentGatewaysList = [];
+  Future<List<PaymentGateway>> getAllPaymentGateways() async {
     try {
       getPaymentLoading = true;
       emit(GetAllPaymentGateWaysLoadingState());
+
       final CollectionReference paymentGateways =
       FirebaseFirestore.instance.collection('payment_gateways');
 
+      // Fetch all documents from the collection
       final QuerySnapshot querySnapshot = await paymentGateways.get();
+
+      // Map documents to PaymentGateway objects
       paymentGatewaysList = querySnapshot.docs
-          .map((doc) => doc.data() as Map<String, dynamic>)
+          .map((doc) => PaymentGateway.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
 
-      print("paymentGatewaysList.length");
-      print(paymentGatewaysList.length);
-      print(paymentGatewaysList);
       getPaymentLoading = false;
       emit(GetAllPaymentGateWaysSuccessState());
       return paymentGatewaysList;
     } catch (e) {
-      getPaymentLoading = false;
       // Handle any errors that occur during the process
       print('Error fetching payment gateways: $e');
+      getPaymentLoading = false;
       emit(GetAllPaymentGateWaysErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
+
     }
   }
 

@@ -72,7 +72,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 maxLines: 10,
                                                 text:
-                                                    "Withdraw funds via Etisalat Cash",
+                                                    "${S.of(context).withdrawFundsVia} ${localCubit.isArabic() ? paymentProcessCompleteCubit.currentPaymentGateWay.title : paymentProcessCompleteCubit.currentPaymentGateWay.titleEn}",
                                                 style: getBold(
                                                   fontColor:
                                                       AppColors.secondaryColor,
@@ -91,8 +91,16 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                               MediaQueryValues(context).width *
                                                   0.27,
                                           child: PaymentCardWidget(
-                                            paymentName: "Fawry",
-                                            paymentLogo: Assets.imagesESample,
+                                            paymentName: localCubit.isArabic()
+                                                ? paymentProcessCompleteCubit
+                                                    .currentPaymentGateWay.title
+                                                : paymentProcessCompleteCubit
+                                                    .currentPaymentGateWay
+                                                    .titleEn,
+                                            paymentLogo:
+                                                paymentProcessCompleteCubit
+                                                    .currentPaymentGateWay
+                                                    .image,
                                           ),
                                         ),
                                         SizedBox(
@@ -129,9 +137,14 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                           localCubit.isArabic()
                                                               ? TextAlign.right
                                                               : TextAlign.left,
-                                                      text: S
-                                                          .of(context)
-                                                          .vodafoneCashNum,
+                                                      text: localCubit
+                                                              .isArabic()
+                                                          ? paymentProcessCompleteCubit
+                                                              .currentPaymentGateWay
+                                                              .titleForTransaction
+                                                          : paymentProcessCompleteCubit
+                                                              .currentPaymentGateWay
+                                                              .titleForTransactionEn,
                                                       style: getSemiBold(
                                                         fontColor:
                                                             AppColors.myBlack,
@@ -147,14 +160,17 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                     child:
                                                         MyDefaultButtonFitWithIcon(
                                                       haveIcon: false,
-                                                      text:
-                                                          "01011224455",
+                                                      text: paymentProcessCompleteCubit
+                                                          .currentPaymentGateWay
+                                                          .transactionMethod,
                                                       textSize: 16,
                                                       function: () {
                                                         homeCubit
                                                             .copyToClipboard(
                                                           context,
-                                                          "01011224455",
+                                                          paymentProcessCompleteCubit
+                                                              .currentPaymentGateWay
+                                                              .transactionMethod,
                                                         );
                                                       },
                                                       borderRadius: 4.0,
@@ -240,6 +256,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         SizedBox(
                                           height: 16,
                                         ),
+                                        /// I think here is error Error
 
                                         SizedBox(
                                           width: double.infinity,
@@ -326,24 +343,27 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
 
                                         homeCubit.isSendingProcess
                                             ? Row(
-                                              children: [
-                                                MyResponsiveText(
-                                                                                          textDirection: localCubit.isArabic()
-                                                  ? TextDirection.rtl
-                                                  : TextDirection.ltr,
-                                                                                          textAlign: localCubit.isArabic()
-                                                  ? TextAlign.right
-                                                  : TextAlign.left,
+                                                children: [
+                                                  MyResponsiveText(
+                                                    textDirection:
+                                                        localCubit.isArabic()
+                                                            ? TextDirection.rtl
+                                                            : TextDirection.ltr,
+                                                    textAlign:
+                                                        localCubit.isArabic()
+                                                            ? TextAlign.right
+                                                            : TextAlign.left,
                                                     text: S
                                                         .of(context)
                                                         .screenshotOfTransaction,
                                                     style: getSemiBold(
-                                                      fontColor: AppColors.myBlack,
+                                                      fontColor:
+                                                          AppColors.myBlack,
                                                       fontSize: 16,
                                                     ),
                                                   ),
-                                              ],
-                                            )
+                                                ],
+                                              )
                                             : SizedBox(),
 
                                         SizedBox(
@@ -351,7 +371,8 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         ),
                                         homeCubit.isSendingProcess
                                             ? Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
                                                 children: [
                                                   Container(
                                                     width: MediaQueryValues(
@@ -380,7 +401,9 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                           flex: 5,
                                                           child:
                                                               MyResponsiveText(
-                                                            text: S.of(context).uploadTheImage,
+                                                            text: S
+                                                                .of(context)
+                                                                .uploadTheImage,
                                                             style: getSemiBold(
                                                               fontColor:
                                                                   AppColors
@@ -411,7 +434,6 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         ),
 
                                         MyDefaultButton(
-
                                           text: S.of(context).confirm,
                                           textSize: 18,
                                           function: () {

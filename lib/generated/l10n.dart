@@ -889,6 +889,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Withdraw funds via `
+  String get withdrawFundsVia {
+    return Intl.message(
+      'Withdraw funds via ',
+      name: 'withdrawFundsVia',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

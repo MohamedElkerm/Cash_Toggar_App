@@ -158,6 +158,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "vodafoneCashNum":
             MessageLookupByLibrary.simpleMessage("Vodafone Cash Number"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
+        "withdrawFundsVia":
+            MessageLookupByLibrary.simpleMessage("Withdraw funds via "),
         "withdrawalRejected":
             MessageLookupByLibrary.simpleMessage("Withdrawal rejected"),
         "withdrawalSuccessful":
