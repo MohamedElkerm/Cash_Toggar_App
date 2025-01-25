@@ -256,6 +256,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         SizedBox(
                                           height: 16,
                                         ),
+
                                         /// I think here is error Error
 
                                         SizedBox(
@@ -434,13 +435,28 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                         ),
 
                                         MyDefaultButton(
+                                          isLoading: paymentProcessCompleteCubit
+                                              .sendReceivingMoneyLoading,
                                           text: S.of(context).confirm,
                                           textSize: 18,
                                           function: () {
-                                            paymentProcessCompleteCubit
-                                                .navigateToPaymentConfirmationScreen(
-                                              context: context,
-                                            );
+                                            homeCubit.isSendingProcess
+                                                ? paymentProcessCompleteCubit
+                                                    .navigateToPaymentConfirmationScreen(
+                                                    context: context,
+                                                  )
+                                                : paymentProcessCompleteCubit
+                                                    .sendReceivingMoneyRecord(
+                                                    uId:
+                                                        homeCubit.userModel.uId,
+                                                    userId: homeCubit
+                                                        .userModel.userId,
+                                                    userName:
+                                                        "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
+                                                    email: homeCubit
+                                                        .userModel.email,
+                                                    context: context,
+                                                  );
                                           },
                                           backGroundColor:
                                               AppColors.secondaryColor,

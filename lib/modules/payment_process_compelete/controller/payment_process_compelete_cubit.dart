@@ -15,9 +15,9 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
   TextEditingController priceController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
-
   late String currentPaymentWayName;
   late String currentPaymentWayImage;
+
   getCurrentPaymentWayDetails({
     required String currentPaymentWayNameNewValue,
     required String currentPaymentWayImageNewValue,
@@ -42,13 +42,9 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     emit(NavigateToPaymentProcessCompleteScreen());
   }
 
-
-
-
   void navigateToPaymentConfirmationScreen({
     required BuildContext context,
   }) {
-
     router.goNamed(
       AppRoutesNamed.confirmationRequestScreen,
     );
@@ -58,13 +54,9 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
   void navigateToHomeScreen({
     required BuildContext context,
   }) {
-
     router.pop();
     emit(NavigateToPaymentConfirmationScreen());
   }
-
-
-
 
   // List<Map<String, dynamic>> paymentGatewaysList = [];
   // Future<List<Map<String, dynamic>>> getAllPaymentGateways() async {
@@ -98,20 +90,22 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
 
   bool getPaymentLoading = false;
   List<PaymentGateway> paymentGatewaysList = [];
+
   Future<List<PaymentGateway>> getAllPaymentGateways() async {
     try {
       getPaymentLoading = true;
       emit(GetAllPaymentGateWaysLoadingState());
 
       final CollectionReference paymentGateways =
-      FirebaseFirestore.instance.collection('payment_gateways');
+          FirebaseFirestore.instance.collection('payment_gateways');
 
       // Fetch all documents from the collection
       final QuerySnapshot querySnapshot = await paymentGateways.get();
 
       // Map documents to PaymentGateway objects
       paymentGatewaysList = querySnapshot.docs
-          .map((doc) => PaymentGateway.fromMap(doc.data() as Map<String, dynamic>))
+          .map((doc) =>
+              PaymentGateway.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
 
       getPaymentLoading = false;
@@ -123,12 +117,53 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       getPaymentLoading = false;
       emit(GetAllPaymentGateWaysErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
-
     }
   }
 
+  bool sendReceivingMoneyLoading = false;
 
+  Future<void> sendReceivingMoneyRecord({
+    required String uId,
+    required String userId,
+    required String userName,
+    required String email,
+    required BuildContext context,
+  }) async {
+    try {
+      sendReceivingMoneyLoading = true;
+      emit(SendingMoneyLoadingState());
+      // Reference to the Firestore collection
+      final CollectionReference receivingMoney =
+          FirebaseFirestore.instance.collection('receiving_money');
 
+      // Add a new document to the collection
+      await receivingMoney.add({
+        'amount': priceController.text.trim(),
+        'receive_phone': phoneController.text.trim(),
+        'uId': uId,
+        'userId': userId,
+        'user_name': userName,
+        'time': DateTime.now(), // Firestore will automatically handle DateTime
+        'payment_method': currentPaymentGateWay.title,
+        'payment_method_en': currentPaymentGateWay.titleEn,
+        'status': 'pending',
+        'email': email,
+      });
+      navigateToPaymentConfirmationScreen(
+        context: context,
+      );
+      emit(SendingMoneySuccessState());
+      sendReceivingMoneyLoading = false;
 
+      print('Record added successfully!');
+    } catch (e) {
+      // Handle any errors that occur during the process
+      print('Error adding record: $e');
+      sendReceivingMoneyLoading = false;
 
+      emit(SendingMoneyErrorState());
+
+      throw e; // Re-throw the error if you want to handle it elsewhere
+    }
+  }
 }
