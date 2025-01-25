@@ -45,106 +45,121 @@ class SigninScreen extends StatelessWidget {
                         StaticContainerHeader(),
                         Padding(
                           padding: const EdgeInsets.all(24.0),
-                          child: Column(
-                            children: [
-                              SizedBox(
-                                width: double.infinity,
-                                child: MyResponsiveText(
-                                  text: S.of(context).signIn,
-                                  style: getBold(
-                                    fontColor: AppColors.primaryColor,
-                                    fontSize: 26,
+                          child: Form(
+                            key: signInCubit.formKeyForSigninScreen,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  width: double.infinity,
+                                  child: MyResponsiveText(
+                                    text: S.of(context).signIn,
+                                    style: getBold(
+                                      fontColor: AppColors.primaryColor,
+                                      fontSize: 26,
+                                    ),
+                                    textAlign: localCubit.isArabic()? TextAlign.right : TextAlign.left,
                                   ),
-                                  textAlign: localCubit.isArabic()? TextAlign.right : TextAlign.left,
                                 ),
-                              ),
-                              SizedBox(
-                                height: 24,
-                              ),
-                              MyTextFormField(
-                                hintText: S.of(context).enterEmail,
-                                label: S.of(context).email,
-                                textEditingController:
-                                    signInCubit.emailController,
-                                isPassword: false,
-                                isHidden: false,
-                                textInputType: TextInputType.emailAddress,
-                                prefixIcon: Assets.iconsUserIconSvg,
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              MyTextFormField(
-                                hintText: S.of(context).enterPassword,
-                                label: S.of(context).password,
-                                textEditingController:
-                                    signInCubit.passwordController,
-                                isPassword: true,
-                                isHidden: !signInCubit.isVisibile,
-                                textInputType: TextInputType.visiblePassword,
-                                changeVisibility: signInCubit.changeVisibility,
-                                prefixIcon: Assets.iconsPasswordIconSvg,
-                              ),
-                              SizedBox(
-                                height: 8,
-                              ),
-                              Row(
-                                children: [
-                                  Spacer(),
-                                  MyTextButton(
-                                    text: S.of(context).forgotPassword,
-                                    style: getSemiBold(
-                                      fontColor: AppColors.secondaryColor,
-                                      fontSize: 12,
-                                    ),
-                                    function: () {},
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              MyDefaultButton(
-                                text: S.of(context).signIn,
-                                textSize: 16,
-                                function: () {
-                                  signInCubit.navigateToHomeScreen();
-                                },
-                                backGroundColor: AppColors.secondaryColor,
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: MyResponsiveText(
-                                      text: S.of(context).dontHaveAccount,
-                                      style: getRegular(
-                                        fontColor: AppColors.myGrey,
-                                        fontSize: 16,
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Expanded(
-                                    child: MyTextButton(
-                                      text: S.of(context).signUp,
+                                SizedBox(
+                                  height: 24,
+                                ),
+                                MyTextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return S.of(context).validatorEmail;
+                                    }
+                                    return null;
+                                  },
+                                  hintText: S.of(context).enterEmail,
+                                  label: S.of(context).email,
+                                  textEditingController:
+                                      signInCubit.emailController,
+                                  isPassword: false,
+                                  isHidden: false,
+                                  textInputType: TextInputType.emailAddress,
+                                  prefixIcon: Assets.iconsUserIconSvg,
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                MyTextFormField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return S.of(context).validatorPassword;
+                                    }
+                                    return null;
+                                  },
+                                  hintText: S.of(context).enterPassword,
+                                  label: S.of(context).password,
+                                  textEditingController:
+                                      signInCubit.passwordController,
+                                  isPassword: true,
+                                  isHidden: !signInCubit.isVisibile,
+                                  textInputType: TextInputType.visiblePassword,
+                                  changeVisibility: signInCubit.changeVisibility,
+                                  prefixIcon: Assets.iconsPasswordIconSvg,
+                                ),
+                                SizedBox(
+                                  height: 8,
+                                ),
+                                Row(
+                                  children: [
+                                    Spacer(),
+                                    MyTextButton(
+                                      text: S.of(context).forgotPassword,
                                       style: getSemiBold(
                                         fontColor: AppColors.secondaryColor,
-                                        fontSize: 16,
+                                        fontSize: 12,
                                       ),
-                                      function: () {
-                                        signInCubit.navigateToSignup();
-                                      },
+                                      function: () {},
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                MyDefaultButton(
+                                  text: S.of(context).signIn,
+                                  textSize: 16,
+                                  function: () {
+                                    signInCubit.navigateToHomeScreen();
+                                  },
+                                  backGroundColor: AppColors.secondaryColor,
+                                ),
+                                SizedBox(
+                                  height: 16,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: MyResponsiveText(
+                                        text: S.of(context).dontHaveAccount,
+                                        style: getRegular(
+                                          fontColor: AppColors.myGrey,
+                                          fontSize: 16,
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 8,
+                                    ),
+                                    Expanded(
+                                      child: MyTextButton(
+                                        text: S.of(context).signUp,
+                                        style: getSemiBold(
+                                          fontColor: AppColors.secondaryColor,
+                                          fontSize: 16,
+                                        ),
+                                        function: () {
+                                          signInCubit.navigateToSignup();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],

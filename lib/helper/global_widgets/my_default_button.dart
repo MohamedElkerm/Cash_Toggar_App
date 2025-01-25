@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../resources/colors_manager.dart';
 
+import 'package:flutter/material.dart';
+
 class MyDefaultButton extends StatelessWidget {
   const MyDefaultButton({
     super.key,
@@ -16,6 +18,8 @@ class MyDefaultButton extends StatelessWidget {
     this.backGroundColor = AppColors.primaryColor,
     required this.function,
     this.isLarge = false,
+    this.isLoading = false,
+    this.disabled = false,
   });
 
   final String text;
@@ -24,40 +28,44 @@ class MyDefaultButton extends StatelessWidget {
   final double textSize;
   final Function function;
   final bool isLarge;
+  final bool isLoading;
+  final bool  disabled;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQueryValues(context).width,
+      width: MediaQuery.of(context).size.width,
       height: isLarge
-          ? MediaQueryValues(context).height * 0.1
-          : MediaQueryValues(context).height * 0.08,
+          ? MediaQuery.of(context).size.height * 0.1
+          : MediaQuery.of(context).size.height * 0.08,
       child: ElevatedButton(
-        onPressed: () {
-          function();
-        },
+        onPressed:disabled?null: isLoading ? null : () => function(), // Disable button when loading
         style: ButtonStyle(
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
             ),
           ),
-          backgroundColor: WidgetStatePropertyAll(
-            backGroundColor,
+          backgroundColor: MaterialStatePropertyAll(
+            disabled?AppColors.myGrey: backGroundColor,
           ),
         ),
-        child: MyResponsiveText(
-          text: text,
-          style: getBold(
-            fontColor: textColor,
+        child: isLoading
+            ? const CircularProgressIndicator(
+          color: Colors.white, // Customize loading indicator color
+        )
+            : Text(
+          text,
+          style: TextStyle(
+            color: textColor,
             fontSize: textSize,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
     );
   }
 }
-
 class MyDefaultButtonWithoutTapping extends StatelessWidget {
   const MyDefaultButtonWithoutTapping({
     super.key,

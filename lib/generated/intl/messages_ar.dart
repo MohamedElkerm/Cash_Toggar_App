@@ -121,8 +121,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendingMoneyProcess":
             MessageLookupByLibrary.simpleMessage("إيداعات الحساب"),
         "signIn": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "signInError": MessageLookupByLibrary.simpleMessage(
+            "برجاء ادخال البيانات بشكل صحيح"),
         "signInHere": MessageLookupByLibrary.simpleMessage("سجل دخول الآن"),
+        "signInSuccess":
+            MessageLookupByLibrary.simpleMessage("تم تسجيل الدخول بنجاح!"),
         "signUp": MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
+        "signUpError": MessageLookupByLibrary.simpleMessage(
+            "برجاء ادخال البيانات بشكل صحيح"),
+        "signUpSuccess":
+            MessageLookupByLibrary.simpleMessage("تم انشاء الحساب بنجاح!"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "transActionHistory":
             MessageLookupByLibrary.simpleMessage("سجل المعاملات"),
@@ -133,6 +141,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("رفع إسكرين شوت هنا"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("المعلومات الشخصية"),
+        "validatorEmail":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال الايميل"),
+        "validatorEmailValid":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال ايميل صالح"),
+        "validatorFirstName":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاول"),
+        "validatorLastName":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاحير"),
+        "validatorPassword":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال كلمه مرور"),
+        "validatorPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال رقم هاتف"),
         "vodafoneCashNum":
             MessageLookupByLibrary.simpleMessage("رقم فودافون كاش"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("رصيد المحفظة"),

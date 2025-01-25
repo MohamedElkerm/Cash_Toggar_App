@@ -72,5 +72,17 @@
   "withdrawalRejected" : "Withdrawal rejected",
   "transactionPending" : "Transaction pending",
   "completeTransaction" : "Complete Transaction",
-  "vodafoneCashNum" : "Vodafone Cash Number"
+  "vodafoneCashNum" : "Vodafone Cash Number",
+
+  "validatorFirstName": "Please enter your first name",
+    "validatorLastName": "Please enter your last name",
+    "validatorEmail": "Please enter your email",
+    "validatorEmailValid": "Please enter a valid email",
+    "validatorPassword": "Please enter your password",
+    "validatorPhoneNumber": "Please enter your phone number",
+    "signInSuccess": "Sign in successful!",
+    "signUpSuccess": "Sign up successful!",
+  "signInError": "Error in sign in!",
+  "signUpError": "Error in sign up!"
+
 }

@@ -26,6 +26,7 @@ class MyTextFormField extends StatelessWidget {
     required this.textInputType,
     this.changeVisibility,
     required this.prefixIcon,
+    this.validator  = null,
   });
 
   TextEditingController textEditingController;
@@ -35,6 +36,7 @@ class MyTextFormField extends StatelessWidget {
   bool isHidden;
   TextInputType textInputType;
   Function? changeVisibility;
+  var validator;
   String? prefixIcon;
 
   @override
@@ -69,6 +71,7 @@ class MyTextFormField extends StatelessWidget {
               child: Directionality(
                 textDirection: localCubit.isArabic() ? TextDirection.rtl : TextDirection.ltr,
                 child: TextFormField(
+                  validator: validator == null ? null : validator,
                   controller: textEditingController,
                   cursorColor: AppColors.secondaryColor,
                   keyboardType: textInputType,

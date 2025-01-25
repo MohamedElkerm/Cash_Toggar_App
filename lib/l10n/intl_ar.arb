@@ -72,5 +72,16 @@
   "withdrawalRejected" : "تم رفض السحب",
   "transactionPending" : "العمليه قيد الانتظار",
   "completeTransaction" : "اتمام العمليه",
-  "vodafoneCashNum" : "رقم فودافون كاش"
+  "vodafoneCashNum" : "رقم فودافون كاش",
+
+  "validatorFirstName": "برجاء ادخال الاسم الاول",
+  "validatorLastName": "برجاء ادخال الاسم الاحير",
+  "validatorEmail": "برجاء ادخال الايميل",
+  "validatorEmailValid": "برجاء ادخال ايميل صالح",
+  "validatorPassword": "برجاء ادخال كلمه مرور",
+  "validatorPhoneNumber": "برجاء ادخال رقم هاتف",
+  "signInSuccess": "تم تسجيل الدخول بنجاح!",
+  "signUpSuccess": "تم انشاء الحساب بنجاح!",
+  "signInError": "برجاء ادخال البيانات بشكل صحيح",
+  "signUpError": "برجاء ادخال البيانات بشكل صحيح"
 }

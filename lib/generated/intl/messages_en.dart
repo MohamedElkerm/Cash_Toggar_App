@@ -123,8 +123,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendingMoneyProcess":
             MessageLookupByLibrary.simpleMessage("Account Deposits"),
         "signIn": MessageLookupByLibrary.simpleMessage("Login"),
+        "signInError":
+            MessageLookupByLibrary.simpleMessage("Error in sign in!"),
         "signInHere": MessageLookupByLibrary.simpleMessage("Login"),
+        "signInSuccess":
+            MessageLookupByLibrary.simpleMessage("Sign in successful!"),
         "signUp": MessageLookupByLibrary.simpleMessage("Create an account"),
+        "signUpError":
+            MessageLookupByLibrary.simpleMessage("Error in sign up!"),
+        "signUpSuccess":
+            MessageLookupByLibrary.simpleMessage("Sign up successful!"),
         "skip": MessageLookupByLibrary.simpleMessage("skip"),
         "transActionHistory":
             MessageLookupByLibrary.simpleMessage("Transaction history"),
@@ -135,6 +143,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Upload screenshot here"),
         "userInformation":
             MessageLookupByLibrary.simpleMessage("Personal Informations"),
+        "validatorEmail":
+            MessageLookupByLibrary.simpleMessage("Please enter your email"),
+        "validatorEmailValid":
+            MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
+        "validatorFirstName": MessageLookupByLibrary.simpleMessage(
+            "Please enter your first name"),
+        "validatorLastName":
+            MessageLookupByLibrary.simpleMessage("Please enter your last name"),
+        "validatorPassword":
+            MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "validatorPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter your phone number"),
         "vodafoneCashNum":
             MessageLookupByLibrary.simpleMessage("Vodafone Cash Number"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),

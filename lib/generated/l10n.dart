@@ -789,6 +789,106 @@ class S {
       args: [],
     );
   }
+
+  /// `Please enter your first name`
+  String get validatorFirstName {
+    return Intl.message(
+      'Please enter your first name',
+      name: 'validatorFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your last name`
+  String get validatorLastName {
+    return Intl.message(
+      'Please enter your last name',
+      name: 'validatorLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email`
+  String get validatorEmail {
+    return Intl.message(
+      'Please enter your email',
+      name: 'validatorEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email`
+  String get validatorEmailValid {
+    return Intl.message(
+      'Please enter a valid email',
+      name: 'validatorEmailValid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get validatorPassword {
+    return Intl.message(
+      'Please enter your password',
+      name: 'validatorPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get validatorPhoneNumber {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'validatorPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign in successful!`
+  String get signInSuccess {
+    return Intl.message(
+      'Sign in successful!',
+      name: 'signInSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign up successful!`
+  String get signUpSuccess {
+    return Intl.message(
+      'Sign up successful!',
+      name: 'signUpSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in sign in!`
+  String get signInError {
+    return Intl.message(
+      'Error in sign in!',
+      name: 'signInError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error in sign up!`
+  String get signUpError {
+    return Intl.message(
+      'Error in sign up!',
+      name: 'signUpError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
