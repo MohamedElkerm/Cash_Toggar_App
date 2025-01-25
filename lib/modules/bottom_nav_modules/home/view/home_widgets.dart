@@ -67,7 +67,7 @@ class MainCardInHomeScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQueryValues(context).width * 0.4,
                     child: MyDefaultButtonFitWithIcon(
-
+                      haveIcon: false,
                       text: "Cash Back $totalCashBack LE",
                       textSize: 16,
                       function: () {},

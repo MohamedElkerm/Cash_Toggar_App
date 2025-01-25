@@ -195,7 +195,7 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:  MediaQueryValues(context).height * 0.04,
+      height: MediaQueryValues(context).height * 0.04,
       child: ElevatedButton(
         onPressed: () {
           function();
@@ -210,29 +210,39 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
             backGroundColor,
           ),
         ),
-        child: Row(
-          children: [
-            Expanded(
-              flex: 5,
-              child: MyResponsiveText(
-                text: text,
-                style: getBold(
-                  fontColor: textColor,
-                  fontSize: textSize,
+        child: haveIcon
+            ? Row(
+                children: [
+                  Expanded(
+                    flex: 5,
+                    child: MyResponsiveText(
+                      text: text,
+                      style: getBold(
+                        fontColor: textColor,
+                        fontSize: textSize,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: SvgPicture.asset(
+                      Assets.iconsCopyIconSvg,
+                    ),
+                  ),
+                ],
+              )
+            : Expanded(
+                child: MyResponsiveText(
+                  text: text,
+                  style: getBold(
+                    fontColor: textColor,
+                    fontSize: textSize,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              width: 8,
-            ),
-            Expanded(
-              flex: 1,
-              child: SvgPicture.asset(
-                Assets.iconsCopyIconSvg,
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
