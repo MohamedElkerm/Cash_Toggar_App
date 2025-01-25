@@ -23,8 +23,11 @@ class PaymentCardWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FittedBox(
-              child: Image.asset(
+              fit: BoxFit.fill,
+              child: Image.network(
                 paymentLogo,
+                height: 50,
+                width: 50,
               ),
             ),
             SizedBox(

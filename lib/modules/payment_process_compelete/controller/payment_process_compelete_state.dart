@@ -9,3 +9,7 @@ final class NavigateToPaymentProcessCompleteScreen extends PaymentProcessCompele
 final class NavigateToPaymentConfirmationScreen extends PaymentProcessCompeleteState {}
 
 final class UpdateTheCurrentDetailsState extends PaymentProcessCompeleteState {}
+
+final class GetAllPaymentGateWaysLoadingState extends PaymentProcessCompeleteState {}
+final class GetAllPaymentGateWaysSuccessState extends PaymentProcessCompeleteState {}
+final class GetAllPaymentGateWaysErrorState extends PaymentProcessCompeleteState {}

@@ -25,7 +25,7 @@ class CashToggar extends StatelessWidget {
           create: (context) => HomeCubit(),
         ),
         BlocProvider(
-          create: (context) => PaymentProcessCompeleteCubit(),
+          create: (context) => PaymentProcessCompeleteCubit()..getAllPaymentGateways(),
         ),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationState>(

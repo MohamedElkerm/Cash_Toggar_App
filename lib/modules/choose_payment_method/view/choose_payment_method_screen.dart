@@ -114,37 +114,58 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                               SizedBox(
                                 height: 16,
                               ),
-                              GridView.builder(
-                                padding: EdgeInsets.zero,
-                                physics: BouncingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 13,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 3,
-                                  mainAxisSpacing: 16,
-                                  crossAxisSpacing: 16,
-                                  // mainAxisExtent: ,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return InkWell(
-                                    onTap: () {
-                                      paymentProcessCubit
-                                          .navigateToPaymentProcessCompleteScreen(
-                                        context: context,
-                                        currentPaymentWayNameNewValue:
-                                            "Etisalat Cash",
-                                        currentPaymentWayImageNewValue:
-                                            "assets/images/e_sample.png",
-                                      );
-                                    },
-                                    child: PaymentCardWidget(
-                                      paymentName: "Etisalat Cash",
-                                      paymentLogo: "assets/images/e_sample.png",
+                              paymentProcessCubit.getPaymentLoading
+                                  ? Center(
+                                      child: CircularProgressIndicator(
+                                        color: AppColors.primaryColor,
+                                      ),
+                                    )
+                                  : GridView.builder(
+                                      padding: EdgeInsets.zero,
+                                      physics: BouncingScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemCount: paymentProcessCubit
+                                          .paymentGatewaysList.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                        crossAxisCount: 3,
+                                        mainAxisSpacing: 16,
+                                        crossAxisSpacing: 16,
+                                        // mainAxisExtent: ,
+                                      ),
+                                      itemBuilder: (context, index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            paymentProcessCubit
+                                                .navigateToPaymentProcessCompleteScreen(
+                                              context: context,
+                                              currentPaymentWayNameNewValue:
+                                                  localCubit.isArabic()
+                                                      ? paymentProcessCubit
+                                                              .paymentGatewaysList[
+                                                          index]["title"]
+                                                      : paymentProcessCubit
+                                                              .paymentGatewaysList[
+                                                          index]["titleEn"],
+                                              currentPaymentWayImageNewValue:
+                                                  "assets/images/e_sample.png",
+                                            );
+                                          },
+                                          child: PaymentCardWidget(
+                                            paymentName: localCubit.isArabic()
+                                                ? paymentProcessCubit
+                                                        .paymentGatewaysList[
+                                                    index]["title"]
+                                                : paymentProcessCubit
+                                                        .paymentGatewaysList[
+                                                    index]["titleEn"],
+                                            paymentLogo: paymentProcessCubit
+                                                        .paymentGatewaysList[
+                                                    index]["image"],
+                                          ),
+                                        );
+                                      },
                                     ),
-                                  );
-                                },
-                              ),
                               SizedBox(
                                 height: 84,
                               ),
