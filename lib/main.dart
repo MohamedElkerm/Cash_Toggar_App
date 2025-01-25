@@ -16,11 +16,12 @@ void main() async {
   CacheHelper.init();
 
   runApp(
+    const CashToggar(),
 
 
-    DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => const CashToggar(),
-    ),
+    // DevicePreview(
+    //     enabled: !kReleaseMode,
+    //     builder: (context) => const CashToggar(),
+    // ),
   );
 }

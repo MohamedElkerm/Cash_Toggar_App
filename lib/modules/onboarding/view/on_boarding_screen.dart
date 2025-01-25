@@ -63,7 +63,7 @@ class OnBoardingScreen extends StatelessWidget {
                           : Row(
                               children: [
                                 Expanded(
-                                  flex: 1,
+                                  flex: 3,
                                   child: MyDefaultButton(
                                     backGroundColor: Color(
                                       0xffE8E8E8,
@@ -85,7 +85,7 @@ class OnBoardingScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Expanded(
-                                  flex: 4,
+                                  flex: 6,
                                   child: MyDefaultButton(
                                     function: () {
                                       myOnBoardingCubit.dotIndex == 1

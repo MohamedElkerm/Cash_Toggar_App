@@ -35,12 +35,13 @@ class CashToggar extends StatelessWidget {
         builder: (context, state) {
           var localizationCubit = BlocProvider.of<LocalizationCubit>(context);
           return MaterialApp.router(
-            useInheritedMediaQuery: true,
-            locale: DevicePreview.locale(context),
-            builder: DevicePreview.appBuilder,
+            // useInheritedMediaQuery: true,
+            // locale: DevicePreview.locale(context),
+            // builder: DevicePreview.appBuilder,
 
             routerConfig: router,
-            // locale: localizationCubit.locale,
+            locale: localizationCubit.locale,
+            builder: FToastBuilder(),
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -48,7 +49,6 @@ class CashToggar extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            // builder: FToastBuilder(),
             debugShowCheckedModeBanner: false,
             theme: lightTheme(),
           );
@@ -57,3 +57,26 @@ class CashToggar extends StatelessWidget {
     );
   }
 }
+
+
+/*
+          return MaterialApp.router(
+            // useInheritedMediaQuery: true,
+            // locale: DevicePreview.locale(context),
+            // builder: DevicePreview.appBuilder,
+
+            routerConfig: router,
+            locale: localizationCubit.locale,
+            builder: FToastBuilder(),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+            debugShowCheckedModeBanner: false,
+            theme: lightTheme(),
+          );
+
+ */
