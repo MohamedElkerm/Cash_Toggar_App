@@ -12,3 +12,7 @@ final class SigninNavigateToSignupState extends SigninState {}
 final class SigninNavigateToHomeState extends SigninState {}
 
 final class SigninNavigateToForgetPasswordState extends SigninState {}
+
+final class SigninLoadingState extends SigninState {}
+final class SigninSuccessState extends SigninState {}
+final class SigninErrorState extends SigninState {}

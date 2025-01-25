@@ -38,7 +38,9 @@ class SigninScreen extends StatelessWidget {
               var localCubit = BlocProvider.of<LocalizationCubit>(context);
               return Scaffold(
                 body: Directionality(
-                  textDirection:localCubit.isArabic()? TextDirection.rtl : TextDirection.ltr,
+                  textDirection: localCubit.isArabic()
+                      ? TextDirection.rtl
+                      : TextDirection.ltr,
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
@@ -57,7 +59,9 @@ class SigninScreen extends StatelessWidget {
                                       fontColor: AppColors.primaryColor,
                                       fontSize: 26,
                                     ),
-                                    textAlign: localCubit.isArabic()? TextAlign.right : TextAlign.left,
+                                    textAlign: localCubit.isArabic()
+                                        ? TextAlign.right
+                                        : TextAlign.left,
                                   ),
                                 ),
                                 SizedBox(
@@ -96,7 +100,8 @@ class SigninScreen extends StatelessWidget {
                                   isPassword: true,
                                   isHidden: !signInCubit.isVisibile,
                                   textInputType: TextInputType.visiblePassword,
-                                  changeVisibility: signInCubit.changeVisibility,
+                                  changeVisibility:
+                                      signInCubit.changeVisibility,
                                   prefixIcon: Assets.iconsPasswordIconSvg,
                                 ),
                                 SizedBox(
@@ -119,10 +124,14 @@ class SigninScreen extends StatelessWidget {
                                   height: 16,
                                 ),
                                 MyDefaultButton(
+                                  isLoading: signInCubit.signinLoading,
                                   text: S.of(context).signIn,
                                   textSize: 16,
                                   function: () {
-                                    signInCubit.navigateToHomeScreen();
+                                    signInCubit.signInUsingFirebase(
+                                      context: context,
+                                      isArabic: localCubit.isArabic(),
+                                    );
                                   },
                                   backGroundColor: AppColors.secondaryColor,
                                 ),

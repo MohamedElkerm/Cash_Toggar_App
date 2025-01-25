@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
+import 'package:cash_toggar_app/helper/global_widgets/global_snack_bar_widget.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
@@ -78,20 +79,11 @@ class SignupCubit extends Cubit<SignupState> {
           return value;
         });
 
-        // Navigate to the next screen or show a success message
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: AppColors.inf_suc_dan_warn_sucess,
-            content: MyResponsiveText(
-              textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-              textAlign: isArabic ? TextAlign.right : TextAlign.left,
-              text: S.of(context).signUpSuccess,
-              style: getSemiBold(
-                fontColor: AppColors.myWhite,
-                fontSize: 16,
-              ),
-            ),
-          ),
+        myGlobalSnackBarWidget(
+          context: context,
+          isArabic: isArabic,
+          backGroundColor: AppColors.inf_suc_dan_warn_sucess,
+          text: S.of(context).signUpSuccess,
         );
 
         navigateToHomeScreen(
@@ -107,20 +99,13 @@ class SignupCubit extends Cubit<SignupState> {
         emit(SignupSuccessState());
       } on FirebaseAuthException catch (e) {
         signUpLoading = false;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: AppColors.inf_suc_dan_warn_sucess,
-            content: MyResponsiveText(
-              textDirection: isArabic ? TextDirection.rtl : TextDirection.ltr,
-              textAlign: isArabic ? TextAlign.right : TextAlign.left,
-              text: S.of(context).signUpSuccess,
-              style: getSemiBold(
-                fontColor: AppColors.myWhite,
-                fontSize: 16,
-              ),
-            ),
-          ),
 
+
+        myGlobalSnackBarWidget(
+          context: context,
+          isArabic: isArabic,
+          backGroundColor: AppColors.inf_suc_dan_warn_danger,
+          text: S.of(context).signUpError,
         );
         emit(SignupErrorState());
       }
