@@ -8,11 +8,15 @@ import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
 import '../../../generated/l10n.dart';
+import '../../../helper/local/cache_helper.dart';
+import '../../../helper/local/cache_helper_keys.dart';
+import '../../bottom_nav_modules/home/controller/home_cubit.dart';
 import '../model/payment_gateway_model.dart';
 
 part 'payment_process_compelete_state.dart';
@@ -159,6 +163,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
           'payment_method_en': currentPaymentGateWay.titleEn,
           'status': 'pending',
           'email': email,
+          'isSendingMoney': false,
         });
         navigateToPaymentConfirmationScreen(
           context: context,
@@ -166,6 +171,8 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
         emit(SendingMoneySuccessState());
         sendReceivingMoneyLoading = false;
 
+        BlocProvider.of<HomeCubit>(context)
+            .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
         print('Record added successfully!');
       } catch (e) {
         // Handle any errors that occur during the process
@@ -310,12 +317,18 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
             'payment_method_en': currentPaymentGateWay.titleEn,
             'status': 'pending',
             'image': imageUrl,
+            'isSendingMoney': true,
             // Add the image URL to the document
           });
           sendSendingMoneyLoading = false;
           navigateToPaymentConfirmationScreen(
             context: context,
           );
+          // BlocProvider.of<HomeCubit>(context).getUserData(
+          //   CacheHelper.getData(
+          //     key: CacheHelperKeys.uId,
+          //   ),
+          // );
           emit(UploadingMoneySuccessState()); // Emit success state
           print('Record added successfully!');
         } catch (e) {

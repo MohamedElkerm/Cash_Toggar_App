@@ -12,6 +12,8 @@ import '../../../generated/assets.dart';
 import '../../../generated/l10n.dart';
 import '../../../helper/global_widgets/my_default_button.dart';
 import '../../../helper/global_widgets/sliver_widgets/custom_sliver_app_bar.dart';
+import '../../../helper/local/cache_helper.dart';
+import '../../../helper/local/cache_helper_keys.dart';
 import '../../../helper/localization/cubit/localization_cubit.dart';
 import '../../bottom_nav_modules/home/controller/home_cubit.dart';
 import '../controller/payment_process_compelete_cubit.dart';
@@ -482,9 +484,11 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                           ),
 
                                           MyDefaultButton(
-                                            isLoading: homeCubit.isSendingProcess? paymentProcessCompleteCubit.sendSendingMoneyLoading
-                                                :
-                                                paymentProcessCompleteCubit
+                                            isLoading: homeCubit
+                                                    .isSendingProcess
+                                                ? paymentProcessCompleteCubit
+                                                    .sendSendingMoneyLoading
+                                                : paymentProcessCompleteCubit
                                                     .sendReceivingMoneyLoading,
                                             text: S.of(context).confirm,
                                             textSize: 18,
@@ -504,6 +508,15 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                       isArabic:
                                                           localCubit.isArabic(),
                                                     )
+                                                      .then((value) {
+                                                      homeCubit
+                                                          .getUserMoneyRecords(
+                                                        CacheHelper.getData(
+                                                          key: CacheHelperKeys
+                                                              .uId,
+                                                        ),
+                                                      );
+                                                    })
                                                   : paymentProcessCompleteCubit
                                                       .sendReceivingMoneyRecord(
                                                       uId: homeCubit
@@ -515,7 +528,16 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                       email: homeCubit
                                                           .userModel.email,
                                                       context: context,
-                                                    );
+                                                    )
+                                                      .then((value) {
+                                                      homeCubit
+                                                          .getUserMoneyRecords(
+                                                        CacheHelper.getData(
+                                                          key: CacheHelperKeys
+                                                              .uId,
+                                                        ),
+                                                      );
+                                                    });
                                             },
                                             backGroundColor:
                                                 AppColors.secondaryColor,

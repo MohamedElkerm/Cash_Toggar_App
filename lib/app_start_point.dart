@@ -29,6 +29,11 @@ class CashToggar extends StatelessWidget {
               CacheHelper.getData(
                 key: CacheHelperKeys.uId,
               ),
+            )
+            ..getUserMoneyRecords(
+              CacheHelper.getData(
+                key: CacheHelperKeys.uId,
+              ),
             ),
         ),
         BlocProvider(

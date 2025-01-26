@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 
+import '../model/money_record_model.dart';
+
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -72,6 +74,63 @@ class HomeCubit extends Cubit<HomeState> {
       getUserDataLoading = false;
       print('Error fetching user data: $e');
       emit( GetTheUserDataErrorState());
+      throw e; // Re-throw the error if you want to handle it elsewhere
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  late List<MoneyRecord> allRecords = [];
+  // Fetch all records from "sending_money" and "receiving_money" collections based on uId
+  Future<List<MoneyRecord>> getUserMoneyRecords(String uId) async {
+    print("Startttttttttttttttttttttt !");
+    allRecords = [];
+    emit( GetTheUserMoneyRecordsLoadingState());
+    try {
+      // Fetch records from "sending_money" collection
+      final QuerySnapshot sendingMoneySnapshot = await _firestore
+          .collection('sending_money')
+          .where('uId', isEqualTo: uId)
+          .get();
+
+      // Fetch records from "receiving_money" collection
+      final QuerySnapshot receivingMoneySnapshot = await _firestore
+          .collection('receiving_money')
+          .where('uId', isEqualTo: uId)
+          .get();
+
+      // Combine the results from both collections
+      final List<MoneyRecord> sendingMoneyRecords = sendingMoneySnapshot.docs
+          .map((doc) => MoneyRecord.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+
+      final List<MoneyRecord> receivingMoneyRecords = receivingMoneySnapshot.docs
+          .map((doc) => MoneyRecord.fromMap(doc.data() as Map<String, dynamic>))
+          .toList();
+
+      // Combine both lists
+      allRecords = [
+        ...sendingMoneyRecords,
+        ...receivingMoneyRecords,
+      ];
+
+      // Sort records by time (most recent first)
+      allRecords.sort((a, b) => b.time.compareTo(a.time));
+
+      emit( GetTheUserMoneyRecordsSuccessState());
+      return allRecords;
+    } catch (e) {
+      print('Error fetching money records: $e');
+      emit( GetTheUserMoneyRecordsErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }

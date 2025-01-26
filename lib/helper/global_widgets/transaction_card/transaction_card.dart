@@ -78,7 +78,7 @@ class TransactionCard extends StatelessWidget {
                                       : TextDirection.ltr,
                                   text: isSendingMoneyMakeItGreen
                                       ? "+${transactionAmount}"
-                                      : "${transactionAmount}",
+                                      : "-${transactionAmount}",
                                   style: getSemiBold(
                                     fontColor: isSendingMoneyMakeItGreen
                                         ? AppColors.inf_suc_dan_warn_sucess
