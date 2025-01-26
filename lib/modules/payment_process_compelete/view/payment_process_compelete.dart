@@ -431,38 +431,46 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                           4,
                                                         ),
                                                       ),
-                                                      child: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Expanded(
-                                                            flex: 5,
-                                                            child:
-                                                                MyResponsiveText(
-                                                              text: S
-                                                                  .of(context)
-                                                                  .uploadTheImage,
-                                                              style:
-                                                                  getSemiBold(
-                                                                fontColor:
-                                                                    AppColors
-                                                                        .myBlack,
-                                                                fontSize: 16,
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          paymentProcessCompleteCubit
+                                                              .pickAndCompressImage(
+                                                            context: context,
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 5,
+                                                              child:
+                                                                  MyResponsiveText(
+                                                                text: S
+                                                                    .of(context)
+                                                                    .uploadTheImage,
+                                                                style:
+                                                                    getSemiBold(
+                                                                  fontColor:
+                                                                      AppColors
+                                                                          .myBlack,
+                                                                  fontSize: 16,
+                                                                ),
                                                               ),
                                                             ),
-                                                          ),
-                                                          SizedBox(
-                                                            width: 16.0,
-                                                          ),
-                                                          Expanded(
-                                                            flex: 1,
-                                                            child: SvgPicture
-                                                                .asset(
-                                                              "assets/icons/screen_shot_svg_icon.svg",
+                                                            SizedBox(
+                                                              width: 16.0,
                                                             ),
-                                                          ),
-                                                        ],
+                                                            Expanded(
+                                                              flex: 1,
+                                                              child: SvgPicture
+                                                                  .asset(
+                                                                "assets/icons/screen_shot_svg_icon.svg",
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -482,7 +490,15 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                             function: () {
                                               homeCubit.isSendingProcess
                                                   ? paymentProcessCompleteCubit
-                                                      .navigateToPaymentConfirmationScreen(
+                                                      .sendSendingMoneyRecord(
+                                                      uId: homeCubit
+                                                          .userModel.uId,
+                                                      userId: homeCubit
+                                                          .userModel.userId,
+                                                      userName:
+                                                          "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
+                                                      email: homeCubit
+                                                          .userModel.email,
                                                       context: context,
                                                     )
                                                   : paymentProcessCompleteCubit

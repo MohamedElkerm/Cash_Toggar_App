@@ -1,8 +1,13 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
 import '../model/payment_gateway_model.dart';
@@ -130,8 +135,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     required String email,
     required BuildContext context,
   }) async {
-
-    if(formKeyGlobalKey.currentState!.validate()){
+    if (formKeyGlobalKey.currentState!.validate()) {
       try {
         sendReceivingMoneyLoading = true;
         emit(SendingMoneyLoadingState());
@@ -170,4 +174,170 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       }
     }
   }
+
+  final ImagePicker _picker = ImagePicker();
+  late File? compressedFile;
+
+  Future<void> pickAndCompressImage({required context}) async {
+    emit(CompressImageLoadingState()); // Emit loading state
+
+    try {
+      // Pick and compress the image
+      compressedFile = await _pickAndCompressImage();
+
+      if (compressedFile != null) {
+        emit(CompressImageSuccessState()); // Emit success state
+      } else {
+        emit(PickImageErrorState()); // Emit error state
+      }
+    } catch (e) {
+      emit(CompressImageErrorState()); // Emit error state
+      print('Error picking or compressing image: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to pick or compress image: $e')),
+      );
+    }
+  }
+  Future<File?> _pickAndCompressImage() async {
+    try {
+      // Pick an image from the gallery
+      final XFile? pickedFile = await _picker.pickImage(
+        source: ImageSource.gallery,
+        imageQuality: 100,
+      );
+
+      if (pickedFile == null) {
+        return null;
+      }
+
+      // Check file type and size
+      final File file = File(pickedFile.path);
+      final String fileExtension =
+          pickedFile.path.split('.').last.toLowerCase();
+      if (fileExtension != 'jpg' &&
+          fileExtension != 'jpeg' &&
+          fileExtension != 'png') {
+        throw Exception('Only JPG, JPEG, and PNG files are allowed.');
+      }
+
+      final int fileSizeInBytes = await file.length();
+      const int maxSizeInBytes = 20 * 1024 * 1024; // 20 MB
+      if (fileSizeInBytes > maxSizeInBytes) {
+        throw Exception('Image size must be less than 20 MB.');
+      }
+
+      // Compress the image
+      return await compressImage(file);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  Future<File?> compressImage(File file) async {
+    try {
+      final String targetPath = '${file.path}_compressed.jpg';
+      final XFile? compressedFile =
+          await FlutterImageCompress.compressAndGetFile(
+        file.path,
+        targetPath,
+        quality: 70,
+      );
+
+      if (compressedFile == null) {
+        throw Exception('Failed to compress image.');
+      }
+
+      return File(compressedFile.path);
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  // required String uId,
+  // required String userId,
+  // required String userName,
+  // required String email,
+  // required BuildContext context
+
+  bool sendSendingMoneyLoading = false;
+
+  Future<void> sendSendingMoneyRecord({
+    required String uId,
+    required String userId,
+    required String userName,
+    required String email,
+    required BuildContext context,
+  }) async {
+    try {
+      if (compressedFile == null) {
+        throw Exception('No compressed image found. Please pick and compress an image first.');
+      }
+
+      emit(UploadingMoneyLoadingState()); // Emit loading state for sending money
+
+      // Step 1: Upload the image to Firebase Storage
+      final String imageUrl = await uploadImageToFirebaseStorage(compressedFile! , context);
+
+      // Step 2: Add a new document to the "sending_money" collection
+      final CollectionReference sendingMoney =
+      FirebaseFirestore.instance.collection('sending_money');
+
+      await sendingMoney.add({
+        'amount': priceController.text.trim(),
+        'receive_phone': phoneController.text.trim(),
+        'uId': uId,
+        'userId': userId,
+        'user_name': userName,
+        'email': email,
+        'time': DateTime.now(), // Firestore will automatically handle DateTime
+        'payment_method': currentPaymentGateWay.title,
+        'payment_method_en': currentPaymentGateWay.titleEn,
+        'status': 'pending',
+        'image': imageUrl, // Add the image URL to the document
+      });
+
+      emit(UploadingMoneySuccessState()); // Emit success state
+      print('Record added successfully!');
+    } catch (e) {
+      emit(UploadingMoneyErrorState()); // Emit error state
+      print('Error sending record: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to send record: $e')),
+      );
+      throw e; // Re-throw the error if you want to handle it elsewhere
+    }
+  }
+//
+// Function to upload an image to Firebase Storage and return the download URL
+  Future<String> uploadImageToFirebaseStorage(File? imageFile , context) async {
+    try {
+      // emit(UploadingImageLoadingState()); // Emit loading state for image upload
+
+      // Generate a unique file name for the image
+      final String fileName =
+          'sending_money_images/${DateTime.now().millisecondsSinceEpoch}.${compressedFile!.path.split('.').last.toLowerCase()}';
+
+      // Upload the file to Firebase Storage
+      final Reference storageReference =
+      FirebaseStorage.instance.ref().child(fileName);
+      final UploadTask uploadTask = storageReference.putFile(imageFile!);
+
+      // Wait for the upload to complete
+      final TaskSnapshot taskSnapshot = await uploadTask;
+
+      // Get the download URL
+      final String downloadUrl = await taskSnapshot.ref.getDownloadURL();
+
+      emit(UploadingImageSuccessState()); // Emit success state
+      return downloadUrl;
+    } catch (e) {
+      emit(UploadingImageErrorState()); // Emit error state
+      print('Error uploading image: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to upload image: $e')),
+      );
+      throw e; // Re-throw the error if you want to handle it elsewhere
+    }
+  }
+
 }

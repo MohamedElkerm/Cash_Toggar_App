@@ -1,3 +1,5 @@
+import 'package:bloc/bloc.dart';
+import 'package:cash_toggar_app/helper/bloc_observer.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
 import 'package:device_preview/device_preview.dart';
@@ -15,6 +17,9 @@ void main() async {
   );
 
   CacheHelper.init();
+
+  MyBlocObserver myBlocObserver = MyBlocObserver();
+  Bloc.observer = myBlocObserver;
 
   runApp(
     const CashToggar(),
