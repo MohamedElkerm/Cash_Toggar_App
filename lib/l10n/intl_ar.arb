@@ -88,5 +88,6 @@
   "validatorAmountEmpty": "برجاء ادخال مبلغ",
   "validatorAmountNotEnough": "حسابك غير كافي",
   "validatorPhoneEmpty": "برجاء ادخال رقم هاتف",
-  "validatorAccountInstapayEmpty": "برجاء ادخال حساب انستا باي الخاص بك"
+  "validatorAccountInstapayEmpty": "برجاء ادخال حساب انستا باي الخاص بك",
+  "imageValidator" : "يرجي ارفاق صوره اولا"
 }

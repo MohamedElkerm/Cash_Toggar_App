@@ -82,6 +82,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "goodAfternoon": MessageLookupByLibrary.simpleMessage("مساء الخير"),
         "googMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
+        "imageValidator":
+            MessageLookupByLibrary.simpleMessage("يرجي ارفاق صوره اولا"),
         "lastName": MessageLookupByLibrary.simpleMessage("الإسم الأخير"),
         "logOut": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
         "moneyRange": MessageLookupByLibrary.simpleMessage(

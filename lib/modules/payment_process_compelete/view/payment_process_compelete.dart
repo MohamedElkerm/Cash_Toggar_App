@@ -482,7 +482,8 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                           ),
 
                                           MyDefaultButton(
-                                            isLoading:
+                                            isLoading: homeCubit.isSendingProcess? paymentProcessCompleteCubit.sendSendingMoneyLoading
+                                                :
                                                 paymentProcessCompleteCubit
                                                     .sendReceivingMoneyLoading,
                                             text: S.of(context).confirm,
@@ -500,6 +501,8 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                       email: homeCubit
                                                           .userModel.email,
                                                       context: context,
+                                                      isArabic:
+                                                          localCubit.isArabic(),
                                                     )
                                                   : paymentProcessCompleteCubit
                                                       .sendReceivingMoneyRecord(

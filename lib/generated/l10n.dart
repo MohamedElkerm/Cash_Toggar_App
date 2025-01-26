@@ -949,6 +949,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Please pick an image first`
+  String get imageValidator {
+    return Intl.message(
+      'Please pick an image first',
+      name: 'imageValidator',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

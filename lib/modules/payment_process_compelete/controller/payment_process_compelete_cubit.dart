@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
+import 'package:cash_toggar_app/helper/global_widgets/global_snack_bar_widget.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
+import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +12,7 @@ import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 
+import '../../../generated/l10n.dart';
 import '../model/payment_gateway_model.dart';
 
 part 'payment_process_compelete_state.dart';
@@ -141,7 +144,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
         emit(SendingMoneyLoadingState());
         // Reference to the Firestore collection
         final CollectionReference receivingMoney =
-        FirebaseFirestore.instance.collection('receiving_money');
+            FirebaseFirestore.instance.collection('receiving_money');
 
         // Add a new document to the collection
         await receivingMoney.add({
@@ -150,7 +153,8 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
           'uId': uId,
           'userId': userId,
           'user_name': userName,
-          'time': DateTime.now(), // Firestore will automatically handle DateTime
+          'time': DateTime.now(),
+          // Firestore will automatically handle DateTime
           'payment_method': currentPaymentGateWay.title,
           'payment_method_en': currentPaymentGateWay.titleEn,
           'status': 'pending',
@@ -186,6 +190,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       compressedFile = await _pickAndCompressImage();
 
       if (compressedFile != null) {
+        selectedFile = true;
         emit(CompressImageSuccessState()); // Emit success state
       } else {
         emit(PickImageErrorState()); // Emit error state
@@ -198,6 +203,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       );
     }
   }
+
   Future<File?> _pickAndCompressImage() async {
     try {
       // Pick an image from the gallery
@@ -260,6 +266,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
   // required BuildContext context
 
   bool sendSendingMoneyLoading = false;
+  bool selectedFile = false;
 
   Future<void> sendSendingMoneyRecord({
     required String uId,
@@ -267,49 +274,74 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     required String userName,
     required String email,
     required BuildContext context,
+    required bool isArabic,
   }) async {
-    try {
-      if (compressedFile == null) {
-        throw Exception('No compressed image found. Please pick and compress an image first.');
+    print("======================");
+    if (formKeyGlobalKey.currentState!.validate()) {
+      if (selectedFile) {
+        try {
+          sendSendingMoneyLoading = true;
+          if (compressedFile == null) {
+            throw Exception(
+                'No compressed image found. Please pick and compress an image first.');
+          }
+
+          emit(
+              UploadingMoneyLoadingState()); // Emit loading state for sending money
+
+          // Step 1: Upload the image to Firebase Storage
+          final String imageUrl =
+              await uploadImageToFirebaseStorage(compressedFile!, context);
+
+          // Step 2: Add a new document to the "sending_money" collection
+          final CollectionReference sendingMoney =
+              FirebaseFirestore.instance.collection('sending_money');
+
+          await sendingMoney.add({
+            'amount': priceController.text.trim(),
+            'receive_phone': phoneController.text.trim(),
+            'uId': uId,
+            'userId': userId,
+            'user_name': userName,
+            'email': email,
+            'time': DateTime.now(),
+            // Firestore will automatically handle DateTime
+            'payment_method': currentPaymentGateWay.title,
+            'payment_method_en': currentPaymentGateWay.titleEn,
+            'status': 'pending',
+            'image': imageUrl,
+            // Add the image URL to the document
+          });
+          sendSendingMoneyLoading = false;
+          navigateToPaymentConfirmationScreen(
+            context: context,
+          );
+          emit(UploadingMoneySuccessState()); // Emit success state
+          print('Record added successfully!');
+        } catch (e) {
+          sendSendingMoneyLoading = false;
+
+          emit(UploadingMoneyErrorState()); // Emit error state
+          print('Error sending record: $e');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Failed to send record: $e')),
+          );
+          throw e; // Re-throw the error if you want to handle it elsewhere
+        }
+      } else {
+        myGlobalSnackBarWidget(
+          context: context,
+          isArabic: isArabic,
+          backGroundColor: AppColors.inf_suc_dan_warn_danger,
+          text: S.of(context).imageValidator,
+        );
       }
-
-      emit(UploadingMoneyLoadingState()); // Emit loading state for sending money
-
-      // Step 1: Upload the image to Firebase Storage
-      final String imageUrl = await uploadImageToFirebaseStorage(compressedFile! , context);
-
-      // Step 2: Add a new document to the "sending_money" collection
-      final CollectionReference sendingMoney =
-      FirebaseFirestore.instance.collection('sending_money');
-
-      await sendingMoney.add({
-        'amount': priceController.text.trim(),
-        'receive_phone': phoneController.text.trim(),
-        'uId': uId,
-        'userId': userId,
-        'user_name': userName,
-        'email': email,
-        'time': DateTime.now(), // Firestore will automatically handle DateTime
-        'payment_method': currentPaymentGateWay.title,
-        'payment_method_en': currentPaymentGateWay.titleEn,
-        'status': 'pending',
-        'image': imageUrl, // Add the image URL to the document
-      });
-
-      emit(UploadingMoneySuccessState()); // Emit success state
-      print('Record added successfully!');
-    } catch (e) {
-      emit(UploadingMoneyErrorState()); // Emit error state
-      print('Error sending record: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to send record: $e')),
-      );
-      throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }
+
 //
 // Function to upload an image to Firebase Storage and return the download URL
-  Future<String> uploadImageToFirebaseStorage(File? imageFile , context) async {
+  Future<String> uploadImageToFirebaseStorage(File? imageFile, context) async {
     try {
       // emit(UploadingImageLoadingState()); // Emit loading state for image upload
 
@@ -319,7 +351,7 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
 
       // Upload the file to Firebase Storage
       final Reference storageReference =
-      FirebaseStorage.instance.ref().child(fileName);
+          FirebaseStorage.instance.ref().child(fileName);
       final UploadTask uploadTask = storageReference.putFile(imageFile!);
 
       // Wait for the upload to complete
@@ -339,5 +371,4 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }
-
 }
