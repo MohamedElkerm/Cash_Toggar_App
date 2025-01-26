@@ -165,6 +165,8 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
           'email': email,
           'isSendingMoney': false,
         });
+        priceController.clear();
+        phoneController.clear();
         navigateToPaymentConfirmationScreen(
           context: context,
         );
@@ -321,6 +323,9 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
             // Add the image URL to the document
           });
           sendSendingMoneyLoading = false;
+          priceController.clear();
+          phoneController.clear();
+          compressedFile!.delete();
           navigateToPaymentConfirmationScreen(
             context: context,
           );
@@ -336,8 +341,11 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
 
           emit(UploadingMoneyErrorState()); // Emit error state
           print('Error sending record: $e');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Failed to send record: $e')),
+          myGlobalSnackBarWidget(
+            context: context,
+            isArabic: isArabic,
+            backGroundColor: AppColors.inf_suc_dan_warn_danger,
+            text: S.of(context).imageValidator,
           );
           throw e; // Re-throw the error if you want to handle it elsewhere
         }
@@ -378,8 +386,11 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     } catch (e) {
       emit(UploadingImageErrorState()); // Emit error state
       print('Error uploading image: $e');
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to upload image: $e')),
+      myGlobalSnackBarWidget(
+        context: context,
+        isArabic: true,
+        backGroundColor: AppColors.inf_suc_dan_warn_danger,
+        text: S.of(context).imageValidator,
       );
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
