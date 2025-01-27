@@ -55,10 +55,11 @@ class CashToggar extends StatelessWidget {
             // useInheritedMediaQuery: true,
             // locale: DevicePreview.locale(context),
             // builder: DevicePreview.appBuilder,
-
-            routerConfig: router,
             locale: localizationCubit.locale,
             builder: FToastBuilder(),
+
+            routerConfig: router,
+
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,

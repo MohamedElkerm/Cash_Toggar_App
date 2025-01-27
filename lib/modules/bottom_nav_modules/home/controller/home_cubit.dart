@@ -1,13 +1,16 @@
 import 'package:bloc/bloc.dart';
+import 'package:cash_toggar_app/helper/global_widgets/global_snack_bar_widget.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/model/user_model.dart';
+import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../generated/l10n.dart';
 import '../model/money_record_model.dart';
 
 part 'home_state.dart';
@@ -35,23 +38,28 @@ class HomeCubit extends Cubit<HomeState> {
     emit(NavigateToChoosePaymentMethodState());
   }
 
-  void copyToClipboard(BuildContext context, String text) {
+  void copyToClipboard(BuildContext context, String text , isArabic) {
     Clipboard.setData(ClipboardData(text: text));
-
+    myGlobalSnackBarWidget(
+      context: context,
+      isArabic: isArabic,
+      backGroundColor: AppColors.inf_suc_dan_warn_sucess,
+      text: S.of(context).copySuccess,
+    );
     emit(CopyTheUserNumberIdState());
   }
 
-
   bool getUserDataLoading = false;
-  late UserModel userModel ;
+  late UserModel userModel;
+
   Future<UserModel?> getUserData(String uId) async {
     try {
       getUserDataLoading = true;
 
-      emit( GetTheUserDataLoadingState());
+      emit(GetTheUserDataLoadingState());
       // Reference to the Firestore collection
       final CollectionReference users =
-      FirebaseFirestore.instance.collection('users');
+          FirebaseFirestore.instance.collection('users');
 
       // Fetch the user document using the uId
       final DocumentSnapshot userDoc = await users.doc(uId).get();
@@ -64,7 +72,7 @@ class HomeCubit extends Cubit<HomeState> {
         print(userModel.email);
 
         getUserDataLoading = false;
-        emit( GetTheUserDataSuccessState());
+        emit(GetTheUserDataSuccessState());
         return UserModel.fromMap(userDoc.data() as Map<String, dynamic>);
       } else {
         // Return null if the document does not exist
@@ -74,28 +82,20 @@ class HomeCubit extends Cubit<HomeState> {
       // Handle any errors that occur during the process
       getUserDataLoading = false;
       print('Error fetching user data: $e');
-      emit( GetTheUserDataErrorState());
+      emit(GetTheUserDataErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }
 
-
-
-
-
-
-
-
-
-
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   late List<MoneyRecord> allRecords = [];
+
   // Fetch all records from "sending_money" and "receiving_money" collections based on uId
   Future<List<MoneyRecord>> getUserMoneyRecords(String uId) async {
     print("Startttttttttttttttttttttt !");
     allRecords = [];
-    emit( GetTheUserMoneyRecordsLoadingState());
+    emit(GetTheUserMoneyRecordsLoadingState());
     try {
       // Fetch records from "sending_money" collection
       final QuerySnapshot sendingMoneySnapshot = await _firestore
@@ -114,7 +114,8 @@ class HomeCubit extends Cubit<HomeState> {
           .map((doc) => MoneyRecord.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
 
-      final List<MoneyRecord> receivingMoneyRecords = receivingMoneySnapshot.docs
+      final List<MoneyRecord> receivingMoneyRecords = receivingMoneySnapshot
+          .docs
           .map((doc) => MoneyRecord.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
 
@@ -127,22 +128,18 @@ class HomeCubit extends Cubit<HomeState> {
       // Sort records by time (most recent first)
       allRecords.sort((a, b) => b.time.compareTo(a.time));
 
-      emit( GetTheUserMoneyRecordsSuccessState());
+      emit(GetTheUserMoneyRecordsSuccessState());
       return allRecords;
     } catch (e) {
       print('Error fetching money records: $e');
-      emit( GetTheUserMoneyRecordsErrorState());
+      emit(GetTheUserMoneyRecordsErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }
 
-
   String formatFirebaseTimestamp(DateTime dateTime) {
-    // Convert the Timestamp to DateTime
-
-    // Format the DateTime to the desired format
     String formattedDate = DateFormat('dd/MM/yyyy - hh:mm a').format(dateTime);
-    emit( FormatFirebaseTimestampState());
+    // emit( FormatFirebaseTimestampState());
 
     return formattedDate;
   }

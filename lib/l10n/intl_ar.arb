@@ -95,5 +95,6 @@
   "validatorAccountInstapayEmpty": "برجاء ادخال حساب انستا باي الخاص بك",
   "imageValidator" : "يرجي ارفاق صوره اولا",
   "passwordReset" : "تم ارسال اعاده تعيين كلمه السر بنجاح",
-  "failedMessage" : "برجاء اعاده المحاوله لاحقا"
+  "failedMessage" : "برجاء اعاده المحاوله لاحقا",
+  "copySuccess" : "تم النسخ بنجاح"
 }

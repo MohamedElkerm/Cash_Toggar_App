@@ -95,5 +95,6 @@
   "validatorAccountInstapayEmpty": "Please enter your instapay account",
   "imageValidator": "Please pick an image first",
   "passwordReset" : "Password Reset Send Successfully",
-  "failedMessage" : "failed at this time pleas try again later"
+  "failedMessage" : "failed at this time pleas try again later",
+  "copySuccess" : "copied successfully"
 }

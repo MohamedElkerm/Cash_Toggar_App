@@ -52,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "completeTransaction":
             MessageLookupByLibrary.simpleMessage("اتمام العمليه"),
         "confirm": MessageLookupByLibrary.simpleMessage("التاكيد"),
+        "copySuccess": MessageLookupByLibrary.simpleMessage("تم النسخ بنجاح"),
         "craeteAccount": MessageLookupByLibrary.simpleMessage("إنشاء الحساب"),
         "createAccount":
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),

@@ -75,9 +75,9 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                     textSize: 16,
                                     function: () {
                                       homeCubit.copyToClipboard(
-                                        context,
-                                        homeCubit.userModel.userId.toString(),
-                                      );
+                                          context,
+                                          homeCubit.userModel.userId.toString(),
+                                          localCubit.isArabic());
                                     },
                                     borderRadius: 34.0,
                                     backGroundColor: AppColors.myWhite,
@@ -100,6 +100,11 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                   fontColor: AppColors.myBlack,
                                   fontSize: 12,
                                 ),
+                                maxLines: 4,
+                                textAlign: localCubit.isArabic()
+                                    ? TextAlign.center
+                                    : TextAlign.center,
+
                               ),
                               SizedBox(
                                 height: 16,
@@ -136,7 +141,10 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                       itemBuilder: (context, index) {
                                         return InkWell(
                                           onTap: () {
-                                            paymentProcessCubit.currentPaymentGateWay = paymentProcessCubit.paymentGatewaysList[index];
+                                            paymentProcessCubit
+                                                    .currentPaymentGateWay =
+                                                paymentProcessCubit
+                                                    .paymentGatewaysList[index];
                                             paymentProcessCubit
                                                 .navigateToPaymentProcessCompleteScreen(
                                               context: context,

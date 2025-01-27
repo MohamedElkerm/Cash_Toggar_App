@@ -52,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "completeTransaction":
             MessageLookupByLibrary.simpleMessage("Complete Transaction"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "copySuccess":
+            MessageLookupByLibrary.simpleMessage("copied successfully"),
         "craeteAccount":
             MessageLookupByLibrary.simpleMessage("Create an account"),
         "createAccount":

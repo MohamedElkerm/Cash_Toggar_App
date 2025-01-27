@@ -179,6 +179,8 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                             paymentProcessCompleteCubit
                                                                 .currentPaymentGateWay
                                                                 .transactionMethod,
+                                                            localCubit
+                                                                .isArabic(),
                                                           );
                                                         },
                                                         borderRadius: 4.0,
