@@ -6,6 +6,7 @@ import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_
 import 'package:cash_toggar_app/modules/choose_payment_method/view/widgets.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
+import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -104,8 +105,16 @@ class ChoosePaymentMethodScreen extends StatelessWidget {
                                 textAlign: localCubit.isArabic()
                                     ? TextAlign.center
                                     : TextAlign.center,
-
                               ),
+                              SizedBox(
+                                height: 8.0,
+                              ),
+                              paymentProcessCubit.getAdLoading
+                                  ? SizedBox()
+                                  : MyCardWidget(
+                                      adBody: paymentProcessCubit.textAd,
+                                      isVisible: paymentProcessCubit.adVisible,
+                                    ),
                               SizedBox(
                                 height: 16,
                               ),

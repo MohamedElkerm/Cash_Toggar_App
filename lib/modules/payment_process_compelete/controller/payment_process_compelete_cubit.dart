@@ -395,4 +395,38 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
   }
+
+  late String textAd;
+  late bool adVisible;
+  bool getAdLoading = false;
+
+  getAdData() async {
+    getAdLoading = true;
+    emit(GetAdLoadingState());
+    try {
+      // Reference to the "ads" collection and the specific document
+      DocumentSnapshot documentSnapshot = await FirebaseFirestore.instance
+          .collection('ads')
+          .doc('OlivvECuQupJ8QOLVfw3') // Replace with your document ID
+          .get();
+
+      if (documentSnapshot.exists) {
+        // Retrieve the fields
+        textAd = documentSnapshot.get('text_ad');
+        adVisible = documentSnapshot.get('visible');
+        getAdLoading = false;
+        emit(GetAdSuccessState());
+      } else {
+        print('Document does not exist');
+        getAdLoading = false;
+        emit(GetAdErrorState());
+        return null;
+      }
+    } catch (e) {
+      print('Error fetching ad data: $e');
+      getAdLoading = false;
+      emit(GetAdErrorState());
+      return null;
+    }
+  }
 }

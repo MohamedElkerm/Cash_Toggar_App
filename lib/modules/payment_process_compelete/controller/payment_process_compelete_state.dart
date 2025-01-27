@@ -35,3 +35,7 @@ final class UploadingMoneyErrorState extends PaymentProcessCompeleteState {}
 final class UploadingImageLoadingState extends PaymentProcessCompeleteState {}
 final class UploadingImageSuccessState extends PaymentProcessCompeleteState {}
 final class UploadingImageErrorState extends PaymentProcessCompeleteState {}
+
+final class GetAdLoadingState extends PaymentProcessCompeleteState {}
+final class GetAdSuccessState extends PaymentProcessCompeleteState {}
+final class GetAdErrorState extends PaymentProcessCompeleteState {}

@@ -1,3 +1,4 @@
+import 'package:cash_toggar_app/resources/media_query_values.dart';
 import 'package:flutter/material.dart';
 
 import '../../../helper/global_widgets/MyResponsiveText.dart';
@@ -41,6 +42,42 @@ class PaymentCardWidget extends StatelessWidget {
               ),
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class MyCardWidget extends StatelessWidget {
+  const MyCardWidget({
+    super.key,
+    required this.adBody,
+    required this.isVisible,
+  });
+
+  final String adBody;
+  final bool isVisible;
+
+  @override
+  Widget build(BuildContext context) {
+    return Visibility(
+      visible: isVisible,
+      child: SizedBox(
+        width: MediaQueryValues(context).width,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: MyResponsiveText(
+              text: adBody,
+              style: getBold(
+                fontColor: AppColors.primaryColor,
+                fontSize: 16,
+              ),
+              textDirection: TextDirection.rtl,
+              textAlign: TextAlign.center,
+              maxLines: 10,
+            ),
+          ),
         ),
       ),
     );
