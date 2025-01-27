@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:cash_toggar_app/helper/bloc_observer.dart';
+import 'package:cash_toggar_app/helper/global_vars.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
 import 'package:device_preview/device_preview.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/material.dart';
 
 import 'app_start_point.dart';
 import 'firebase_options.dart';
+import 'helper/routing/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,7 +18,23 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  CacheHelper.init();
+  await CacheHelper.init();
+
+
+
+  print('------------------');
+  var onBoardDone = CacheHelper.getData(
+    key: CacheHelperKeys.onBoardDone,
+  ) ?? false;
+
+
+  print('onBoardDone: $onBoardDone');
+  if(onBoardDone){
+    initLocation = AppRoutes.signInScreen;
+  }else {
+    initLocation = AppRoutes.onBoardingScreen;
+  }
+
 
   MyBlocObserver myBlocObserver = MyBlocObserver();
   Bloc.observer = myBlocObserver;

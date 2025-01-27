@@ -67,9 +67,10 @@ class OnBoardingCubit extends Cubit<OnBoardingState> {
       key: CacheHelperKeys.onBoardDone,
       value: true,
     );
-    // print(CacheHelper.getData(
-    //   key: CacheHelperKeys.onBoardDone,
-    // ));
+    print('///////////');
+    print(CacheHelper.getData(
+       key:CacheHelperKeys.onBoardDone,
+    ));
     emit(NavigateToSignInScreenState());
   }
 

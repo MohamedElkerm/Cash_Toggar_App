@@ -13,13 +13,14 @@ import 'package:go_router/go_router.dart';
 
 import '../../modules/bottom_nav_bar/view/bottom_nav_bar.dart';
 import '../../modules/confirmation_request/view/confirmation_request_screen.dart';
+import '../global_vars.dart';
 import 'app_routes.dart';
 
 final _rootNavigatorKey = GlobalKey<NavigatorState>(debugLabel: 'root');
 
 final GoRouter router = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  // initialLocation: AppRoutes.homeScreen,
+  initialLocation: initLocation,
   observers: [
     MyRouterObserver(),
   ],
