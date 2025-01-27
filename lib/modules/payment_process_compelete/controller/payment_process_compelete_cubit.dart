@@ -140,50 +140,61 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     required String userId,
     required String userName,
     required String email,
+    required double userWallet,
     required BuildContext context,
+    required bool isArabic,
   }) async {
     if (formKeyGlobalKey.currentState!.validate()) {
-      try {
-        sendReceivingMoneyLoading = true;
-        emit(SendingMoneyLoadingState());
-        // Reference to the Firestore collection
-        final CollectionReference receivingMoney =
-            FirebaseFirestore.instance.collection('receiving_money');
-
-        // Add a new document to the collection
-        await receivingMoney.add({
-          'amount': priceController.text.trim(),
-          'receive_phone': phoneController.text.trim(),
-          'uId': uId,
-          'userId': userId,
-          'user_name': userName,
-          'time': DateTime.now(),
-          // Firestore will automatically handle DateTime
-          'payment_method': currentPaymentGateWay.title,
-          'payment_method_en': currentPaymentGateWay.titleEn,
-          'status': 'pending',
-          'email': email,
-          'isSendingMoney': false,
-        });
-        priceController.clear();
-        phoneController.clear();
-        navigateToPaymentConfirmationScreen(
+      if (userWallet <= double.parse(priceController.text)) {
+        myGlobalSnackBarWidget(
           context: context,
+          isArabic: isArabic,
+          backGroundColor: AppColors.inf_suc_dan_warn_danger,
+          text: S.of(context).validatorAmountNotEnough,
         );
-        emit(SendingMoneySuccessState());
-        sendReceivingMoneyLoading = false;
+      } else {
+        try {
+          sendReceivingMoneyLoading = true;
+          emit(SendingMoneyLoadingState());
+          // Reference to the Firestore collection
+          final CollectionReference receivingMoney =
+              FirebaseFirestore.instance.collection('receiving_money');
 
-        BlocProvider.of<HomeCubit>(context)
-            .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
-        print('Record added successfully!');
-      } catch (e) {
-        // Handle any errors that occur during the process
-        print('Error adding record: $e');
-        sendReceivingMoneyLoading = false;
+          // Add a new document to the collection
+          await receivingMoney.add({
+            'amount': priceController.text.trim(),
+            'receive_phone': phoneController.text.trim(),
+            'uId': uId,
+            'userId': userId,
+            'user_name': userName,
+            'time': DateTime.now(),
+            // Firestore will automatically handle DateTime
+            'payment_method': currentPaymentGateWay.title,
+            'payment_method_en': currentPaymentGateWay.titleEn,
+            'status': 'pending',
+            'email': email,
+            'isSendingMoney': false,
+          });
+          priceController.clear();
+          phoneController.clear();
+          navigateToPaymentConfirmationScreen(
+            context: context,
+          );
+          emit(SendingMoneySuccessState());
+          sendReceivingMoneyLoading = false;
 
-        emit(SendingMoneyErrorState());
+          BlocProvider.of<HomeCubit>(context)
+              .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
+          print('Record added successfully!');
+        } catch (e) {
+          // Handle any errors that occur during the process
+          print('Error adding record: $e');
+          sendReceivingMoneyLoading = false;
 
-        throw e; // Re-throw the error if you want to handle it elsewhere
+          emit(SendingMoneyErrorState());
+
+          throw e; // Re-throw the error if you want to handle it elsewhere
+        }
       }
     }
   }
@@ -267,12 +278,6 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       throw e;
     }
   }
-
-  // required String uId,
-  // required String userId,
-  // required String userName,
-  // required String email,
-  // required BuildContext context
 
   bool sendSendingMoneyLoading = false;
   bool selectedFile = false;

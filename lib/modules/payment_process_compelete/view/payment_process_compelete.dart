@@ -530,6 +530,10 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                       email: homeCubit
                                                           .userModel.email,
                                                       context: context,
+                                                      isArabic:
+                                                          localCubit.isArabic(),
+                                                      userWallet: homeCubit
+                                                          .userModel.myCash,
                                                     )
                                                       .then((value) {
                                                       homeCubit
