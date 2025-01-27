@@ -14,10 +14,12 @@ class MainCardInHomeScreen extends StatelessWidget {
     super.key,
     required this.totalAmount,
     required this.totalCashBack,
+    required this.refreshUserData,
   });
 
   final String totalAmount;
   final String totalCashBack;
+  final Function refreshUserData;
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +92,9 @@ class MainCardInHomeScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      refreshUserData();
+                    },
                     icon: SvgPicture.asset(
                       Assets.iconsRefreshIconSvg,
                     ),

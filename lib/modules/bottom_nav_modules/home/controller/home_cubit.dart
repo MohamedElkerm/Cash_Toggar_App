@@ -5,6 +5,7 @@ import 'package:cash_toggar_app/modules/bottom_nav_modules/home/model/user_model
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:meta/meta.dart';
 
 import '../model/money_record_model.dart';
@@ -133,5 +134,16 @@ class HomeCubit extends Cubit<HomeState> {
       emit( GetTheUserMoneyRecordsErrorState());
       throw e; // Re-throw the error if you want to handle it elsewhere
     }
+  }
+
+
+  String formatFirebaseTimestamp(DateTime dateTime) {
+    // Convert the Timestamp to DateTime
+
+    // Format the DateTime to the desired format
+    String formattedDate = DateFormat('dd/MM/yyyy - hh:mm a').format(dateTime);
+    emit( FormatFirebaseTimestampState());
+
+    return formattedDate;
   }
 }

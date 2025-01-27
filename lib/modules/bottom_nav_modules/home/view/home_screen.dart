@@ -5,6 +5,8 @@ import 'package:cash_toggar_app/helper/global_widgets/my_text_butoon.dart';
 import 'package:cash_toggar_app/helper/global_widgets/sliver_widgets/custom_sliver_app_bar.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
+import 'package:cash_toggar_app/helper/routing/app_routes.dart';
+import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_cubit.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/view/home_widgets.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
@@ -67,6 +69,19 @@ class _HomeScreenState extends State<HomeScreen> {
                                   homeCubit.userModel.myCash.toString(),
                               totalCashBack:
                                   homeCubit.userModel.myPoints.toString(),
+                              refreshUserData: () {
+                                BlocProvider.of<HomeCubit>(context).getUserData(
+                                  CacheHelper.getData(
+                                    key: CacheHelperKeys.uId,
+                                  ),
+                                );
+                                BlocProvider.of<HomeCubit>(context)
+                                    .getUserMoneyRecords(
+                                  CacheHelper.getData(
+                                    key: CacheHelperKeys.uId,
+                                  ),
+                                );
+                              },
                             ),
                             SizedBox(
                               height: 22,
@@ -126,7 +141,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   style: getSemiBold(
                                       fontColor: AppColors.secondaryColor,
                                       fontSize: 16),
-                                  function: () {},
+                                  function: () {
+                                    router.replace(
+                                      AppRoutes.transactionScreen,
+                                    );
+                                  },
                                 ),
                               ],
                             ),
@@ -157,8 +176,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: TransactionCard(
                                           userName: homeCubit
                                               .allRecords[index].userName,
-                                          transactionDate: "09/01/2025 - ",
-                                          transactionTime: "07:54:45",
+                                          transactionDate: homeCubit.formatFirebaseTimestamp(homeCubit
+                                              .allRecords[index].time),
+                                          transactionTime: "",
                                           transactionAmount: homeCubit
                                               .allRecords[index].amount,
                                           transactionGateway: homeCubit

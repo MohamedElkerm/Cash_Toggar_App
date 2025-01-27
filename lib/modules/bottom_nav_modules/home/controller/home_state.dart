@@ -11,6 +11,8 @@ final class ChangeTheValueOfIsSendingProcessState extends HomeState {}
 
 final class CopyTheUserNumberIdState extends HomeState {}
 
+final class FormatFirebaseTimestampState extends HomeState {}
+
 final class GetTheUserDataLoadingState extends HomeState {}
 final class GetTheUserDataSuccessState extends HomeState {}
 final class GetTheUserDataErrorState extends HomeState {}

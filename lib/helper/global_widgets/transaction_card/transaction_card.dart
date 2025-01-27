@@ -134,7 +134,7 @@ class TransactionCard extends StatelessWidget {
                                       ? TextDirection.rtl
                                       : TextDirection.ltr,
                                   text:
-                                      "${S.current.day} $transactionDate - $transactionTime",
+                                      transactionDate,
                                   style: getSemiBold(
                                     fontColor: AppColors.myBlack,
                                     fontSize: 12,
