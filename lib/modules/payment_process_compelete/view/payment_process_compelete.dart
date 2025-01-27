@@ -248,7 +248,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                   height:
                                                       MediaQueryValues(context)
                                                               .height *
-                                                          0.06,
+                                                          0.1,
                                                   width:
                                                       MediaQueryValues(context)
                                                               .width *
@@ -345,7 +345,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                   height:
                                                       MediaQueryValues(context)
                                                               .height *
-                                                          0.06,
+                                                          0.1,
                                                   width:
                                                       MediaQueryValues(context)
                                                               .width *
