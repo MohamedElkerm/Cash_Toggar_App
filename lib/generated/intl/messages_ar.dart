@@ -76,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إدخل رقم المرور هنا ..."),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("إدخل رقم الهاتف هنا ..."),
+        "failedMessage":
+            MessageLookupByLibrary.simpleMessage("برجاء اعاده المحاوله لاحقا"),
         "firstName": MessageLookupByLibrary.simpleMessage("الإسم الأول"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
@@ -104,6 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onBoardingHeaderTwo":
             MessageLookupByLibrary.simpleMessage("تحويل آمن للأموال"),
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+        "passwordReset": MessageLookupByLibrary.simpleMessage(
+            "تم ارسال اعاده تعيين كلمه السر بنجاح"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الذي تريد التحويل اليه"),
@@ -156,10 +160,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("برجاء ادخال ايميل صالح"),
         "validatorFirstName":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاول"),
+        "validatorFirstNameWrong":
+            MessageLookupByLibrary.simpleMessage("الاسم الاول حروف فقط"),
         "validatorLastName":
-            MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاحير"),
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال الاسم الاخير"),
+        "validatorLastNameWrong":
+            MessageLookupByLibrary.simpleMessage("الاسم الاخير حروف فقط"),
         "validatorPassword":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال كلمه مرور"),
+        "validatorPassword2": MessageLookupByLibrary.simpleMessage(
+            "كلمه السر يجب ان تكون اكثر من 8 احرف و رموز"),
+        "validatorPassword3": MessageLookupByLibrary.simpleMessage(
+            "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character"),
         "validatorPhoneEmpty":
             MessageLookupByLibrary.simpleMessage("برجاء ادخال رقم هاتف"),
         "validatorPhoneNumber":

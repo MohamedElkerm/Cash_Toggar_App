@@ -800,11 +800,31 @@ class S {
     );
   }
 
+  /// `First name should contain only letters`
+  String get validatorFirstNameWrong {
+    return Intl.message(
+      'First name should contain only letters',
+      name: 'validatorFirstNameWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter your last name`
   String get validatorLastName {
     return Intl.message(
       'Please enter your last name',
       name: 'validatorLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name should contain only letters`
+  String get validatorLastNameWrong {
+    return Intl.message(
+      'Last name should contain only letters',
+      name: 'validatorLastNameWrong',
       desc: '',
       args: [],
     );
@@ -835,6 +855,26 @@ class S {
     return Intl.message(
       'Please enter your password',
       name: 'validatorPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 8 characters long`
+  String get validatorPassword2 {
+    return Intl.message(
+      'Password must be at least 8 characters long',
+      name: 'validatorPassword2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character`
+  String get validatorPassword3 {
+    return Intl.message(
+      'Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character',
+      name: 'validatorPassword3',
       desc: '',
       args: [],
     );
@@ -955,6 +995,26 @@ class S {
     return Intl.message(
       'Please pick an image first',
       name: 'imageValidator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Reset Send Successfully`
+  String get passwordReset {
+    return Intl.message(
+      'Password Reset Send Successfully',
+      name: 'passwordReset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `failed at this time pleas try again later`
+  String get failedMessage {
+    return Intl.message(
+      'failed at this time pleas try again later',
+      name: 'failedMessage',
       desc: '',
       args: [],
     );

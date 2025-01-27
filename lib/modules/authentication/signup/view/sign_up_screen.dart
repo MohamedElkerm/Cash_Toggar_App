@@ -1,5 +1,6 @@
 import 'package:cash_toggar_app/helper/global_widgets/my_default_button.dart';
 import 'package:cash_toggar_app/helper/localization/cubit/localization_cubit.dart';
+import 'package:cash_toggar_app/helper/validator/phone_number_validator.dart';
 import 'package:cash_toggar_app/modules/authentication/signup/controller/signup_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,6 +11,10 @@ import '../../../../helper/global_widgets/MyResponsiveText.dart';
 import '../../../../helper/global_widgets/my_text_butoon.dart';
 import '../../../../helper/global_widgets/my_text_form_field.dart';
 import '../../../../helper/global_widgets/static_conteiner_header.dart';
+import '../../../../helper/validator/email_validator.dart';
+import '../../../../helper/validator/first_name_validator.dart';
+import '../../../../helper/validator/last_name_validator.dart';
+import '../../../../helper/validator/password_validator.dart';
 import '../../../../resources/colors_manager.dart';
 import '../../../../resources/fonts_style.dart';
 
@@ -67,14 +72,7 @@ class SignUpScreen extends StatelessWidget {
                                   children: [
                                     Expanded(
                                       child: MyTextFormField(
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return S
-                                                .of(context)
-                                                .validatorFirstName;
-                                          }
-                                          return null;
-                                        },
+                                        validator:firstNameValidator,
                                         hintText: S.of(context).enterFirstName,
                                         label: S.of(context).firstName,
                                         textEditingController:
@@ -90,14 +88,7 @@ class SignUpScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: MyTextFormField(
-                                        validator: (value) {
-                                          if (value == null || value.isEmpty) {
-                                            return S
-                                                .of(context)
-                                                .validatorLastName;
-                                          }
-                                          return null;
-                                        },
+                                        validator: lastNameValidator,
                                         hintText: S.of(context).enterLastName,
                                         label: S.of(context).lastName,
                                         textEditingController:
@@ -114,12 +105,7 @@ class SignUpScreen extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MyTextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return S.of(context).validatorEmail;
-                                    }
-                                    return null;
-                                  },
+                                  validator: emailValidator,
                                   hintText: S.of(context).enterEmail,
                                   label: S.of(context).email,
                                   textEditingController:
@@ -133,12 +119,7 @@ class SignUpScreen extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MyTextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return S.of(context).validatorPhoneNumber;
-                                    }
-                                    return null;
-                                  },
+                                  validator: phoneNumberValidator,
                                   hintText: S.of(context).enterPhoneNumber,
                                   label: S.of(context).phoneNumber,
                                   textEditingController:
@@ -152,12 +133,7 @@ class SignUpScreen extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MyTextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return S.of(context).validatorPassword;
-                                    }
-                                    return null;
-                                  },
+                                  validator: passwordValidator,
                                   hintText: S.of(context).enterPassword,
                                   label: S.of(context).password,
                                   textEditingController:

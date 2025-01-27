@@ -77,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "enter your password here ..."),
         "enterPhoneNumber":
             MessageLookupByLibrary.simpleMessage("enter phone number here ..."),
+        "failedMessage": MessageLookupByLibrary.simpleMessage(
+            "failed at this time pleas try again later"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "forgotPassword":
             MessageLookupByLibrary.simpleMessage("Forget Password?"),
@@ -105,6 +107,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onBoardingHeaderTwo":
             MessageLookupByLibrary.simpleMessage("Secure Money Transfer"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordReset": MessageLookupByLibrary.simpleMessage(
+            "Password Reset Send Successfully"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
             "phone number will receive to"),
@@ -158,10 +162,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter a valid email"),
         "validatorFirstName": MessageLookupByLibrary.simpleMessage(
             "Please enter your first name"),
+        "validatorFirstNameWrong": MessageLookupByLibrary.simpleMessage(
+            "First name should contain only letters"),
         "validatorLastName":
             MessageLookupByLibrary.simpleMessage("Please enter your last name"),
+        "validatorLastNameWrong": MessageLookupByLibrary.simpleMessage(
+            "Last name should contain only letters"),
         "validatorPassword":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "validatorPassword2": MessageLookupByLibrary.simpleMessage(
+            "Password must be at least 8 characters long"),
+        "validatorPassword3": MessageLookupByLibrary.simpleMessage(
+            "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character"),
         "validatorPhoneEmpty":
             MessageLookupByLibrary.simpleMessage("Please enter your phone"),
         "validatorPhoneNumber": MessageLookupByLibrary.simpleMessage(

@@ -74,10 +74,14 @@
   "completeTransaction": "اتمام العمليه",
   "vodafoneCashNum": "رقم فودافون كاش",
   "validatorFirstName": "برجاء ادخال الاسم الاول",
-  "validatorLastName": "برجاء ادخال الاسم الاحير",
+  "validatorFirstNameWrong": "الاسم الاول حروف فقط",
+  "validatorLastName": "برجاء ادخال الاسم الاخير",
+  "validatorLastNameWrong": "الاسم الاخير حروف فقط",
   "validatorEmail": "برجاء ادخال الايميل",
   "validatorEmailValid": "برجاء ادخال ايميل صالح",
   "validatorPassword": "برجاء ادخال كلمه مرور",
+  "validatorPassword2": "كلمه السر يجب ان تكون اكثر من 8 احرف و رموز",
+  "validatorPassword3": "Password must include at least one uppercase letter, one lowercase letter, one digit, and one special character",
   "validatorPhoneNumber": "برجاء ادخال رقم هاتف",
   "signInSuccess": "تم تسجيل الدخول بنجاح!",
   "signUpSuccess": "تم انشاء الحساب بنجاح!",
@@ -89,5 +93,7 @@
   "validatorAmountNotEnough": "حسابك غير كافي",
   "validatorPhoneEmpty": "برجاء ادخال رقم هاتف",
   "validatorAccountInstapayEmpty": "برجاء ادخال حساب انستا باي الخاص بك",
-  "imageValidator" : "يرجي ارفاق صوره اولا"
+  "imageValidator" : "يرجي ارفاق صوره اولا",
+  "passwordReset" : "تم ارسال اعاده تعيين كلمه السر بنجاح",
+  "failedMessage" : "برجاء اعاده المحاوله لاحقا"
 }

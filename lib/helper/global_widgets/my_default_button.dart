@@ -20,11 +20,13 @@ class MyDefaultButton extends StatelessWidget {
     this.isLarge = false,
     this.isLoading = false,
     this.disabled = false,
+    this.loadingColor = AppColors.myWhite,
   });
 
   final String text;
   final Color textColor;
   final Color backGroundColor;
+  final Color loadingColor;
   final double textSize;
   final Function function;
   final bool isLarge;
@@ -51,8 +53,8 @@ class MyDefaultButton extends StatelessWidget {
           ),
         ),
         child: isLoading
-            ? const CircularProgressIndicator(
-          color: Colors.white, // Customize loading indicator color
+            ? CircularProgressIndicator(
+          color: loadingColor, // Customize loading indicator color
         )
             : Text(
           text,

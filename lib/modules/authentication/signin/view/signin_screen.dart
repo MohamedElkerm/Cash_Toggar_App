@@ -6,7 +6,10 @@ import 'package:cash_toggar_app/helper/global_widgets/my_text_form_field.dart';
 import 'package:cash_toggar_app/helper/global_widgets/static_conteiner_header.dart';
 import 'package:cash_toggar_app/helper/global_widgets/transaction_card/transaction_card.dart';
 import 'package:cash_toggar_app/helper/localization/cubit/localization_cubit.dart';
+import 'package:cash_toggar_app/helper/validator/email_validator.dart';
+import 'package:cash_toggar_app/helper/validator/password_validator.dart';
 import 'package:cash_toggar_app/modules/authentication/signin/controller/signin_cubit.dart';
+import 'package:cash_toggar_app/modules/bottom_nav_modules/profile/controller/profile_cubit.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cash_toggar_app/resources/constants.dart';
 import 'package:cash_toggar_app/resources/fonts_style.dart';
@@ -68,12 +71,7 @@ class SigninScreen extends StatelessWidget {
                                   height: 24,
                                 ),
                                 MyTextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return S.of(context).validatorEmail;
-                                    }
-                                    return null;
-                                  },
+                                  validator: emailValidator,
                                   hintText: S.of(context).enterEmail,
                                   label: S.of(context).email,
                                   textEditingController:
@@ -87,12 +85,7 @@ class SigninScreen extends StatelessWidget {
                                   height: 8,
                                 ),
                                 MyTextFormField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return S.of(context).validatorPassword;
-                                    }
-                                    return null;
-                                  },
+                                  validator: passwordValidator,
                                   hintText: S.of(context).enterPassword,
                                   label: S.of(context).password,
                                   textEditingController:
@@ -110,13 +103,28 @@ class SigninScreen extends StatelessWidget {
                                 Row(
                                   children: [
                                     Spacer(),
-                                    MyTextButton(
-                                      text: S.of(context).forgotPassword,
-                                      style: getSemiBold(
-                                        fontColor: AppColors.secondaryColor,
-                                        fontSize: 12,
-                                      ),
-                                      function: () {},
+                                    BlocConsumer<ProfileCubit, ProfileState>(
+                                      listener: (context, state) {
+                                        // TODO: implement listener
+                                      },
+                                      builder: (context, state) {
+                                        return MyTextButton(
+                                          text: S.of(context).forgotPassword,
+                                          style: getSemiBold(
+                                            fontColor: AppColors.secondaryColor,
+                                            fontSize: 12,
+                                          ),
+                                          function: () {
+                                            BlocProvider.of<ProfileCubit>(
+                                                    context)
+                                                .sendPasswordResetEmail(
+                                              email: signInCubit.emailController.text,
+                                              context: context,
+                                              isArabic: localCubit.isArabic(),
+                                            );
+                                          },
+                                        );
+                                      },
                                     ),
                                   ],
                                 ),
