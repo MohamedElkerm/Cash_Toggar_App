@@ -119,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الذي تم التحويل منه"),
         "previous": MessageLookupByLibrary.simpleMessage("للخلف"),
+        "priceValidatorValid":
+            MessageLookupByLibrary.simpleMessage("يجب ان يكون البلغ صحيح"),
         "profile": MessageLookupByLibrary.simpleMessage("حسابي"),
         "rateUs": MessageLookupByLibrary.simpleMessage("التقييم علي جوجل بلاي"),
         "receiveMoney": MessageLookupByLibrary.simpleMessage("سحب"),

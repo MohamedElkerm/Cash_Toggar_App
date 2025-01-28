@@ -96,7 +96,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "logOut": MessageLookupByLibrary.simpleMessage("Logout"),
         "moneyRange": MessageLookupByLibrary.simpleMessage(
-            "The minimum is 15 LE - the maximum is 30,000 LE"),
+            "The minimum is 15 LE - the maximum is 60,000 LE"),
         "myCurrentMoney": MessageLookupByLibrary.simpleMessage("Balance"),
         "my_points": MessageLookupByLibrary.simpleMessage("my points"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -121,6 +121,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "phone number transferred made from"),
         "previous": MessageLookupByLibrary.simpleMessage("back"),
+        "priceValidatorValid": MessageLookupByLibrary.simpleMessage(
+            "@Price must be a valid number"),
         "profile": MessageLookupByLibrary.simpleMessage("profile"),
         "rateUs":
             MessageLookupByLibrary.simpleMessage("Rate us on Google Play"),

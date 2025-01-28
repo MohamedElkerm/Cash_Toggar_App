@@ -98,5 +98,6 @@
   "failedMessage" : "برجاء اعاده المحاوله لاحقا",
   "copySuccess" : "تم النسخ بنجاح",
   "instapayAddress" : "عنوان الحساب @",
-  "instapayAddressUser" : "@instapayuser"
+  "instapayAddressUser" : "@instapayuser",
+  "priceValidatorValid" : "يجب ان يكون البلغ صحيح"
 }

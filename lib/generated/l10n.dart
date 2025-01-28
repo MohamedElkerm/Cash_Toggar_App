@@ -530,10 +530,10 @@ class S {
     );
   }
 
-  /// `The minimum is 15 LE - the maximum is 30,000 LE`
+  /// `The minimum is 15 LE - the maximum is 60,000 LE`
   String get moneyRange {
     return Intl.message(
-      'The minimum is 15 LE - the maximum is 30,000 LE',
+      'The minimum is 15 LE - the maximum is 60,000 LE',
       name: 'moneyRange',
       desc: '',
       args: [],
@@ -1045,6 +1045,16 @@ class S {
     return Intl.message(
       '@instapayuser',
       name: 'instapayAddressUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `@Price must be a valid number`
+  String get priceValidatorValid {
+    return Intl.message(
+      '@Price must be a valid number',
+      name: 'priceValidatorValid',
       desc: '',
       args: [],
     );

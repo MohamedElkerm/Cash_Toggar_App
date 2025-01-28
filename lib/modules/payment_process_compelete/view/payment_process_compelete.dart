@@ -1,4 +1,6 @@
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
+import 'package:cash_toggar_app/helper/validator/phone_number_validator.dart';
+import 'package:cash_toggar_app/helper/validator/price_validator.dart';
 import 'package:cash_toggar_app/modules/choose_payment_method/view/widgets.dart';
 import 'package:cash_toggar_app/modules/payment_process_compelete/view/widgets.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
@@ -254,20 +256,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                               .width *
                                                           0.32,
                                                   child: CustomTextField(
-                                                    validator: (value) {
-                                                      if (value == null ||
-                                                          value.isEmpty) {
-                                                        return S
-                                                            .of(context)
-                                                            .validatorAmountEmpty;
-                                                      }
-                                                      // else if (value.toDouble() >= homeCubit.userModel.myCash) {
-                                                      //   return S
-                                                      //       .of(context)
-                                                      //       .validatorAmountNotEnough;
-                                                      // }
-                                                      return null;
-                                                    },
+                                                    validator: priceValidator,
                                                     hintText: '15.00',
                                                     textEditingController:
                                                         paymentProcessCompleteCubit
@@ -379,15 +368,7 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                             .phoneController,
                                                     textInputType:
                                                         TextInputType.phone,
-                                                    validator: (value) {
-                                                      if (value == null ||
-                                                          value.isEmpty) {
-                                                        return S
-                                                            .of(context)
-                                                            .validatorPhoneEmpty;
-                                                      }
-                                                      return null;
-                                                    },
+                                                    validator: phoneNumberValidator,
                                                   ),
                                                 ),
                                               ),
@@ -563,7 +544,6 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                             backGroundColor:
                                                 AppColors.secondaryColor,
                                           ),
-                                          // CustomTextField(),
                                         ],
                                       ),
                                     ),

@@ -47,7 +47,7 @@
   "currentGateway": "Recommended Methods",
   "alertMessageWhenCreateRequest": "Before submitting the request, please transfer the funds within 10 minutes using the payment information provided below",
   "amount": "Money:",
-  "moneyRange": "The minimum is 15 LE - the maximum is 30,000 LE",
+  "moneyRange": "The minimum is 15 LE - the maximum is 60,000 LE",
   "phoneNumberThatSendingMoney": "phone number transferred made from",
   "phoneNumberThatReceivingMoney": "phone number will receive to",
   "screenshotOfTransaction": "Screenshot of a successful transfer",
@@ -98,5 +98,6 @@
   "failedMessage" : "failed at this time pleas try again later",
   "copySuccess" : "copied successfully",
   "instapayAddress" : "Insta@username",
-  "instapayAddressUser" : "@instapayuser"
+  "instapayAddressUser" : "@instapayuser",
+  "priceValidatorValid" : "@Price must be a valid number"
 }
