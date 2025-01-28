@@ -153,47 +153,62 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
           text: S.of(context).validatorAmountNotEnough,
         );
       } else {
-        try {
-          sendReceivingMoneyLoading = true;
-          emit(SendingMoneyLoadingState());
-          // Reference to the Firestore collection
-          final CollectionReference receivingMoney =
-              FirebaseFirestore.instance.collection('receiving_money');
+        if (calculateThousandsAndRemainder(
+                  int.parse(
+                    priceController.text,
+                  ),
+                ) +
+                int.parse(priceController.text) <=
+            userWallet) {
+          try {
+            sendReceivingMoneyLoading = true;
+            emit(SendingMoneyLoadingState());
+            // Reference to the Firestore collection
+            final CollectionReference receivingMoney =
+                FirebaseFirestore.instance.collection('receiving_money');
 
-          // Add a new document to the collection
-          await receivingMoney.add({
-            'amount': priceController.text.trim(),
-            'receive_phone': phoneController.text.trim(),
-            'uId': uId,
-            'userId': userId,
-            'user_name': userName,
-            'time': DateTime.now(),
-            // Firestore will automatically handle DateTime
-            'payment_method': currentPaymentGateWay.title,
-            'payment_method_en': currentPaymentGateWay.titleEn,
-            'status': 'pending',
-            'email': email,
-            'isSendingMoney': false,
-          });
-          priceController.clear();
-          phoneController.clear();
-          navigateToPaymentConfirmationScreen(
+            // Add a new document to the collection
+            await receivingMoney.add({
+              'amount': priceController.text.trim(),
+              'receive_phone': phoneController.text.trim(),
+              'uId': uId,
+              'userId': userId,
+              'user_name': userName,
+              'time': DateTime.now(),
+              // Firestore will automatically handle DateTime
+              'payment_method': currentPaymentGateWay.title,
+              'payment_method_en': currentPaymentGateWay.titleEn,
+              'status': 'pending',
+              'email': email,
+              'isSendingMoney': false,
+            });
+            priceController.clear();
+            phoneController.clear();
+            navigateToPaymentConfirmationScreen(
+              context: context,
+            );
+            emit(SendingMoneySuccessState());
+            sendReceivingMoneyLoading = false;
+
+            BlocProvider.of<HomeCubit>(context)
+                .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
+            print('Record added successfully!');
+          } catch (e) {
+            // Handle any errors that occur during the process
+            print('Error adding record: $e');
+            sendReceivingMoneyLoading = false;
+
+            emit(SendingMoneyErrorState());
+
+            throw e; // Re-throw the error if you want to handle it elsewhere
+          }
+        } else {
+          myGlobalSnackBarWidget(
             context: context,
+            isArabic: isArabic,
+            backGroundColor: AppColors.inf_suc_dan_warn_danger,
+            text: S.of(context).validatorAmountNotEnough,
           );
-          emit(SendingMoneySuccessState());
-          sendReceivingMoneyLoading = false;
-
-          BlocProvider.of<HomeCubit>(context)
-              .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
-          print('Record added successfully!');
-        } catch (e) {
-          // Handle any errors that occur during the process
-          print('Error adding record: $e');
-          sendReceivingMoneyLoading = false;
-
-          emit(SendingMoneyErrorState());
-
-          throw e; // Re-throw the error if you want to handle it elsewhere
         }
       }
     }
@@ -433,5 +448,39 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
       emit(GetAdErrorState());
       return null;
     }
+  }
+
+  late int thousands;
+  late int remainder;
+  late int fullTax;
+
+  int calculateThousandsAndRemainder(int price) {
+    int thousands = 0;
+    int remainder = 0;
+    int fullTax = 0;
+
+    thousands = price ~/ 1000; // Calculate how many 1000s are in the price
+    remainder = price % 1000; // Calculate the remainder
+
+    // Calculate fullTax based on the remainder
+    if (remainder == 0) {
+      fullTax = thousands * 4; // No additional tax if remainder is 0
+    } else if (remainder <= 500) {
+      fullTax = (thousands * 4) + 2; // Add 2 if remainder is <= 500
+    } else if (remainder > 500) {
+      fullTax = (thousands * 4) + 4; // Add 4 if remainder is > 500
+    }
+
+    return fullTax;
+
+    // Print the results
+    // print("**********************************");
+    // print("thousands : ");
+    // print(thousands);
+    // print("remainder : ");
+    // print(remainder);
+    // print("fullTax : ");
+    // print(fullTax);
+    // print("**********************************");
   }
 }
