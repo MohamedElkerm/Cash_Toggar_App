@@ -5,8 +5,8 @@ String? lastNameValidator(String? value) {
     return S.current.validatorLastName;
   }
   // Optional: Check if the name contains only letters and spaces
-  if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
-    return S.current.validatorLastNameWrong;
-  }
+  // if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
+  //   return S.current.validatorLastNameWrong;
+  // }
   return null; // Valid
 }
