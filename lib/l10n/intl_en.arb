@@ -96,5 +96,7 @@
   "imageValidator": "Please pick an image first",
   "passwordReset" : "Password Reset Send Successfully",
   "failedMessage" : "failed at this time pleas try again later",
-  "copySuccess" : "copied successfully"
+  "copySuccess" : "copied successfully",
+  "instapayAddress" : "Insta@username",
+  "instapayAddressUser" : "@instapayuser"
 }

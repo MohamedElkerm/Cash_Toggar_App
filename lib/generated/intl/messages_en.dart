@@ -89,6 +89,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "imageValidator":
             MessageLookupByLibrary.simpleMessage("Please pick an image first"),
+        "instapayAddress":
+            MessageLookupByLibrary.simpleMessage("Insta@username"),
+        "instapayAddressUser":
+            MessageLookupByLibrary.simpleMessage("@instapayuser"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "logOut": MessageLookupByLibrary.simpleMessage("Logout"),
         "moneyRange": MessageLookupByLibrary.simpleMessage(

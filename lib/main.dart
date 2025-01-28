@@ -22,7 +22,7 @@ void main() async {
 
 
 
-  print('------------------');
+  // print('------------------');
   var onBoardDone = CacheHelper.getData(
     key: CacheHelperKeys.onBoardDone,
   ) ?? false;
@@ -32,7 +32,7 @@ void main() async {
   ) ?? '';
 
 
-  print('onBoardDone: $onBoardDone');
+  // print('onBoardDone: $onBoardDone');
   if(onBoardDone){
 
     if(userSignIn != ''){

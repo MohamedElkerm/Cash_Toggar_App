@@ -96,5 +96,7 @@
   "imageValidator" : "يرجي ارفاق صوره اولا",
   "passwordReset" : "تم ارسال اعاده تعيين كلمه السر بنجاح",
   "failedMessage" : "برجاء اعاده المحاوله لاحقا",
-  "copySuccess" : "تم النسخ بنجاح"
+  "copySuccess" : "تم النسخ بنجاح",
+  "instapayAddress" : "عنوان الحساب @",
+  "instapayAddressUser" : "@instapayuser"
 }

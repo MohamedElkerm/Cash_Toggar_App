@@ -228,6 +228,10 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                             children: [
                                               Expanded(
                                                 child: MyResponsiveText(
+                                                  textAlign:
+                                                      localCubit.isArabic()
+                                                          ? TextAlign.right
+                                                          : TextAlign.left,
                                                   text: S.of(context).amount,
                                                   style: getSemiBold(
                                                     fontColor:
@@ -245,10 +249,6 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                               ),
                                               Expanded(
                                                 child: SizedBox(
-                                                  height:
-                                                      MediaQueryValues(context)
-                                                              .height *
-                                                          0.1,
                                                   width:
                                                       MediaQueryValues(context)
                                                               .width *
@@ -327,8 +327,16 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                       localCubit.isArabic()
                                                           ? TextAlign.right
                                                           : TextAlign.left,
-                                                  text:
-                                                      S.of(context).phoneNumber,
+                                                  text: paymentProcessCompleteCubit
+                                                              .currentPaymentGateWay
+                                                              .titleEn ==
+                                                          "Instapay"
+                                                      ? S
+                                                          .of(context)
+                                                          .instapayAddress
+                                                      : S
+                                                          .of(context)
+                                                          .phoneNumber,
                                                   style: getSemiBold(
                                                     fontColor:
                                                         AppColors.myBlack,
@@ -342,23 +350,30 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                               Expanded(
                                                 flex: 5,
                                                 child: SizedBox(
-                                                  height:
-                                                      MediaQueryValues(context)
-                                                              .height *
-                                                          0.1,
+                                                  // height:
+                                                  //     MediaQueryValues(context)
+                                                  //             .height *
+                                                  //         0.1,
                                                   width:
                                                       MediaQueryValues(context)
                                                               .width *
                                                           0.52,
                                                   child: CustomTextField(
-                                                    hintText: homeCubit
-                                                            .isSendingProcess
+                                                    hintText: paymentProcessCompleteCubit
+                                                                .currentPaymentGateWay
+                                                                .titleEn ==
+                                                            "Instapay"
                                                         ? S
                                                             .of(context)
-                                                            .phoneNumberThatSendingMoney
-                                                        : S
-                                                            .of(context)
-                                                            .phoneNumberThatReceivingMoney,
+                                                            .instapayAddressUser
+                                                        : homeCubit
+                                                                .isSendingProcess
+                                                            ? S
+                                                                .of(context)
+                                                                .phoneNumberThatSendingMoney
+                                                            : S
+                                                                .of(context)
+                                                                .phoneNumberThatReceivingMoney,
                                                     textEditingController:
                                                         paymentProcessCompleteCubit
                                                             .phoneController,

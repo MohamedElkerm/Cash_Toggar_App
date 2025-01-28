@@ -1029,6 +1029,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Insta@username`
+  String get instapayAddress {
+    return Intl.message(
+      'Insta@username',
+      name: 'instapayAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `@instapayuser`
+  String get instapayAddressUser {
+    return Intl.message(
+      '@instapayuser',
+      name: 'instapayAddressUser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
