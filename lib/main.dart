@@ -27,10 +27,21 @@ void main() async {
     key: CacheHelperKeys.onBoardDone,
   ) ?? false;
 
+  var userSignIn = CacheHelper.getData(
+    key: CacheHelperKeys.uId,
+  ) ?? '';
+
 
   print('onBoardDone: $onBoardDone');
   if(onBoardDone){
-    initLocation = AppRoutes.signInScreen;
+
+    if(userSignIn != ''){
+      initLocation = AppRoutes.homeScreen;
+
+    }
+    else{
+      initLocation = AppRoutes.signInScreen;
+    }
   }else {
     initLocation = AppRoutes.onBoardingScreen;
   }
