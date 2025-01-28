@@ -55,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
               : CustomScrollView(
                   slivers: [
                     MyCustomSliverAppBarForHomeScreen(
-                      sayHelloBasedOnTime: AppConstants.night,
+                      sayHelloBasedOnTime: homeCubit.getTimeOfDay(),
                       userName:
                           "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
                     ),

@@ -143,4 +143,17 @@ class HomeCubit extends Cubit<HomeState> {
 
     return formattedDate;
   }
+
+  String getTimeOfDay() {
+    // Get the current time
+    DateTime now = DateTime.now();
+    int hour = now.hour; // Extract the hour (0-23)
+
+    // Determine if it's morning or night
+    if (hour < 12) {
+      return "morning";
+    } else {
+      return "night";
+    }
+  }
 }
