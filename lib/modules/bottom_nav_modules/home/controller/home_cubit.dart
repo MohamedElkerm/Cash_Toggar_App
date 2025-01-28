@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:cash_toggar_app/helper/global_widgets/global_snack_bar_widget.dart';
+import 'package:cash_toggar_app/helper/local/cache_helper.dart';
+import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/model/user_model.dart';
@@ -118,6 +120,15 @@ class HomeCubit extends Cubit<HomeState> {
           .docs
           .map((doc) => MoneyRecord.fromMap(doc.data() as Map<String, dynamic>))
           .toList();
+
+      receivingMoneyRecords.sort((a, b) => b.time.compareTo(a.time));
+
+      if(receivingMoneyRecords[0].status == "pending"){
+        CacheHelper.saveData(key: CacheHelperKeys.lastReceivingRequestDone, value: false);
+      }else{
+        CacheHelper.saveData(key: CacheHelperKeys.lastReceivingRequestDone, value: true);
+
+      }
 
       // Combine both lists
       allRecords = [

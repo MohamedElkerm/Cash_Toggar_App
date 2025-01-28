@@ -1,6 +1,6 @@
 class AppConstants {
   static final String successTransaction = "success";
-  static final String failedTransaction = "failed";
+  static final String failedTransaction = "rejected";
   static final String pendingTransaction = "pending";
 
   static final String sendingMoney = "Sending";

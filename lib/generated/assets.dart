@@ -29,6 +29,7 @@ class Assets {
   static const String iconsUserIconSvg = 'assets/icons/user_icon_svg.svg';
   static const String imagesESample = 'assets/images/e_sample.png';
   static const String imagesHorizontalLogoSvg = 'assets/images/horizontal_logo_svg.svg';
+  static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesSplashScreen = 'assets/images/splash_screen.png';
   static const String imagesVerticalLogoSvg = 'assets/images/vertical_logo_svg.svg';
   static const String onBoardingImagesOnboardingScreenOne = 'assets/images/on_boarding_images/onboarding_screen_one.svg';

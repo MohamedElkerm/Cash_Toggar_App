@@ -145,71 +145,88 @@ class PaymentProcessCompeleteCubit extends Cubit<PaymentProcessCompeleteState> {
     required bool isArabic,
   }) async {
     if (formKeyGlobalKey.currentState!.validate()) {
-      if (userWallet <= double.parse(priceController.text)) {
-        myGlobalSnackBarWidget(
-          context: context,
-          isArabic: isArabic,
-          backGroundColor: AppColors.inf_suc_dan_warn_danger,
-          text: S.of(context).validatorAmountNotEnough,
-        );
-      } else {
-        if (calculateThousandsAndRemainder(
-                  int.parse(
-                    priceController.text,
-                  ),
-                ) +
-                int.parse(priceController.text) <=
-            userWallet) {
-          try {
-            sendReceivingMoneyLoading = true;
-            emit(SendingMoneyLoadingState());
-            // Reference to the Firestore collection
-            final CollectionReference receivingMoney =
-                FirebaseFirestore.instance.collection('receiving_money');
-
-            // Add a new document to the collection
-            await receivingMoney.add({
-              'amount': priceController.text.trim(),
-              'receive_phone': phoneController.text.trim(),
-              'uId': uId,
-              'userId': userId,
-              'user_name': userName,
-              'time': DateTime.now(),
-              // Firestore will automatically handle DateTime
-              'payment_method': currentPaymentGateWay.title,
-              'payment_method_en': currentPaymentGateWay.titleEn,
-              'status': 'pending',
-              'email': email,
-              'isSendingMoney': false,
-            });
-            priceController.clear();
-            phoneController.clear();
-            navigateToPaymentConfirmationScreen(
-              context: context,
-            );
-            emit(SendingMoneySuccessState());
-            sendReceivingMoneyLoading = false;
-
-            BlocProvider.of<HomeCubit>(context)
-                .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
-            print('Record added successfully!');
-          } catch (e) {
-            // Handle any errors that occur during the process
-            print('Error adding record: $e');
-            sendReceivingMoneyLoading = false;
-
-            emit(SendingMoneyErrorState());
-
-            throw e; // Re-throw the error if you want to handle it elsewhere
-          }
-        } else {
+      if (CacheHelper.getData(key: CacheHelperKeys.lastReceivingRequestDone) ==
+              true ||
+          CacheHelper.getData(key: CacheHelperKeys.lastReceivingRequestDone) ==
+              null) {
+        if (userWallet <= double.parse(priceController.text)) {
           myGlobalSnackBarWidget(
             context: context,
             isArabic: isArabic,
             backGroundColor: AppColors.inf_suc_dan_warn_danger,
             text: S.of(context).validatorAmountNotEnough,
           );
+        } else {
+          if (calculateThousandsAndRemainder(
+            int.parse(
+              priceController.text,
+            ),
+          ) +
+              int.parse(priceController.text) <=
+              userWallet) {
+            try {
+              sendReceivingMoneyLoading = true;
+              emit(SendingMoneyLoadingState());
+              // Reference to the Firestore collection
+              final CollectionReference receivingMoney =
+              FirebaseFirestore.instance.collection('receiving_money');
+
+              // Add a new document to the collection
+              await receivingMoney.add({
+                'amount': priceController.text.trim(),
+                'receive_phone': phoneController.text.trim(),
+                'uId': uId,
+                'userId': userId,
+                'user_name': userName,
+                'time': DateTime.now(),
+                // Firestore will automatically handle DateTime
+                'payment_method': currentPaymentGateWay.title,
+                'payment_method_en': currentPaymentGateWay.titleEn,
+                'status': 'pending',
+                'email': email,
+                'isSendingMoney': false,
+              });
+              priceController.clear();
+              phoneController.clear();
+              navigateToPaymentConfirmationScreen(
+                context: context,
+              );
+              sendReceivingMoneyLoading = false;
+
+              CacheHelper.saveData(
+                key: CacheHelperKeys.lastReceivingRequestDone,
+                value: false,
+              );
+
+              BlocProvider.of<HomeCubit>(context)
+                  .getUserData(CacheHelper.getData(key: CacheHelperKeys.uId));
+              print('Record added successfully!');
+              emit(SendingMoneySuccessState());
+
+            } catch (e) {
+              // Handle any errors that occur during the process
+              print('Error adding record: $e');
+              sendReceivingMoneyLoading = false;
+
+              emit(SendingMoneyErrorState());
+
+              throw e; // Re-throw the error if you want to handle it elsewhere
+            }
+          } else {
+            myGlobalSnackBarWidget(
+              context: context,
+              isArabic: isArabic,
+              backGroundColor: AppColors.inf_suc_dan_warn_danger,
+              text: S.of(context).validatorAmountNotEnough,
+            );
+          }
         }
+      } else {
+        myGlobalSnackBarWidget(
+            context: context,
+            isArabic: isArabic,
+            backGroundColor: AppColors.inf_suc_dan_warn_danger,
+            text: S.of(context).cantSubmitAnotherRequest);
       }
     }
   }

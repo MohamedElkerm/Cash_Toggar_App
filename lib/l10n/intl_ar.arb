@@ -99,5 +99,6 @@
   "copySuccess" : "تم النسخ بنجاح",
   "instapayAddress" : "عنوان الحساب @",
   "instapayAddressUser" : "@instapayuser",
-  "priceValidatorValid" : "يجب ان يكون البلغ صحيح"
+  "priceValidatorValid" : "يجب ان يكون البلغ صحيح",
+  "cantSubmitAnotherRequest" : "لا يمكنك تقديم طلب اخر حتي يتم الموافقه علي الطلب الحالي"
 }

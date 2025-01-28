@@ -99,5 +99,6 @@
   "copySuccess" : "copied successfully",
   "instapayAddress" : "Insta@username",
   "instapayAddressUser" : "@instapayuser",
-  "priceValidatorValid" : "@Price must be a valid number"
+  "priceValidatorValid" : "@Price must be a valid number",
+  "cantSubmitAnotherRequest" : "Can't submit another request yet"
 }

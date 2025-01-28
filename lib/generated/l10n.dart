@@ -1059,6 +1059,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Can't submit another request yet`
+  String get cantSubmitAnotherRequest {
+    return Intl.message(
+      'Can\'t submit another request yet',
+      name: 'cantSubmitAnotherRequest',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
