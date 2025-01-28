@@ -1069,6 +1069,16 @@ class S {
       args: [],
     );
   }
+
+  /// ` Please enter your instapay account`
+  String get instapayAccValidator {
+    return Intl.message(
+      ' Please enter your instapay account',
+      name: 'instapayAccValidator',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

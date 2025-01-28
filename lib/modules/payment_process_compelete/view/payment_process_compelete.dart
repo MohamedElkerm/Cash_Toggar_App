@@ -17,11 +17,31 @@ import '../../../helper/global_widgets/sliver_widgets/custom_sliver_app_bar.dart
 import '../../../helper/local/cache_helper.dart';
 import '../../../helper/local/cache_helper_keys.dart';
 import '../../../helper/localization/cubit/localization_cubit.dart';
+import '../../../helper/validator/instapay_account_validator.dart';
 import '../../bottom_nav_modules/home/controller/home_cubit.dart';
 import '../controller/payment_process_compelete_cubit.dart';
 
-class PaymentProcessCompleteScreen extends StatelessWidget {
+class PaymentProcessCompleteScreen extends StatefulWidget {
   const PaymentProcessCompleteScreen({super.key});
+
+  @override
+  State<PaymentProcessCompleteScreen> createState() =>
+      _PaymentProcessCompleteScreenState();
+}
+
+class _PaymentProcessCompleteScreenState
+    extends State<PaymentProcessCompleteScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    BlocProvider.of<PaymentProcessCompeleteCubit>(context)
+        .priceController
+        .clear();
+    BlocProvider.of<PaymentProcessCompeleteCubit>(context)
+        .phoneController
+        .clear();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -367,8 +387,19 @@ class PaymentProcessCompleteScreen extends StatelessWidget {
                                                         paymentProcessCompleteCubit
                                                             .phoneController,
                                                     textInputType:
-                                                        TextInputType.phone,
-                                                    validator: phoneNumberValidator,
+                                                        paymentProcessCompleteCubit
+                                                                    .currentPaymentGateWay
+                                                                    .titleEn ==
+                                                                "Instapay"
+                                                            ? TextInputType.text
+                                                            : TextInputType
+                                                                .phone,
+                                                    validator: paymentProcessCompleteCubit
+                                                                .currentPaymentGateWay
+                                                                .titleEn ==
+                                                            "Instapay"
+                                                        ? instapayAccountValidator
+                                                        : phoneNumberValidator,
                                                   ),
                                                 ),
                                               ),

@@ -89,6 +89,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("الرئيسية"),
         "imageValidator":
             MessageLookupByLibrary.simpleMessage("يرجي ارفاق صوره اولا"),
+        "instapayAccValidator":
+            MessageLookupByLibrary.simpleMessage("برجاء ادخال حساب انستاباي"),
         "instapayAddress":
             MessageLookupByLibrary.simpleMessage("عنوان الحساب @"),
         "instapayAddressUser":
