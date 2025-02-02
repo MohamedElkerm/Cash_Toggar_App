@@ -71,6 +71,8 @@ class MainCardInHomeScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQueryValues(context).width * 0.4,
                     child: MyDefaultButtonFitWithIcon(
+                      icon: Assets.iconsRefreshIconSvg,
+                      iconColor : AppColors.secondaryColor,
                       haveIcon: true,
                       text: "Cash Back $totalCashBack",
                       textSize: 16,

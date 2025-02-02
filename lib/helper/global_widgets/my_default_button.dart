@@ -191,6 +191,8 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
     this.isLargeCard = false,
     this.haveIcon = true,
     this.borderRadius = 8.0,
+    this.icon = Assets.iconsCopyIconSvg,
+    this.iconColor = Colors.white,
   });
 
   final String text;
@@ -201,6 +203,8 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
   final bool isLargeCard;
   final double borderRadius;
   final bool haveIcon;
+  final String icon;
+  final Color iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -239,7 +243,8 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: SvgPicture.asset(
-                      Assets.iconsCopyIconSvg,
+                      icon,
+                      color: iconColor,
                     ),
                   ),
                 ],
