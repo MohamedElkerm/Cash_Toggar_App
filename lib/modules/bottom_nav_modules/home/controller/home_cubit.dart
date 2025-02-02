@@ -40,7 +40,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(NavigateToChoosePaymentMethodState());
   }
 
-  void copyToClipboard(BuildContext context, String text , isArabic) {
+  void copyToClipboard(BuildContext context, String text, isArabic) {
     Clipboard.setData(ClipboardData(text: text));
     myGlobalSnackBarWidget(
       context: context,
@@ -123,11 +123,17 @@ class HomeCubit extends Cubit<HomeState> {
 
       receivingMoneyRecords.sort((a, b) => b.time.compareTo(a.time));
 
-      if(receivingMoneyRecords[0].status == "pending"){
-        CacheHelper.saveData(key: CacheHelperKeys.lastReceivingRequestDone, value: false);
+      if (receivingMoneyRecords.isNotEmpty) {
+        if (receivingMoneyRecords[0].status == "pending") {
+          CacheHelper.saveData(
+              key: CacheHelperKeys.lastReceivingRequestDone, value: false);
+        } else {
+          CacheHelper.saveData(
+              key: CacheHelperKeys.lastReceivingRequestDone, value: true);
+        }
       }else{
-        CacheHelper.saveData(key: CacheHelperKeys.lastReceivingRequestDone, value: true);
-
+        CacheHelper.saveData(
+            key: CacheHelperKeys.lastReceivingRequestDone, value: true);
       }
 
       // Combine both lists
