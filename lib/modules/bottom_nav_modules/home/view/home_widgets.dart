@@ -15,11 +15,13 @@ class MainCardInHomeScreen extends StatelessWidget {
     required this.totalAmount,
     required this.totalCashBack,
     required this.refreshUserData,
+    required this.cashBack,
   });
 
   final String totalAmount;
   final String totalCashBack;
   final Function refreshUserData;
+  final Function cashBack;
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +71,12 @@ class MainCardInHomeScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQueryValues(context).width * 0.4,
                     child: MyDefaultButtonFitWithIcon(
-                      haveIcon: false,
-                      text: "Cash Back $totalCashBack LE",
+                      haveIcon: true,
+                      text: "Cash Back $totalCashBack",
                       textSize: 16,
-                      function: () {},
+                      function: () {
+                        cashBack();
+                      },
                       backGroundColor: AppColors.myWhite,
                       textColor: AppColors.secondaryColor,
                     ),

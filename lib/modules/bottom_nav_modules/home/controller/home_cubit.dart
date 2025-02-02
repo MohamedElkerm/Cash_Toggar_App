@@ -131,7 +131,7 @@ class HomeCubit extends Cubit<HomeState> {
           CacheHelper.saveData(
               key: CacheHelperKeys.lastReceivingRequestDone, value: true);
         }
-      }else{
+      } else {
         CacheHelper.saveData(
             key: CacheHelperKeys.lastReceivingRequestDone, value: true);
       }
@@ -172,5 +172,86 @@ class HomeCubit extends Cubit<HomeState> {
     } else {
       return "night";
     }
+  }
+
+  late int thousandNumbers;
+  late int remainderPoints;
+
+  sendCashBack({
+    required int currentPoints,
+    required BuildContext context,
+    required bool isArabic,
+    required uId,
+  }) {
+    emit(SendCashBackLoadingState());
+    if (currentPoints >= 1000) {
+      calculateThousandsAndRemainder(currentPoints);
+      updateUserPointsAndUserCash(
+        uId: uId,
+        points: remainderPoints,
+        cash: thousandNumbers * 10.0,
+      );
+    } else {
+      myGlobalSnackBarWidget(
+        context: context,
+        isArabic: isArabic,
+        backGroundColor: AppColors.inf_suc_dan_warn_danger,
+        text: S.of(context).pointsNotEnough,
+      );
+      emit(SendCashBackErrorState());
+    }
+  }
+
+  Future<void> updateUserPointsAndUserCash({
+    required String uId,
+    required int points,
+    required double cash,
+  }) async {
+    emit(SendCashBackLoadingState());
+
+    try {
+      DocumentReference userRef = _firestore.collection('users').doc(uId);
+
+      // Get the current myCash value
+      DocumentSnapshot userDoc = await userRef.get();
+      if (userDoc.exists) {
+        double currentCash = (userDoc.get('myCash') ?? 0).toDouble();
+        double newCash = currentCash + cash;
+
+        // Update both myPoints and myCash
+        await userRef.update({
+          'myPoints': points,
+          'myCash': newCash,
+        });
+      }
+      getUserData(
+        uId,
+      );
+      emit(SendCashBackSuccessState());
+    } catch (e) {
+      print('Error updating points and cash: $e');
+      emit(SendCashBackErrorState());
+    }
+  }
+
+  calculateThousandsAndRemainder(int currentPoints) {
+    thousandNumbers = 0;
+    remainderPoints = 0;
+
+    thousandNumbers =
+        currentPoints ~/ 1000; // Calculate how many 1000s are in the price
+    remainderPoints = currentPoints % 1000; // Calculate the remainder
+
+    // return thousands * 10;
+
+    // Print the results
+    // print("**********************************");
+    // print("thousands : ");
+    // print(thousands);
+    // print("remainder : ");
+    // print(remainder);
+    // print("fullTax : ");
+    // print(fullTax);
+    // print("**********************************");
   }
 }

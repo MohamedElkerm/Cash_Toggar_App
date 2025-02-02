@@ -124,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "phone number will receive to"),
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "phone number transferred made from"),
+        "pointsNotEnough":
+            MessageLookupByLibrary.simpleMessage("Youe Points Not Enough !"),
         "previous": MessageLookupByLibrary.simpleMessage("back"),
         "priceValidatorValid": MessageLookupByLibrary.simpleMessage(
             "@Price must be a valid number"),

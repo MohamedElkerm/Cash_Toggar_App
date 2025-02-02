@@ -101,5 +101,6 @@
   "instapayAddressUser" : "@instapayuser",
   "priceValidatorValid" : "@Price must be a valid number",
   "cantSubmitAnotherRequest" : "Can't submit another request yet",
-  "instapayAccValidator" : " Please enter your instapay account"
+  "instapayAccValidator" : " Please enter your instapay account",
+  "pointsNotEnough" : "Youe Points Not Enough !"
 }

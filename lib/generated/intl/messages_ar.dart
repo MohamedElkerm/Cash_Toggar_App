@@ -122,6 +122,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "رقم الهاتف الذي تريد التحويل اليه"),
         "phoneNumberThatSendingMoney": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الذي تم التحويل منه"),
+        "pointsNotEnough":
+            MessageLookupByLibrary.simpleMessage("نقاطك غير كافيه !"),
         "previous": MessageLookupByLibrary.simpleMessage("للخلف"),
         "priceValidatorValid":
             MessageLookupByLibrary.simpleMessage("يجب ان يكون البلغ صحيح"),

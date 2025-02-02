@@ -1079,6 +1079,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Youe Points Not Enough !`
+  String get pointsNotEnough {
+    return Intl.message(
+      'Youe Points Not Enough !',
+      name: 'pointsNotEnough',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

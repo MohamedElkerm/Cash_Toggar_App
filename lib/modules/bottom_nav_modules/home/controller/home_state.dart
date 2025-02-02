@@ -20,3 +20,7 @@ final class GetTheUserDataErrorState extends HomeState {}
 final class GetTheUserMoneyRecordsLoadingState extends HomeState {}
 final class GetTheUserMoneyRecordsSuccessState extends HomeState {}
 final class GetTheUserMoneyRecordsErrorState extends HomeState {}
+
+final class SendCashBackLoadingState extends HomeState {}
+final class SendCashBackSuccessState extends HomeState {}
+final class SendCashBackErrorState extends HomeState {}

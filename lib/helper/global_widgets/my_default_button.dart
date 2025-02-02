@@ -223,18 +223,24 @@ class MyDefaultButtonFitWithIcon extends StatelessWidget {
         child: haveIcon
             ? Row(
                 children: [
-                  MyResponsiveText(
-                    text: text,
-                    style: getBold(
-                      fontColor: textColor,
-                      fontSize: textSize,
+                  Expanded(
+                    flex: 5,
+                    child: MyResponsiveText(
+                      text: text,
+                      style: getBold(
+                        fontColor: textColor,
+                        fontSize: textSize,
+                      ),
                     ),
                   ),
                   SizedBox(
                     width: 8,
                   ),
-                  SvgPicture.asset(
-                    Assets.iconsCopyIconSvg,
+                  Expanded(
+                    flex: 1,
+                    child: SvgPicture.asset(
+                      Assets.iconsCopyIconSvg,
+                    ),
                   ),
                 ],
               )

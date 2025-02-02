@@ -5,6 +5,7 @@ import 'package:cash_toggar_app/helper/global_widgets/my_text_butoon.dart';
 import 'package:cash_toggar_app/helper/global_widgets/sliver_widgets/custom_sliver_app_bar.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper.dart';
 import 'package:cash_toggar_app/helper/local/cache_helper_keys.dart';
+import 'package:cash_toggar_app/helper/localization/cubit/localization_cubit.dart';
 import 'package:cash_toggar_app/helper/routing/app_routes.dart';
 import 'package:cash_toggar_app/helper/routing/router.dart';
 import 'package:cash_toggar_app/modules/bottom_nav_modules/home/controller/home_cubit.dart';
@@ -64,22 +65,40 @@ class _HomeScreenState extends State<HomeScreen> {
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           children: [
-                            MainCardInHomeScreen(
-                              totalAmount:
-                                  homeCubit.userModel.myCash.toString(),
-                              totalCashBack:
-                                  homeCubit.userModel.myPoints.toString(),
-                              refreshUserData: () {
-                                BlocProvider.of<HomeCubit>(context).getUserData(
-                                  CacheHelper.getData(
-                                    key: CacheHelperKeys.uId,
-                                  ),
-                                );
-                                BlocProvider.of<HomeCubit>(context)
-                                    .getUserMoneyRecords(
-                                  CacheHelper.getData(
-                                    key: CacheHelperKeys.uId,
-                                  ),
+                            BlocConsumer<LocalizationCubit, LocalizationState>(
+                              listener: (context, state) {
+                                // TODO: implement listener
+                              },
+                              builder: (context, state) {
+                                var localCubit =
+                                    BlocProvider.of<LocalizationCubit>(context);
+                                return MainCardInHomeScreen(
+                                  totalAmount:
+                                      homeCubit.userModel.myCash.toString(),
+                                  totalCashBack:
+                                      homeCubit.userModel.myPoints.toString(),
+                                  refreshUserData: () {
+                                    BlocProvider.of<HomeCubit>(context)
+                                        .getUserData(
+                                      CacheHelper.getData(
+                                        key: CacheHelperKeys.uId,
+                                      ),
+                                    );
+                                    BlocProvider.of<HomeCubit>(context)
+                                        .getUserMoneyRecords(
+                                      CacheHelper.getData(
+                                        key: CacheHelperKeys.uId,
+                                      ),
+                                    );
+                                  },
+                                  cashBack: () {
+                                    homeCubit.sendCashBack(
+                                      currentPoints: homeCubit.userModel.myPoints,
+                                      context: context,
+                                      isArabic: localCubit.isArabic(),
+                                      uId: homeCubit.userModel.uId,
+                                    );
+                                  },
                                 );
                               },
                             ),
@@ -176,8 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         child: TransactionCard(
                                           userName: homeCubit
                                               .allRecords[index].userName,
-                                          transactionDate: homeCubit.formatFirebaseTimestamp(homeCubit
-                                              .allRecords[index].time),
+                                          transactionDate: homeCubit
+                                              .formatFirebaseTimestamp(homeCubit
+                                                  .allRecords[index].time),
                                           transactionTime: "",
                                           transactionAmount: homeCubit
                                               .allRecords[index].amount,
