@@ -20,9 +20,6 @@ void main() async {
 
   await CacheHelper.init();
 
-
-
-  // print('------------------');
   var onBoardDone = CacheHelper.getData(
     key: CacheHelperKeys.onBoardDone,
   ) ?? false;
@@ -46,20 +43,10 @@ void main() async {
     initLocation = AppRoutes.onBoardingScreen;
   }
 
-
   MyBlocObserver myBlocObserver = MyBlocObserver();
   Bloc.observer = myBlocObserver;
 
   runApp(
     const CashToggar(),
-
-    // DevicePreview(
-    //     enabled: !kReleaseMode,
-    //     builder: (context) => const CashToggar(),
-    // ),
   );
 }
-
-/*
-status        {pending , rejected , success}
- */

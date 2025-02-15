@@ -11,6 +11,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'generated/l10n.dart';
 import 'helper/localization/cubit/localization_cubit.dart';
 import 'helper/routing/router.dart';
+import 'main_cubit/cubit/main_cubit.dart';
 import 'modules/bottom_nav_modules/profile/controller/profile_cubit.dart';
 import 'modules/payment_process_compelete/controller/payment_process_compelete_cubit.dart';
 
@@ -21,6 +22,17 @@ class CashToggar extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(
+          create: (context) => MainCubit()
+            ..getUserLocation(
+              context,
+              CacheHelper.getData(
+                    key: CacheHelperKeys.uId,
+                  ) ??
+                  "",
+            ),
+          lazy: false,
+        ),
         BlocProvider(
           create: (context) => LocalizationCubit(),
         ),
@@ -41,8 +53,9 @@ class CashToggar extends StatelessWidget {
             ),
         ),
         BlocProvider(
-          create: (context) =>
-              PaymentProcessCompeleteCubit()..getAllPaymentGateways()..getAdData(),
+          create: (context) => PaymentProcessCompeleteCubit()
+            ..getAllPaymentGateways()
+            ..getAdData(),
         ),
       ],
       child: BlocConsumer<LocalizationCubit, LocalizationState>(

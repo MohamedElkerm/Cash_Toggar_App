@@ -20,6 +20,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../generated/l10n.dart';
 import '../../../../helper/global_widgets/transaction_card/transaction_card.dart';
+import '../../../../main_cubit/get_home_price/ui/get_internet_price.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -93,7 +94,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   },
                                   cashBack: () {
                                     homeCubit.sendCashBack(
-                                      currentPoints: homeCubit.userModel.myPoints,
+                                      currentPoints:
+                                          homeCubit.userModel.myPoints,
                                       context: context,
                                       isArabic: localCubit.isArabic(),
                                       uId: homeCubit.userModel.uId,
@@ -138,6 +140,31 @@ class _HomeScreenState extends State<HomeScreen> {
                                     isLarge: true,
                                     textColor: AppColors.primaryColor,
                                     backGroundColor: AppColors.myWhite,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 22,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: MyDefaultButton(
+                                    text: S.of(context).weDsl,
+                                    textSize: 24,
+                                    function: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              GetInternetPriceScreen(),
+                                        ),
+                                      );
+                                    },
+                                    isLarge: true,
+                                    textColor: AppColors.myWhite,
+                                    backGroundColor: AppColors.secondaryColor,
                                   ),
                                 ),
                               ],

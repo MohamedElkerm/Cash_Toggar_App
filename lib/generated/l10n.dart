@@ -1089,6 +1089,56 @@ class S {
       args: [],
     );
   }
+
+  /// `WE Home Internet`
+  String get weDsl {
+    return Intl.message(
+      'WE Home Internet',
+      name: 'weDsl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `WE Home Number`
+  String get weNum {
+    return Intl.message(
+      'WE Home Number',
+      name: 'weNum',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `please enter the number with code`
+  String get weNum1 {
+    return Intl.message(
+      'please enter the number with code',
+      name: 'weNum1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay The Bill`
+  String get payTheBill {
+    return Intl.message(
+      'Pay The Bill',
+      name: 'payTheBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `برجاء السماح لتحديد الموقع لتحديد الفاتوره بشكل صحيح`
+  String get access {
+    return Intl.message(
+      'برجاء السماح لتحديد الموقع لتحديد الفاتوره بشكل صحيح',
+      name: 'access',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

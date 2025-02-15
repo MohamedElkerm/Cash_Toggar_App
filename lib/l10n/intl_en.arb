@@ -102,5 +102,10 @@
   "priceValidatorValid" : "@Price must be a valid number",
   "cantSubmitAnotherRequest" : "Can't submit another request yet",
   "instapayAccValidator" : " Please enter your instapay account",
-  "pointsNotEnough" : "Youe Points Not Enough !"
+  "pointsNotEnough" : "Youe Points Not Enough !",
+  "weDsl" : "WE Home Internet",
+  "weNum" : "WE Home Number",
+  "weNum1" : "please enter the number with code",
+  "payTheBill" : "Pay The Bill",
+  "access" : "برجاء السماح لتحديد الموقع لتحديد الفاتوره بشكل صحيح"
 }

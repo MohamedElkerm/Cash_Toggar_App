@@ -4,3 +4,10 @@ part of 'main_cubit.dart';
 sealed class MainState {}
 
 final class MainInitial extends MainState {}
+
+final class GetPhoneDetailsSuccessState extends MainState {}
+final class GetPhoneDetailsErrorState extends MainState {}
+final class GetPhoneDetailsLoadingState extends MainState {}
+
+final class GetPhonePriceLoadingState extends MainState {}
+final class GetPhonePriceSuccessState extends MainState {}

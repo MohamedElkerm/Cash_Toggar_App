@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "access": MessageLookupByLibrary.simpleMessage(
+            "برجاء السماح لتحديد الموقع لتحديد الفاتوره بشكل صحيح"),
         "agreeConditions": MessageLookupByLibrary.simpleMessage(
             "agree to the terms & conditions of كاش تجار & the privacy policy."),
         "alertBodySendRequestDone": MessageLookupByLibrary.simpleMessage(
@@ -119,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordReset": MessageLookupByLibrary.simpleMessage(
             "Password Reset Send Successfully"),
+        "payTheBill": MessageLookupByLibrary.simpleMessage("Pay The Bill"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
             "phone number will receive to"),
@@ -195,6 +198,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "vodafoneCashNum":
             MessageLookupByLibrary.simpleMessage("Vodafone Cash Number"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("Wallet Balance"),
+        "weDsl": MessageLookupByLibrary.simpleMessage("WE Home Internet"),
+        "weNum": MessageLookupByLibrary.simpleMessage("WE Home Number"),
+        "weNum1": MessageLookupByLibrary.simpleMessage(
+            "please enter the number with code"),
         "withdrawFundsVia":
             MessageLookupByLibrary.simpleMessage("Withdraw funds via "),
         "withdrawalRejected":

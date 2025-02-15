@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "access": MessageLookupByLibrary.simpleMessage(
+            "برجاء السماح لتحديد الموقع لتحديد الفاتوره بشكل صحيح"),
         "agreeConditions": MessageLookupByLibrary.simpleMessage(
             "أوافق علي الشروط والأحكام كاش تجار وسياسة الخصوصية"),
         "alertBodySendRequestDone": MessageLookupByLibrary.simpleMessage(
@@ -117,6 +119,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordReset": MessageLookupByLibrary.simpleMessage(
             "تم ارسال اعاده تعيين كلمه السر بنجاح"),
+        "payTheBill": MessageLookupByLibrary.simpleMessage("دفع الفاتوره"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
         "phoneNumberThatReceivingMoney": MessageLookupByLibrary.simpleMessage(
             "رقم الهاتف الذي تريد التحويل اليه"),
@@ -192,6 +195,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "vodafoneCashNum":
             MessageLookupByLibrary.simpleMessage("رقم فودافون كاش"),
         "walletBalance": MessageLookupByLibrary.simpleMessage("رصيد المحفظة"),
+        "weDsl": MessageLookupByLibrary.simpleMessage("نت منزلي وي"),
+        "weNum": MessageLookupByLibrary.simpleMessage("نت منزلي وي"),
+        "weNum1": MessageLookupByLibrary.simpleMessage(
+            "برجاء ادخال الرقم مصحوب برقم الخدمه"),
         "withdrawFundsVia":
             MessageLookupByLibrary.simpleMessage("سحب الاموال بواسطه "),
         "withdrawalRejected":
