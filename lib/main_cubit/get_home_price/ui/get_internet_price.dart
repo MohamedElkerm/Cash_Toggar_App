@@ -46,6 +46,8 @@ class GetInternetPriceScreen extends StatelessWidget {
                         height: 12,
                       ),
                       MyDefaultButton(
+                        loadingColor: AppColors.primaryColor,
+                        isLoading: mainCubit.loadingGetPrice,
                         text: S.of(context).payTheBill,
                         textSize: 16,
                         function: () {

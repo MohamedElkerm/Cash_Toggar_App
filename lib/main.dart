@@ -7,10 +7,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:workmanager/workmanager.dart';
 
 import 'app_start_point.dart';
 import 'firebase_options.dart';
 import 'helper/routing/app_routes.dart';
+import 'main_cubit/cubit/main_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,31 +23,33 @@ void main() async {
   await CacheHelper.init();
 
   var onBoardDone = CacheHelper.getData(
-    key: CacheHelperKeys.onBoardDone,
-  ) ?? false;
+        key: CacheHelperKeys.onBoardDone,
+      ) ??
+      false;
 
   var userSignIn = CacheHelper.getData(
-    key: CacheHelperKeys.uId,
-  ) ?? '';
-
+        key: CacheHelperKeys.uId,
+      ) ??
+      '';
 
   // print('onBoardDone: $onBoardDone');
-  if(onBoardDone){
-
-    if(userSignIn != ''){
+  if (onBoardDone) {
+    if (userSignIn != '') {
       initLocation = AppRoutes.homeScreen;
-
-    }
-    else{
+    } else {
       initLocation = AppRoutes.signInScreen;
     }
-  }else {
+  } else {
     initLocation = AppRoutes.onBoardingScreen;
   }
 
   MyBlocObserver myBlocObserver = MyBlocObserver();
   Bloc.observer = myBlocObserver;
 
+  Workmanager().initialize(
+    callbackDispatcher,
+    isInDebugMode: true,
+  );
   runApp(
     const CashToggar(),
   );

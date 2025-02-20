@@ -1,6 +1,7 @@
 import 'package:cash_toggar_app/helper/global_widgets/MyResponsiveText.dart';
 import 'package:cash_toggar_app/helper/validator/phone_number_validator.dart';
 import 'package:cash_toggar_app/helper/validator/price_validator.dart';
+import 'package:cash_toggar_app/main_cubit/cubit/main_cubit.dart';
 import 'package:cash_toggar_app/modules/choose_payment_method/view/widgets.dart';
 import 'package:cash_toggar_app/modules/payment_process_compelete/view/widgets.dart';
 import 'package:cash_toggar_app/resources/colors_manager.dart';
@@ -512,68 +513,84 @@ class _PaymentProcessCompleteScreenState
                                             height: 16,
                                           ),
 
-                                          MyDefaultButton(
-                                            isLoading: homeCubit
-                                                    .isSendingProcess
-                                                ? paymentProcessCompleteCubit
-                                                    .sendSendingMoneyLoading
-                                                : paymentProcessCompleteCubit
-                                                    .sendReceivingMoneyLoading,
-                                            text: S.of(context).confirm,
-                                            textSize: 18,
-                                            function: () {
-                                              homeCubit.isSendingProcess
-                                                  ? paymentProcessCompleteCubit
-                                                      .sendSendingMoneyRecord(
-                                                      uId: homeCubit
-                                                          .userModel.uId,
-                                                      userId: homeCubit
-                                                          .userModel.userId,
-                                                      userName:
-                                                          "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
-                                                      email: homeCubit
-                                                          .userModel.email,
-                                                      context: context,
-                                                      isArabic:
-                                                          localCubit.isArabic(),
-                                                    )
-                                                      .then((value) {
-                                                      homeCubit
-                                                          .getUserMoneyRecords(
-                                                        CacheHelper.getData(
-                                                          key: CacheHelperKeys
-                                                              .uId,
-                                                        ),
-                                                      );
-                                                    })
-                                                  : paymentProcessCompleteCubit
-                                                      .sendReceivingMoneyRecord(
-                                                      uId: homeCubit
-                                                          .userModel.uId,
-                                                      userId: homeCubit
-                                                          .userModel.userId,
-                                                      userName:
-                                                          "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
-                                                      email: homeCubit
-                                                          .userModel.email,
-                                                      context: context,
-                                                      isArabic:
-                                                          localCubit.isArabic(),
-                                                      userWallet: homeCubit
-                                                          .userModel.myCash,
-                                                    )
-                                                      .then((value) {
-                                                      homeCubit
-                                                          .getUserMoneyRecords(
-                                                        CacheHelper.getData(
-                                                          key: CacheHelperKeys
-                                                              .uId,
-                                                        ),
-                                                      );
-                                                    });
+                                          BlocConsumer<MainCubit, MainState>(
+                                            listener: (context, state) {
+                                              // TODO: implement listener
                                             },
-                                            backGroundColor:
-                                                AppColors.secondaryColor,
+                                            builder: (context, state) {
+                                              return MyDefaultButton(
+                                                isLoading: homeCubit
+                                                        .isSendingProcess
+                                                    ? paymentProcessCompleteCubit
+                                                        .sendSendingMoneyLoading
+                                                    : paymentProcessCompleteCubit
+                                                        .sendReceivingMoneyLoading,
+                                                text: S.of(context).confirm,
+                                                textSize: 18,
+                                                function: () {
+                                                  homeCubit.isSendingProcess
+                                                      ? BlocProvider.of<
+                                                                  MainCubit>(
+                                                              context)
+                                                          .startImageUpload
+                                                      : null;
+
+                                                  homeCubit.isSendingProcess
+                                                      ? paymentProcessCompleteCubit
+                                                          .sendSendingMoneyRecord(
+                                                          uId: homeCubit
+                                                              .userModel.uId,
+                                                          userId: homeCubit
+                                                              .userModel.userId,
+                                                          userName:
+                                                              "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
+                                                          email: homeCubit
+                                                              .userModel.email,
+                                                          context: context,
+                                                          isArabic: localCubit
+                                                              .isArabic(),
+                                                        )
+                                                          .then((value) {
+                                                          homeCubit
+                                                              .getUserMoneyRecords(
+                                                            CacheHelper.getData(
+                                                              key:
+                                                                  CacheHelperKeys
+                                                                      .uId,
+                                                            ),
+                                                          );
+                                                        })
+                                                      : paymentProcessCompleteCubit
+                                                          .sendReceivingMoneyRecord(
+                                                          uId: homeCubit
+                                                              .userModel.uId,
+                                                          userId: homeCubit
+                                                              .userModel.userId,
+                                                          userName:
+                                                              "${homeCubit.userModel.firstName} ${homeCubit.userModel.lastName}",
+                                                          email: homeCubit
+                                                              .userModel.email,
+                                                          context: context,
+                                                          isArabic: localCubit
+                                                              .isArabic(),
+                                                          userWallet: homeCubit
+                                                              .userModel.myCash,
+                                                        )
+                                                          .then((value) {
+                                                          homeCubit
+                                                              .getUserMoneyRecords(
+                                                            CacheHelper.getData(
+                                                              key:
+                                                                  CacheHelperKeys
+                                                                      .uId,
+                                                            ),
+                                                          );
+                                                        });
+                                                },
+                                                backGroundColor:
+                                                    AppColors.secondaryColor,
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
