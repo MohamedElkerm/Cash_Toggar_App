@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_isolate/flutter_isolate.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:workmanager/workmanager.dart';
@@ -314,14 +315,14 @@ class MainCubit extends Cubit<MainState> {
   }
 }
 
-void callbackDispatcher() {
-  Workmanager().executeTask((task, inputData) async {
-    if (task == uploadImagesTask) {
-      MainCubit().uploadAllImagesToFirebase();
-    }
-    return Future.value(true);
-  });
-}
+// void callbackDispatcher() {
+//   Workmanager().executeTask((task, inputData) async {
+//     if (task == uploadImagesTask) {
+//       await MainCubit().uploadAllImagesToFirebase();
+//     }
+//     return Future.value(true);
+//   });
+// }
 
 
 /*

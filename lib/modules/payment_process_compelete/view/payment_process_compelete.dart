@@ -532,7 +532,7 @@ class _PaymentProcessCompleteScreenState
                                                       ? BlocProvider.of<
                                                                   MainCubit>(
                                                               context)
-                                                          .startImageUpload
+                                                          .startImageUpload()
                                                       : null;
 
                                                   homeCubit.isSendingProcess

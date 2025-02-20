@@ -7,6 +7,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_isolate/flutter_isolate.dart';
 import 'package:workmanager/workmanager.dart';
 
 import 'app_start_point.dart';
@@ -46,10 +47,12 @@ void main() async {
   MyBlocObserver myBlocObserver = MyBlocObserver();
   Bloc.observer = myBlocObserver;
 
-  Workmanager().initialize(
-    callbackDispatcher,
-    isInDebugMode: true,
-  );
+  await FlutterIsolate.killAll();
+
+  // Workmanager().initialize(
+  //   callbackDispatcher,
+  //   isInDebugMode: true,
+  // );
   runApp(
     const CashToggar(),
   );
